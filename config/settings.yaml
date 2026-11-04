@@ -1,0 +1,14 @@
+years: [2022, 2023, 2024, 2025]   # 사업연도 (공시 제출연도 아님: 제출은 보통 +1년)
+mvp:
+  companies: [SK하이닉스]
+  years: [2024, 2025]
+# 정정 공시 정책: 같은 사업연도에 정정본이 있으면 접수일이 가장 늦은 최종본 사용
+revision_policy: latest
+request_interval_sec: 0.5
+max_retries: 3
+align:
+  top_k: 3
+  # 정렬 임계값(초기값, gold_labels로 조정 예정). 이 값 미만이면 대응 없음(신규/삭제 후보)
+  threshold: {tfidf: 0.30, embedding: 0.60}
+tfidf: {analyzer: char, ngram_range: [2, 5]}
+embedding: {model: BAAI/bge-m3, max_seq_length: 512, batch_size: 16}
