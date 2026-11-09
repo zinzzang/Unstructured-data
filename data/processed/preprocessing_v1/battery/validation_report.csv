@@ -1,0 +1,10 @@
+﻿method,company,business_year,rcept_no,status,paragraph_count,sentence_count,table_row_count,duplicate_text_count,unmapped_count,error
+structure,LG에너지솔루션,2023,20240314001110,OK,265,319,180,8,0,
+structure,LG에너지솔루션,2024,20250312000405,OK,291,349,200,7,0,
+structure,LG에너지솔루션,2025,20260312000217,OK,326,382,233,8,0,
+structure,SK이노베이션,2023,20240320000950,OK,1089,1363,823,15,0,
+structure,SK이노베이션,2024,20250318000862,OK,1056,6896,761,17,0,
+structure,SK이노베이션,2025,20260316000827,OK,1368,1770,966,19,0,
+structure,삼성SDI,2023,20240312000853,OK,234,288,159,2,0,
+structure,삼성SDI,2024,20250311001275,OK,245,295,163,3,0,
+structure,삼성SDI,2025,20260310002954,OK,248,298,170,2,0,
