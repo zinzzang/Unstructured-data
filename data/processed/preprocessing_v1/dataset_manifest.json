@@ -1,0 +1,36 @@
+{
+  "dataset": "preprocessing_v1",
+  "canonical_method": "structure",
+  "record_unit": "paragraph or table row",
+  "text_field_for_milestone_b": "normalized_text",
+  "sentence_field": "sentences",
+  "industries": {
+    "semiconductor": {
+      "source_experiment": "semiconductor_preprocessing_v1",
+      "report_count": 9,
+      "source_database": "data\\annual_reports.db.gz",
+      "code_sha256": {
+        "preprocess_structure.py": "ebe8d8fd561f4908d2aac33c10c7f513a0525f98e7215b9da89ab9fb5356070a",
+        "preprocess_semantic.py": "e1417442b37a1280270d0be406f80a9d19010f1f6bb5c74e311af21a89652fa6"
+      }
+    },
+    "battery": {
+      "source_experiment": "battery_preprocessing_v1",
+      "report_count": 9,
+      "source_database": "data\\annual_reports.db.gz",
+      "code_sha256": {
+        "preprocess_structure.py": "ebe8d8fd561f4908d2aac33c10c7f513a0525f98e7215b9da89ab9fb5356070a",
+        "preprocess_semantic.py": "e1417442b37a1280270d0be406f80a9d19010f1f6bb5c74e311af21a89652fa6"
+      }
+    },
+    "biopharma": {
+      "source_experiment": "biopharma_preprocessing_v1",
+      "report_count": 9,
+      "source_database": "data\\annual_reports.db.gz",
+      "code_sha256": {
+        "preprocess_structure.py": "ebe8d8fd561f4908d2aac33c10c7f513a0525f98e7215b9da89ab9fb5356070a",
+        "preprocess_semantic.py": "e1417442b37a1280270d0be406f80a9d19010f1f6bb5c74e311af21a89652fa6"
+      }
+    }
+  }
+}

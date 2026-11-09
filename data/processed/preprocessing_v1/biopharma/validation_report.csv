@@ -1,0 +1,10 @@
+﻿method,company,business_year,rcept_no,status,paragraph_count,sentence_count,table_row_count,duplicate_text_count,unmapped_count,error
+structure,삼성바이오로직스,2023,20240307000835,OK,325,487,239,7,0,
+structure,삼성바이오로직스,2024,20250814004283,OK,325,515,248,7,0,
+structure,삼성바이오로직스,2025,20260515001658,OK,184,314,136,2,0,
+structure,셀트리온,2023,20240318000913,OK,263,1943,198,1,0,
+structure,셀트리온,2024,20250317000929,OK,477,707,416,25,0,
+structure,셀트리온,2025,20260316001415,OK,562,754,488,43,0,
+structure,유한양행,2023,20240307000960,OK,857,893,756,77,0,
+structure,유한양행,2024,20250312001137,OK,994,1045,869,99,0,
+structure,유한양행,2025,20260312001236,OK,1087,1128,959,157,0,
