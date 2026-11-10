@@ -1,6 +1,7 @@
 """preprocessing_v2/<산업>/paragraphs.jsonl -> 인접 연도 쌍(old->new) 문장 정렬 + 변화 분류 -> CSV (DB 없음).
-사용: python run_v1.py [tfidf|bge|KR-SBERT ...]   (기본: 전부)  /  결과: data/results_v1/<방법>_th<임계값>.csv"""
-import csv, json, sys
+사용: python run_v1.py [tfidf|bge|KR-SBERT ...] [--output-dir data/results_v2] [--no-number-masking]"""
+import argparse
+import csv, json
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -61,25 +62,42 @@ RUNS = [  # (방법, 임베딩 모델, 임계값) -> 결과 파일명 data/resul
 ]
 
 
-def run_name(method, model, th):
-    return f"tfidf_th{th}" if method == "tfidf" else f"emb_{model.split('/')[-1]}_th{th}"
+def run_name(method, model, th, number_masking=False):
+    if method == "tfidf":
+        prefix = "tfidf_masked" if number_masking else "tfidf"
+        return f"{prefix}_th{th}"
+    return f"emb_{model.split('/')[-1]}_th{th}"
 
 
-def main(only):
-    base = yaml.safe_load((ROOT / "config" / "settings.yaml").read_text())
+def main(argv=None):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("only", nargs="*", help="run-name substring filter (e.g. tfidf, bge, KR-SBERT)")
+    parser.add_argument("--output-dir", type=Path, default=OUT, help="result directory")
+    parser.add_argument("--company", action="append", help="process only this company; may be repeated")
+    parser.add_argument("--no-number-masking", action="store_true", help="disable TF-IDF number masking for baseline comparison")
+    args = parser.parse_args(argv)
+    base = yaml.safe_load((ROOT / "config" / "settings.yaml").read_text(encoding="utf-8"))
+    if args.no_number_masking:
+        base["tfidf"]["number_masking"]["enabled"] = False
     g = load()
     companies = sorted({c for c, _, _ in g})
-    OUT.mkdir(parents=True, exist_ok=True)
+    if args.company:
+        unknown = set(args.company) - set(companies)
+        if unknown:
+            parser.error(f"unknown company: {', '.join(sorted(unknown))}")
+        companies = [c for c in companies if c in args.company]
+    args.output_dir.mkdir(parents=True, exist_ok=True)
     for method, model, th in RUNS:
-        name = run_name(method, model, th)
-        if only and not any(o in name for o in only):
+        masking_enabled = method == "tfidf" and base["tfidf"]["number_masking"]["enabled"]
+        name = run_name(method, model, th, masking_enabled)
+        if args.only and not any(o in name for o in args.only):
             continue
         cfg = yaml.safe_load(yaml.safe_dump(base))
         cfg["align"]["threshold"][method] = th
         if model:
             cfg["embedding"]["model"] = model
             embedding_model._model = None  # 모델 교체 시 이전 모델 인스턴스 폐기
-        f = OUT / f"{name}.csv"
+        f = args.output_dir / f"{name}.csv"
         prev = list(csv.DictReader(f.open(encoding="utf-8-sig"))) if f.exists() else []
         done = {(r["company"], int(r["year_old"])) for r in prev}  # 이미 있는 연도 쌍은 건너뛰고 새 쌍만 합산
         out = []
@@ -96,12 +114,14 @@ def main(only):
             print(f"[{name}] {c} {years}", flush=True)
         rows = sorted(prev + out, key=lambda r: int(r["year_old"]))  # 연도 쌍 순(21-22 -> 24-25), 같은 쌍 안에서는 기존 순서 유지
         cols = list(dict.fromkeys(k for r in rows for k in r))
-        with open(f, "w", newline="", encoding="utf-8-sig") as fh:
+        tmp = f.with_suffix(f"{f.suffix}.tmp")
+        with open(tmp, "w", newline="", encoding="utf-8-sig") as fh:
             w = csv.DictWriter(fh, cols); w.writeheader(); w.writerows(rows)
+        tmp.replace(f)
         print(name, f"기존 {len(prev)}행 + 신규 {len(out)}행")
         for k, v in sorted(Counter((r["company"], int(r["year_old"]), r["change_type"]) for r in rows).items()):
             print(name, *k, v)
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])  # 인자: 이름 일부(예: tfidf, bge, KR-SBERT). 없으면 전부
+    main()
