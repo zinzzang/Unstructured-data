@@ -1,4 +1,4 @@
-"""Run the two preprocessing variants for one industry's nine reports.
+"""Run the two preprocessing variants for a selected industry and year range.
 
 The source database is read-only. Generated experiment artifacts are written to
 data/experiments/<experiment-name>, which is intentionally gitignored.
@@ -28,11 +28,9 @@ from src.preprocess_structure import build_paragraph_records, write_jsonl
 
 
 SOURCE_DB = ROOT / "data" / "annual_reports.db.gz"
-DEFAULT_INDUSTRY = "2차전지"
-DEFAULT_EXPERIMENT_NAME = "battery_preprocessing_v1"
 
 
-def read_reports(industry: str) -> list[dict[str, object]]:
+def read_reports(industry: str, years: list[int] | None = None) -> list[dict[str, object]]:
     """Read the selected XML documents from the compressed SQLite database."""
     fd, temporary_db = tempfile.mkstemp(suffix=".db")
     os.close(fd)
@@ -41,14 +39,16 @@ def read_reports(industry: str) -> list[dict[str, object]]:
             shutil.copyfileobj(compressed, db_file)
         connection = sqlite3.connect(temporary_db)
         connection.row_factory = sqlite3.Row
-        rows = connection.execute(
-            """SELECT c.name AS company, c.industry, r.business_year, r.rcept_no,
-                      r.rcept_dt, r.report_nm, r.status, r.raw_xml
-               FROM reports r JOIN companies c USING(company_id)
-               WHERE c.industry=? AND r.status='OK' AND r.raw_xml IS NOT NULL
-               ORDER BY c.name, r.business_year""",
-            (industry,),
-        ).fetchall()
+        query = """SELECT c.name AS company, c.industry, r.business_year, r.rcept_no,
+                          r.rcept_dt, r.report_nm, r.status, r.raw_xml
+                   FROM reports r JOIN companies c USING(company_id)
+                   WHERE c.industry=? AND r.status='OK' AND r.raw_xml IS NOT NULL"""
+        params: list[object] = [industry]
+        if years:
+            query += f" AND r.business_year IN ({','.join('?' for _ in years)})"
+            params.extend(years)
+        query += " ORDER BY c.name, r.business_year"
+        rows = connection.execute(query, params).fetchall()
         connection.close()
         return [dict(row) for row in rows]
     finally:
@@ -129,10 +129,14 @@ def write_comparison(path: Path, structure_records: list[dict], semantic_records
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--industry", default=DEFAULT_INDUSTRY, help="exact companies.industry value")
-    parser.add_argument("--experiment-name", default=DEFAULT_EXPERIMENT_NAME, help="subdirectory of data/experiments")
+    parser.add_argument("--industry", required=True, help="exact companies.industry value")
+    parser.add_argument("--experiment-name", required=True, help="subdirectory name under data/experiments")
+    parser.add_argument("--years", nargs="+", type=int, help="business years to include (default: all available years)")
+    parser.add_argument("--expected-report-count", type=int, help="fail unless this many reports are found")
     parser.add_argument("--overwrite", action="store_true", help="replace an existing experiment directory")
     args = parser.parse_args()
+    if Path(args.experiment_name).name != args.experiment_name:
+        parser.error("--experiment-name must be a single directory name")
     output_root = ROOT / "data" / "experiments" / args.experiment_name
 
     if output_root.exists() and any(output_root.iterdir()) and not args.overwrite:
@@ -140,9 +144,11 @@ def main() -> None:
     if args.overwrite:
         shutil.rmtree(output_root, ignore_errors=True)
 
-    reports = read_reports(args.industry)
-    if len(reports) != 9:
-        raise SystemExit(f"Expected 9 {args.industry} reports, found {len(reports)}.")
+    reports = read_reports(args.industry, args.years)
+    if not reports:
+        raise SystemExit(f"No OK reports found for industry={args.industry!r}, years={args.years or 'all'}.")
+    if args.expected_report_count is not None and len(reports) != args.expected_report_count:
+        raise SystemExit(f"Expected {args.expected_report_count} reports, found {len(reports)}.")
 
     directories = {name: output_root / name for name in ("structure", "semantic", "comparison")}
     for directory in directories.values():
@@ -211,6 +217,8 @@ def main() -> None:
         "created_at_kst": datetime.now(timezone(timedelta(hours=9))).isoformat(),
         "source_database": str(SOURCE_DB.relative_to(ROOT)),
         "industry": args.industry,
+        "requested_years": args.years,
+        "included_years": sorted({int(report["business_year"]) for report in reports}),
         "report_count": len(reports),
         "methods": ["structure", "semantic"],
         "semantic_default": "regex_no_lemmatization",
