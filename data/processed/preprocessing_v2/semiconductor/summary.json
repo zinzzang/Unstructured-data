@@ -1,0 +1,16 @@
+{
+  "paragraph_count": 3349,
+  "sentence_count": 5105,
+  "table_row_count": 2006,
+  "duplicate_text_count": 30,
+  "analysis_area_counts": {
+    "BUSINESS": 55,
+    "OTHER": 951,
+    "PRODUCT": 86,
+    "PRODUCTION": 856,
+    "RISK": 331,
+    "RND_CONTRACT": 727,
+    "SALES": 343
+  },
+  "unmapped_count": 0
+}
