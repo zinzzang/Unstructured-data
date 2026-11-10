@@ -2,7 +2,7 @@
 
 This is the shared, verified input dataset for Milestone B.
 
-- Canonical preprocessing method: **structure-preserving**
+- Canonical preprocessing method: **structure-preserving** (`src/preprocess_structure.py`)
 - Record unit: one paragraph or one table row
 - TF-IDF and embedding input: `normalized_text`
 - Sentence-level evidence: nested `sentences` array
