@@ -1,0 +1,5 @@
+W1110 20:54:11.265000 54079 .venv/lib/python3.13/site-packages/torch/distributed/elastic/multiprocessing/redirects.py:35] NOTE: Redirects are currently not supported in MacOs.
+Loading weights:   0%|          | 0/391 [00:00<?, ?it/s]Loading weights: 100%|██████████| 391/391 [00:00<00:00, 15483.86it/s]
+[emb_bge-m3_th0.6] LG에너지솔루션 [2021, 2022, 2023, 2024, 2025]
+/opt/homebrew/Cellar/python@3.13/3.13.3/Frameworks/Python.framework/Versions/3.13/lib/python3.13/multiprocessing/resource_tracker.py:301: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown: {'/loky-54079-10vkjzh_'}
+  warnings.warn(
