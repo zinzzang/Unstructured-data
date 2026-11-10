@@ -4,6 +4,7 @@ __pycache__/
 data/raw/
 *.pyc
 data/*.db
+data/*.xlsx
 # 실험·임시 산출물은 제외하고, 검증된 팀 공용 데이터셋만 추적한다.
 data/processed/*
 !data/processed/preprocessing_v1/
