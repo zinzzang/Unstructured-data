@@ -40,12 +40,18 @@ COMPANIES = [
     {"corp_code": "00164779", "name": "SK하이닉스", "stock_code": "000660", "industry": "반도체"},
     {"corp_code": "00126380", "name": "삼성전자", "stock_code": "005930", "industry": "반도체"},
     {"corp_code": "00161383", "name": "한미반도체", "stock_code": "042700", "industry": "반도체"},
+    {"corp_code": "00160843", "name": "DB하이텍", "stock_code": "000990", "industry": "반도체"},
+    {"corp_code": "01478712", "name": "대덕전자", "stock_code": "353200", "industry": "반도체"},
     {"corp_code": "01515323", "name": "LG에너지솔루션", "stock_code": "373220", "industry": "2차전지"},
     {"corp_code": "00126362", "name": "삼성SDI", "stock_code": "006400", "industry": "2차전지"},
     {"corp_code": "00631518", "name": "SK이노베이션", "stock_code": "096770", "industry": "2차전지"},
+    {"corp_code": "00356361", "name": "LG화학", "stock_code": "051910", "industry": "2차전지"},
+    {"corp_code": "00155276", "name": "포스코퓨처엠", "stock_code": "003670", "industry": "2차전지"},
     {"corp_code": "00877059", "name": "삼성바이오로직스", "stock_code": "207940", "industry": "바이오/제약"},
     {"corp_code": "00413046", "name": "셀트리온", "stock_code": "068270", "industry": "바이오/제약"},
     {"corp_code": "00145109", "name": "유한양행", "stock_code": "000100", "industry": "바이오/제약"},
+    {"corp_code": "00878696", "name": "SK바이오팜", "stock_code": "326030", "industry": "바이오/제약"},
+    {"corp_code": "00828497", "name": "한미약품", "stock_code": "128940", "industry": "바이오/제약"},
 ]
 
 

@@ -1,7 +1,8 @@
 """사업보고서 연도별 변화 탐지 Ground Truth(GT)를 OpenAI API로 자동 생성한다.
 
-입력: data/processed/preprocessing_v1/<산업>/paragraphs.jsonl
-출력: data/gt/{기업명}_Confirmed_GT_Before_After_Paragraphs.xlsx  (+ 판정 전체 기록 jsonl)
+입력: data/processed/preprocessing_v2/<산업>/paragraphs.jsonl  (run_v1.py 와 같은 데이터, duplicate_text 제외)
+출력: data/gt/{기업명}_gt_pairs.csv  <- TF-IDF/임베딩 결과(data/results_v1/*.csv)와 같은 컬럼·라벨. 비교용
+      data/gt/{기업명}_Confirmed_GT_Before_After_Paragraphs.xlsx  (사람 검수용) + _gt_decisions.jsonl
 
 흐름
   1. 기업별로 인접 연도쌍(2023→2024, 2024→2025 ...)을 만든다. 없는 연도는 만들지 않는다.
@@ -15,7 +16,8 @@ API 키: 환경변수 OPENAI_API_KEY, 또는 프로젝트 .env 의 OPENAI_API_KE
 
 사용 예
   python scripts/build_gt_llm.py --companies SK하이닉스 --dry-run   # 그룹·분량만 확인 (API 호출 없음)
-  python scripts/build_gt_llm.py --companies SK하이닉스              # 한 기업 실행
+  python scripts/build_gt_llm.py --companies 삼성전자 --pair 2024-2025   # 한 기업·한 연도쌍만 실행
+  python scripts/build_gt_llm.py --companies SK하이닉스              # 한 기업 전체 연도쌍
   python scripts/build_gt_llm.py                                     # 9개 기업 전체
   python scripts/build_gt_llm.py --model gpt-5 --workers 4
 """
@@ -36,12 +38,12 @@ from pathlib import Path
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = ROOT / "data" / "processed" / "preprocessing_v1"
+DATA_DIR = ROOT / "data" / "processed" / "preprocessing_v2"  # run_v1.py 와 동일
 OUT_DIR = ROOT / "data" / "gt"
 CACHE_DIR = ROOT / "data" / "experiments" / "gt_llm_cache"
 INDUSTRIES = ["semiconductor", "battery", "biopharma"]
 
-PROMPT_VERSION = "v1"
+PROMPT_VERSION = "v2"
 GROUP_CHAR_LIMIT = 40_000   # 한 번에 보내는 두 연도 문단 합계 글자수 상한
 GROUP_PARA_LIMIT = 80       # 한 번에 보내는 두 연도 문단 수 합계 상한 (응답 길이 제한 대비)
 MAX_PARA_CHARS = 15_000     # 이보다 긴 문단은 전처리 이상(표 통째 등)으로 보고 모델에 보내지 않음 -> 검토 필요
@@ -58,11 +60,15 @@ SYSTEM_PROMPT = """너는 한국 기업 사업보고서의 연도별 변화를 �
 1. 동일한 사업 내용, 제품, 재무 항목, 생산설비·투자 내용을 설명하는 문단끼리 매칭한다.
 2. 위치나 순서가 바뀌어도 내용이 대응하면 매칭한다.
 3. 서로 다른 주제의 문단은 표현이 비슷하다는 이유만으로 매칭하지 않는다.
-4. 대응 문단이 없는 문단은 한쪽 id만 채운다. 대응 문단이 없다는 이유만으로 신규 또는 삭제/종료로 판정하지 않는다.
+4. 대응 문단이 없는 문단은 한쪽 id만 채우고 다른 쪽은 빈 문자열("")로 둔다. 대응 문단이 없다는 이유만으로 신규 또는 삭제/종료로 판정하지 않는다.
    원문에 신규 착수·출시·취득 또는 종료·중단·철수가 명시된 경우에만 신규/삭제·종료로 판정하고, 아니면 검토 필요로 둔다.
 5. source_type이 paragraph인 문단은 서술 내용을 비교한다.
    table_row는 같은 표(label)·같은 항목의 행끼리 대응시키고, 같은 기준일·단위·범위의 값끼리 비교한다.
    표의 열 연도가 한 해씩 밀린 것(예: 2023년 열 → 2024년 열)은 변화가 아니다. 같은 연도 값이 두 보고서에서 다르면 정정 여부를 근거로 적는다.
+
+6. 매칭은 반드시 1:1이다. 결과 한 줄에는 prev_id 하나와 next_id 하나만 쓴다 (TF-IDF·임베딩 결과와 1:1로 비교하기 위함).
+   한 문단이 여러 문단으로 나뉘거나 합쳐졌으면 내용이 가장 많이 대응하는 한 쌍만 매칭하고, 나머지는 대응 없음으로 둔다.
+7. 같은 문단 id는 결과 전체에서 정확히 한 번만 쓴다.
 
 ## 변화 탐지 영역 (이 4개만 GT 대상)
 - 사업 내용: 사업 구조, 산업 및 시장 환경, 주요 사업의 시작·종료·확대·축소, 사업 내용과 조직 구조의 실질적 변경
@@ -84,12 +90,12 @@ SYSTEM_PROMPT = """너는 한국 기업 사업보고서의 연도별 변화를 �
 3. 단순 문장 표현의 변경은 실제 변화가 아니다 ("변화 없음").
 4. 매년 반복되는 연도 표기 변경만으로는 변화가 아니다.
 5. 연구개발 실적 목록에서 사라진 제품을 단종으로 추정하지 않는다.
-6. 하나의 문단에 독립적인 변화가 여러 개 있으면 변화별로 결과를 나누고, 같은 id를 반복해 쓴다.
+6. 한 문단쌍에 변화가 여러 개면 가장 중요한 변화 하나를 change_type으로 정하고, 나머지는 description에 함께 적는다.
 7. 확실한 판단이 불가능하면 "검토 필요"로 하고 review_reason에 이유를 적는다. 근거가 부족한 항목을 억지로 변화 유형에 넣지 않는다.
-8. 입력된 모든 PREV·NEXT 문단 id가 결과에 최소 한 번씩 나와야 한다. 내용이 같으면 "변화 없음"으로라도 반드시 포함한다.
+8. 입력된 모든 PREV·NEXT 문단 id가 결과에 정확히 한 번씩 나와야 한다. 내용이 같으면 "변화 없음"으로라도 반드시 포함한다.
 
 ## 출력 필드
-- prev_ids / next_ids: 매칭된 문단 id 목록 (주어진 id만 사용. 없으면 빈 목록)
+- prev_id / next_id: 매칭된 문단 id 하나 (주어진 id만 사용. 대응 문단이 없으면 "")
 - judgement: 변화 / 변화 없음 / 검토 필요 / 대상 외
 - area: 4개 영역 중 하나. 해당 없으면 "해당 없음"
 - change_type: judgement가 "변화"면 5개 유형 중 하나, 아니면 "없음"
@@ -112,11 +118,11 @@ RESPONSE_FORMAT = {
                     "items": {
                         "type": "object",
                         "additionalProperties": False,
-                        "required": ["prev_ids", "next_ids", "judgement", "area", "change_type",
+                        "required": ["prev_id", "next_id", "judgement", "area", "change_type",
                                      "description", "evidence", "review_reason"],
                         "properties": {
-                            "prev_ids": {"type": "array", "items": {"type": "string"}},
-                            "next_ids": {"type": "array", "items": {"type": "string"}},
+                            "prev_id": {"type": "string"},
+                            "next_id": {"type": "string"},
                             "judgement": {"type": "string", "enum": JUDGEMENTS},
                             "area": {"type": "string", "enum": AREAS},
                             "change_type": {"type": "string", "enum": CHANGE_TYPES},
@@ -155,7 +161,7 @@ def load_paragraphs(industries):
     for ind in industries:
         path = DATA_DIR / ind / "paragraphs.jsonl"
         with open(path, encoding="utf-8") as f:
-            rows += [json.loads(line) for line in f if line.strip()]
+            rows += [r for r in map(json.loads, filter(str.strip, f)) if "duplicate_text" not in r["quality_flags"]]
     by_company = defaultdict(lambda: defaultdict(list))
     for r in rows:
         by_company[r["company"]][int(r["business_year"])].append(r)
@@ -181,7 +187,7 @@ def norm_title(t):
 
 def title_key(r, depth):
     path = r.get("title_path") or []
-    return tuple(norm_title(t) for t in path[1:depth + 1])  # path[0]은 'II. 사업의 내용'
+    return (r["analysis_area"], *(norm_title(t) for t in path[1:depth + 1]))  # path[0]은 'II. 사업의 내용'. 영역이 다른 문단끼리는 매칭 안 함(run_v1과 동일)
 
 
 def chars(rows):
@@ -286,19 +292,27 @@ def missing_ids(results, prev, nxt):
     return [r["paragraph_id"] for r in prev + nxt if r["paragraph_id"] not in seen]
 
 
+def norm(results):
+    for x in results:
+        x["prev_ids"] = [x["prev_id"]] if x["prev_id"] else []
+        x["next_ids"] = [x["next_id"]] if x["next_id"] else []
+    return results
+
+
 def judge_group(judge, company, y1, y2, group):
     """그룹 하나 판정. 누락 id가 있으면 한 번 더 호출. (results, 정보) 반환"""
     name, prev, nxt = group
     msg = user_message(company, y1, y2, name, prev, nxt)
     cf = cache_path(judge.model, company, y1, y2, msg)
     data, cached = judge(msg, cf)
-    results = data.get("results", [])
+    results = norm(data.get("results", []))
     if missing_ids(results, prev, nxt) and not cached:
         data2, _ = judge(msg, cf, force=True)
-        if len(missing_ids(data2.get("results", []), prev, nxt)) < len(missing_ids(results, prev, nxt)):
-            results = data2.get("results", [])
+        results2 = norm(data2.get("results", []))
+        if len(missing_ids(results2, prev, nxt)) < len(missing_ids(results, prev, nxt)):
+            results = results2
         else:
-            cf.write_text(json.dumps({"results": results}, ensure_ascii=False, indent=1), encoding="utf-8")
+            cf.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     return results
 
 
@@ -327,6 +341,29 @@ def row_of(company, y1, y2, x, by_id):
     }
 
 
+# TF-IDF/임베딩 결과(change_classifier)와 같은 라벨. 판정불가(검토 필요)=UNCERTAIN, 4개 영역 밖=OUT_OF_SCOPE
+CT_EN = {"신규": "NEW", "삭제/종료": "REMOVED", "확대": "EXPANDED", "축소": "REDUCED", "변경": "MODIFIED"}
+GT_COLS = ["company", "year_old", "year_new", "area", "method", "old_id", "new_id", "old_sent_ids", "new_sent_ids",
+           "old_path", "new_path", "old_text", "new_text", "change_type", "reason", "change_summary", "gt_area", "review_reason"]
+
+
+def gt_row(company, y1, y2, x, by_id):
+    """results_v1/*.csv 와 같은 컬럼. old_id/new_id 는 문단 id(문장 id에서 -S01 을 뗀 것). 한쪽만 있으면 대응 없음."""
+    po, pn = (by_id[x[k][0]] if x[k] else None for k in ("prev_ids", "next_ids"))
+    j = x["judgement"]
+    ct = CT_EN.get(x["change_type"], "UNCERTAIN") if j == "변화" else {"변화 없음": "UNCHANGED", "대상 외": "OUT_OF_SCOPE"}.get(j, "UNCERTAIN")
+    sid = lambda r: "|".join(t["sentence_id"] for t in r["sentences"]) if r else ""
+    return {
+        "company": company, "year_old": y1, "year_new": y2, "area": (pn or po)["analysis_area"], "method": "GT",
+        "old_id": po["paragraph_id"] if po else "", "new_id": pn["paragraph_id"] if pn else "",
+        "old_sent_ids": sid(po), "new_sent_ids": sid(pn),
+        "old_path": " > ".join(po["title_path"]) if po else "", "new_path": " > ".join(pn["title_path"]) if pn else "",
+        "old_text": po["source_text"] if po else "", "new_text": pn["source_text"] if pn else "",
+        "change_type": ct, "reason": x.get("evidence", ""), "change_summary": x.get("description", ""),
+        "gt_area": x.get("area", ""), "review_reason": x.get("review_reason", ""),
+    }
+
+
 def process_pair(judge, company, y1, y2, prev_all, next_all, workers, dry_run):
     by_id = {r["paragraph_id"]: r for r in prev_all + next_all}
     prev_ids_all = {r["paragraph_id"] for r in prev_all}
@@ -345,7 +382,7 @@ def process_pair(judge, company, y1, y2, prev_all, next_all, workers, dry_run):
         "과대 문단 수(모델 미전송)": len(oversized),
     }
     if dry_run:
-        return stat, [], [], []
+        return stat, [], [], [], []
 
     all_results = []
     with ThreadPoolExecutor(max_workers=workers) as ex:
@@ -406,8 +443,9 @@ def process_pair(judge, company, y1, y2, prev_all, next_all, workers, dry_run):
             why = "모델이 판정하지 않음(누락)"
         side_prev = pid in prev_ids_all
         x = {"prev_ids": [pid] if side_prev else [], "next_ids": [] if side_prev else [pid],
-             "area": "", "judgement": "검토 필요", "change_type": "없음", "description": "", "evidence": ""}
+             "area": "", "judgement": "검토 필요", "change_type": "없음", "description": "", "evidence": "", "review_reason": why}
         review.append({**row_of(company, y1, y2, x, by_id), "검토 사유": why, "그룹": ""})
+        log.append({"company": company, "pair": f"{y1}→{y2}", **x})
 
     # 중복 매칭: 한 문단이 서로 다른 상대 문단 묶음과 매칭된 경우
     partners = defaultdict(set)
@@ -430,7 +468,7 @@ def process_pair(judge, company, y1, y2, prev_all, next_all, workers, dry_run):
         "중복 매칭 문단 id": ", ".join(dup)[:EXCEL_CELL_LIMIT],
         "처리된 입력 문단 비율": f"{len(seen & (prev_ids_all | next_ids_all)) / max(1, len(prev_ids_all | next_ids_all)):.1%}",
     })
-    return stat, confirmed, review, log
+    return stat, confirmed, review, log, [gt_row(company, y1, y2, x, by_id) for x in log]
 
 
 # ---------------------------------------------------------------- 엑셀
@@ -476,6 +514,7 @@ def main(argv=None):
     p.add_argument("--model", default=os.environ.get("OPENAI_GT_MODEL", "gpt-5"), help="OpenAI 모델 (기본: gpt-5)")
     p.add_argument("--reasoning-effort", choices=["minimal", "low", "medium", "high"], help="추론 모델일 때만")
     p.add_argument("--workers", type=int, default=4, help="동시 호출 수")
+    p.add_argument("--pair", help="연도쌍 하나만 (예: 2024-2025)")
     p.add_argument("--dry-run", action="store_true", help="API 호출 없이 그룹·분량만 출력")
     p.add_argument("--out", default=str(OUT_DIR), help="엑셀 저장 폴더")
     args = p.parse_args(argv)
@@ -492,18 +531,20 @@ def main(argv=None):
 
     for company in companies:
         years = data[company]
-        pairs = year_pairs(years)
+        pairs = [pr for pr in year_pairs(years) if not args.pair or f"{pr[0]}-{pr[1]}" == args.pair]
         print(f"\n=== {company}: 연도 {sorted(years)} -> 비교 {[f'{a}→{b}' for a, b in pairs]}")
-        pairs_out, logs = [], []
+        pairs_out, logs, gt_rows = [], [], []
         for y1, y2 in pairs:
-            stat, conf, rev, log = process_pair(judge, company, y1, y2, years[y1], years[y2], args.workers, args.dry_run)
+            stat, conf, rev, log, rows = process_pair(judge, company, y1, y2, years[y1], years[y2], args.workers, args.dry_run)
             pairs_out.append((stat, conf, rev))
             logs += log
+            gt_rows += rows
             print("  " + ", ".join(f"{k}={v}" for k, v in stat.items() if k not in ("기업명", "중복 매칭 문단 id")))
         if args.dry_run:
             continue
         xlsx = out_dir / f"{company}_Confirmed_GT_Before_After_Paragraphs.xlsx"
         write_excel(xlsx, company, pairs_out)
+        pd.DataFrame(gt_rows, columns=GT_COLS).to_csv(out_dir / f"{company}_gt_pairs.csv", index=False, encoding="utf-8-sig")
         with open(out_dir / f"{company}_gt_decisions.jsonl", "w", encoding="utf-8") as f:
             for x in logs:
                 f.write(json.dumps({k: v for k, v in x.items() if not k.startswith("_") or k == "_group"},

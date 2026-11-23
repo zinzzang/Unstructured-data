@@ -1,12 +1,24 @@
+# 환경/시크릿
 .env
 .venv/
+
+# 파이썬 캐시
 __pycache__/
-data/raw/
 *.pyc
+*.pyo
+.pytest_cache/
+
+# 원본 데이터 (용량 큰 파일)
+data/raw/
 data/*.db
+data/*.db.gz
 data/*.xlsx
+
 # 실험·임시 산출물은 제외하고, 검증된 팀 공용 데이터셋만 추적한다.
 data/processed/*
 !data/processed/preprocessing_*/
 !data/processed/preprocessing_*/**
 data/experiments/
+
+# 임베딩 캐시 (용량 큼)
+data/processed/emb_cache.pkl

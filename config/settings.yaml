@@ -16,4 +16,10 @@ tfidf:
   number_masking:
     enabled: true
     token: NUM
-embedding: {model: BAAI/bge-m3, max_seq_length: 512, batch_size: 16}
+embedding:
+  model: BAAI/bge-m3
+  max_seq_length: 512
+  batch_size: 16
+  number_masking:
+    enabled: true
+    token: NUM

@@ -3,6 +3,8 @@ from pathlib import Path
 
 import numpy as np
 
+from .tfidf_model import mask_numbers
+
 CACHE = Path(__file__).resolve().parent.parent / "data" / "processed" / "emb_cache.pkl"
 _model = None
 
@@ -31,4 +33,9 @@ def embed(texts, cfg):
 
 
 def similarity(old, new, cfg):
+    masking = cfg.get("embedding", {}).get("number_masking", {})
+    if masking.get("enabled", False):
+        token = masking.get("token", "NUM")
+        old = [mask_numbers(t, token) for t in old]
+        new = [mask_numbers(t, token) for t in new]
     return embed(old, cfg) @ embed(new, cfg).T  # 정규화된 벡터 -> 내적 = 코사인

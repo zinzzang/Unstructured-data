@@ -16,3 +16,10 @@ def test_preserves_money_and_percentages():
 def test_masks_non_financial_decimal_but_keeps_financial_decimal():
     assert mask_numbers("규격 3.5mm") == "규격 NUMmm"
     assert mask_numbers("비용은 3.5억원입니다") == "비용은 3.5억원입니다"
+
+
+def test_protects_compound_korean_amounts():
+    assert mask_numbers("30조 1,500억원 투자") == "30조 1,500억원 투자"
+    assert mask_numbers("2억 5,000만원") == "2억 5,000만원"
+    assert mask_numbers("약 30조원 규모") == "약 30조원 규모"
+    assert mask_numbers("200만톤 생산") == "NUM만톤 생산"  # 비금액 단위는 여전히 마스킹

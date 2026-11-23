@@ -9,7 +9,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 PROTECTED_NUMBER = re.compile(
     r"(?<![\w])"
     r"[+-]?(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)"
-    r"\s*(?:(?:백만|조|억|만|천)?\s*원|%p?|퍼센트)"
+    r"\s*(?:(?:백만|조|억|만|천)?\s*원|(?:백만|조|억|만|천)(?!\w)|%p?|퍼센트)"
 )
 GENERAL_NUMBER = re.compile(
     r"(?<![\d가-힣A-Za-z])[+-]?(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)(?!\d)"
