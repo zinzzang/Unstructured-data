@@ -34,7 +34,8 @@ STOP = {
     "제1기", "제2기", "제3기", "제4기", "흐름", "석사", "평균", "조건", "완료",
     "취소", "한편", "대형", "고객", "경험", "성능", "인식", "보고", "범위",
     "합리", "임원", "인원", "단계", "한국", "제출", "회원권", "구분", "품목",
-    "and", "the", "with", "celltrion",
+    "건물", "토지", "구축물", "건설", "기계", "장치", "차량", "운반", "공구", "사용권자산",
+    "and", "the", "with", "on", "in", "of", "co", "ltd", "inc", "company",
     "col", "Col", "COL",  # 표 아티팩트
 }
 
@@ -86,7 +87,7 @@ def tokenize_ko(text: str) -> list[str]:
     return tokens
 
 
-def run_lda(texts: list[str], n_topics: int = 5) -> dict | None:
+def run_lda(texts: list[str], n_topics: int = 4) -> dict | None:
     """문장 리스트 → {topics: [[kw,...]], doc_topics: [[prob,...]]}"""
     from sklearn.decomposition import LatentDirichletAllocation
     from sklearn.feature_extraction.text import CountVectorizer
@@ -111,7 +112,7 @@ def run_lda(texts: list[str], n_topics: int = 5) -> dict | None:
 
     topics = []
     for comp in lda.components_:
-        top_idx = comp.argsort()[::-1][:10]
+        top_idx = comp.argsort()[::-1][:8]
         topics.append([vocab[i] for i in top_idx])
 
     return {"topics": topics, "doc_topics": doc_topics.tolist()}
@@ -142,7 +143,7 @@ def analyze(csv_path: Path) -> dict:
         def pick_text(r):
             return r["old_text"] if r["change_type"] == "REMOVED" else r["new_text"]
 
-        changed_rows = [r for r in rows if r["change_type"] in CT_CHANGED]
+        changed_rows = [r for r in rows if r["change_type"] in CT_CHANGED and r.get("area") != "RISK"]
         texts = [pick_text(r) for r in changed_rows]
 
         lda_ok = False
