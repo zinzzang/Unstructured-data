@@ -106,7 +106,8 @@ def run_lda(texts: list[str], n_topics: int = 4) -> dict | None:
         return None
 
     lda = LatentDirichletAllocation(
-        n_components=n_topics, random_state=42, max_iter=50
+        n_components=n_topics, random_state=42, max_iter=50,
+        topic_word_prior=0.1,   # 낮을수록 토픽 간 단어 분포 더 뚜렷하게 분리
     )
     doc_topics = lda.fit_transform(X)
     vocab = vectorizer.get_feature_names_out()
@@ -187,6 +188,29 @@ def analyze(csv_path: Path) -> dict:
 
         pct = round(changed / (total - unchanged) * 100) if (total - unchanged) > 0 else 0
 
+        # 토픽별 고유 키워드 (다른 토픽에 없는 단어) → 자동 label 후보
+        def make_labels(topics):
+            labels = []
+            for i, t in enumerate(topics):
+                others = {w for j, t2 in enumerate(topics) if j != i for w in t2}
+                distinct = [w for w in t if w not in others]
+                # 고유 키워드 2개로 label, 없으면 상위 키워드로 대체
+                kw = distinct[:2] if len(distinct) >= 2 else (distinct + [w for w in t if w not in distinct])[:2]
+                labels.append("·".join(kw))
+            # 중복 label 발생 시 번호 붙이기
+            seen: dict[str, int] = {}
+            result = []
+            for lb in labels:
+                if lb in seen:
+                    seen[lb] += 1
+                    result.append(f"{lb}({seen[lb]})")
+                else:
+                    seen[lb] = 0
+                    result.append(lb)
+            return result
+
+        topic_labels = make_labels(topics) if topics else []
+
         results[key] = {
             "company": company,
             "yo": yo,
@@ -198,7 +222,7 @@ def analyze(csv_path: Path) -> dict:
             "bar": dict(bar),
             "lda_ok": lda_ok,
             "topics": topics,
-            "topic_labels": [""] * len(topics),
+            "topic_labels": topic_labels,
             "sbar": sbar,
             "detail": detail,
         }
