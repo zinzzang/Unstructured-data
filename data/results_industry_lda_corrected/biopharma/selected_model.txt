@@ -1,0 +1,5 @@
+선택된 토픽 수: 5 (NPMI·다양성·시드 안정성 종합 점수 최대, 시드 중 대표(medoid) 모델, 수동 지정)
+학습 문서: 변화 문장만 문단 단위로 묶고 최대 8문장씩 분할 → 230개 (회사 균형 학습 샘플 230개, 상한 207)
+회사별 문서 수: 삼성바이오로직스 70, 셀트리온 91, 유한양행 69
+회사 특이 단어 제거: 58개 (removed_company_specific_terms.csv)
+제외된 변화 문장: footnote/short/reference 104, not in paragraph source 2064, risk/derivatives section 71, oversized paragraph (parsing error) 1155, fewer than 3 tokens 3

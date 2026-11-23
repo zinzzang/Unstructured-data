@@ -1,0 +1,5 @@
+선택된 토픽 수: 6 (NPMI·다양성·시드 안정성 종합 점수 최대, 시드 중 대표(medoid) 모델, 수동 지정)
+학습 문서: 변화 문장만 문단 단위로 묶고 최대 8문장씩 분할 → 126개 (회사 균형 학습 샘플 126개, 상한 84)
+회사별 문서 수: LG에너지솔루션 28, 삼성SDI 44, SK이노베이션 54
+회사 특이 단어 제거: 23개 (removed_company_specific_terms.csv)
+제외된 변화 문장: not in paragraph source 2007, risk/derivatives section 107, footnote/short/reference 126, out of industry scope 372, oversized paragraph (parsing error) 5145, fewer than 3 tokens 0
