@@ -145,6 +145,9 @@ function topicLabel(kws){
   const c=kws.filter(cleanKw).slice(0,2);
   return c.length?c.join('/'):kws.slice(0,2).join('/');
 }
+function topicName(d,ti){
+  return (d.topic_labels&&d.topic_labels[ti])||topicLabel(d.topics[ti]);
+}
 function getKey(){return selCo+'|'+selP;}
 function getData(){return ALL[getKey()]||null;}
 
@@ -182,7 +185,7 @@ function renderTopicByCt(d){
     var total=0;var ctCounts={};
     CT_CHANGED.forEach(function(ct){var v=(d.sbar[ct]&&d.sbar[ct][ti])||0;ctCounts[ct]=v;total+=v;});
     if(!total)return;
-    var name=topicLabel(kws);
+    var name=topicName(d,ti);
     var row=document.createElement('div');row.className='sbar-row';
     var lbl=document.createElement('div');lbl.className='sbar-label';lbl.style.color=tc[ti];lbl.textContent='T'+(ti+1)+': '+name;
     var track=document.createElement('div');track.className='sbar-track';
@@ -216,7 +219,7 @@ function renderTopicLegend(d){
   d.topics.forEach(function(kws,ti){
     var cleanKws=kws.filter(cleanKw).slice(0,5);if(!cleanKws.length)return;
     var cell=document.createElement('div');cell.className='tl-cell';
-    cell.innerHTML='<div class="tl-head"><div class="tl-dot" style="background:'+tc[ti]+'"></div><div class="tl-name">T'+(ti+1)+': '+topicLabel(kws)+'</div></div>';
+    cell.innerHTML='<div class="tl-head"><div class="tl-dot" style="background:'+tc[ti]+'"></div><div class="tl-name">T'+(ti+1)+': '+topicName(d,ti)+'</div></div>';
     var krow=document.createElement('div');krow.className='tl-kws';
     cleanKws.forEach(function(w){var c=document.createElement('span');c.className='kw-chip';c.textContent=w;krow.appendChild(c);});
     cell.appendChild(krow);grid.appendChild(cell);
@@ -230,7 +233,7 @@ function renderCtByTopic(d){
   const card=document.getElementById('sbar-card');
   if(!d.lda_ok||!d.topics.length){card.style.display='none';return;}
   card.style.display='';
-  var names=d.topics.map(topicLabel);
+  var names=d.topics.map(function(_,ti){return topicName(d,ti);});
   CT_CHANGED.forEach(function(ct){
     var counts=d.sbar[ct];if(!counts)return;
     var total=counts.reduce(function(a,b){return a+b;},0);if(!total)return;
