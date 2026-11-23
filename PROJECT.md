@@ -232,27 +232,100 @@ classify(old, new)
 | `예정 투자액 500억원` | `투자액 500억원 집행` | **UNCERTAIN** | PLAN 표현이 한쪽에만 있음 |
 | `사업을 중단하지 않는다` | `사업을 중단한다` | **MODIFIED** | NEG 패턴 개수 변화 |
 
-### 4-3. LDA 토픽 모델링
+### 4-3. LDA 토픽 모델링 — `scripts/run_lda_analysis.py`
 
 **왜 LDA인가?**  
 TF-IDF는 "얼마나 변했나"를 알려주지만, "어떤 주제가 변했나"는 말해주지 않는다.  
 LDA(Latent Dirichlet Allocation)는 변화 문장의 집합에서 잠재 토픽을 추출해 "AI 반도체 관련 내용이 늘었다" 같은 해석을 가능하게 한다.
 
-**적용 방식:**
+#### 전처리 파이프라인
 
 ```
-변화 문장 (UNCHANGED·UNCERTAIN 제외)
-  → KiwiPy 형태소 분석 (명사 NNG·NNP + 영어 SL, 길이 ≥ 2)
-  → 금융/표 불용어 제거 (약 70개)
-  → CountVectorizer (max_df=0.9, min_df=2, max_features=300)
-  → sklearn LDA (n_topics=5, random_state=42, max_iter=50)
+변화 문장 (area ≠ RISK, change_type ∈ NEW·EXPANDED·REMOVED·MODIFIED·REDUCED)
+  → KiwiPy 형태소 분석 (명사 NNG·NNP + 영어 SL, 길이 ≥ 2, 소문자 정규화)
+  → 불용어 제거
+  → CountVectorizer (max_df=0.9, min_df=1~2, max_features=300)
+  → sklearn LDA (n_topics=자동, topic_word_prior=0.1, random_state=42, max_iter=50)
 ```
 
-**텍스트 선택 규칙:**
+#### RISK 섹션 제외 이유
+
+TF-IDF 결과 CSV의 `area` 컬럼 중 `RISK`(위험관리 및 파생거래 섹션)를 LDA 입력에서 제외한다.
+
+| area 값 | 의미 | LDA 포함 |
+|---------|------|---------|
+| PRODUCTION | 생산·설비 현황 | ✅ |
+| RND_CONTRACT | R&D·계약 | ✅ |
+| SALES | 영업 현황 | ✅ |
+| OTHER | 기타 사업 내용 | ✅ |
+| PRODUCT | 제품 현황 | ✅ |
+| BUSINESS | 사업 개요 | ✅ |
+| **RISK** | 위험관리·파생거래 | ❌ **제외** |
+
+**제외 이유:** RISK 섹션은 파생금융상품 명세표, 외화자산 표, 채권·채무 내역 등 재무 테이블 데이터가 대부분이다. 이 데이터가 LDA에 섞이면 `스왑`, `계약환율`, `usd`, `chf`, `gbp`, `jpy` 같은 표 셀 값이 토픽 키워드로 올라와 사업 현황 토픽이 오염된다.
+
+#### 토픽 수 자동 조정
+
+기업별로 변화 문장 수가 다르기 때문에 고정 토픽 수를 쓰면 문서가 적은 기업(한미반도체 등)에서 토픽이 겹친다.
+
+```python
+n_topics = 2 if len(texts) < 20 else 3 if len(texts) < 50 else 4
+```
+
+| 변화 문장 수 | 토픽 수 |
+|------------|--------|
+| 5 ~ 19개 | 2 |
+| 20 ~ 49개 | 3 |
+| 50개 이상 | 4 |
+
+#### topic_word_prior 설정
+
+`topic_word_prior=0.1` (sklearn 기본값 1/n_topics ≈ 0.25보다 낮음)  
+→ 토픽-단어 분포를 더 뾰족하게 만들어 **같은 키워드가 여러 토픽에 중복 등장하는 현상을 억제**한다.
+
+#### 불용어 설계 원칙
+
+불용어는 세 가지 유형으로 분류된다.
+
+**① 보고서 공통어** — 모든 기업 보고서에 공통으로 등장해 토픽 구분에 도움이 안 되는 단어
+
+> `회사`, `당사`, `사업`, `관련`, `경우`, `통해`, `포함`, `기타`, `이상`, `이하` 등
+
+**② 재무·표 아티팩트** — 재무제표 표 헤더·셀 값에서 비롯된 의미 없는 토큰
+
+| 종류 | 단어 예시 | 출처 |
+|------|---------|------|
+| 유형자산 표 | `건물`, `토지`, `구축물`, `건설`, `기계`, `장치`, `비품`, `공구` | 유형자산 명세표 |
+| 회계 표현 | `유형`, `회계`, `소재지`, `기말`, `누계` | 표 헤더 |
+| 법인 형태 | `llc`, `kce`, `ltd`, `inc`, `co`, `company` | 종속기업 목록 표 |
+| 연구비 표 | `과제명`, `연구과제명` | R&D 비용 명세표 헤더 |
+| 증감 표현 | `증가`, `감소`, `확대`, `축소`, `상승`, `하락` | 모든 변화 문장에 등장 |
+
+**③ 영문 불용어** — 형태소 분석기가 SL(영문) 태그로 추출하지만 의미 없는 단어
+
+> `and`, `the`, `with`, `on`, `in`, `of`
+
+#### 토픽명 자동 생성
+
+각 토픽에서 **다른 토픽에 나오지 않는 고유 키워드 2개**를 뽑아 `·`로 연결해 label로 사용한다.  
+고유 키워드가 없을 경우 상위 키워드 2개로 대체하며, 중복 label은 번호를 붙여 구분한다.
+
+```python
+def make_labels(topics):
+    for i, t in enumerate(topics):
+        others = {w for j, t2 in enumerate(topics) if j != i for w in t2}
+        distinct = [w for w in t if w not in others]
+        kw = distinct[:2] if len(distinct) >= 2 else (distinct + top_kw)[:2]
+        labels.append("·".join(kw))
+```
+
+> 자동 생성된 label은 `lda_results.json`의 `topic_labels` 필드에 저장되며,  
+> 이 파일을 직접 수정하면 데모에 반영된다 (`analysis/demo.html` 재생성 필요).
+
+#### 텍스트 선택 규칙
+
 - `REMOVED` 유형: `old_text` 사용 (삭제된 내용을 봐야 하므로)
 - 그 외 변화 유형: `new_text` 사용
-
-→ 코드: `scripts/run_lda_analysis.py`
 
 ---
 
@@ -282,7 +355,7 @@ Unstructured-data/
 │
 ├── scripts/
 │   ├── collect_dart_reports.py       ← DART API에서 사업보고서 수집
-│   ├── build_gt_llm.py               ← LLM 기반 ground truth 생성
+│   ├── industry_lda_corrected.py     ← 산업별 LDA (정교화 버전, 팀원 작성)
 │   └── run_lda_analysis.py           ← ★ LDA 분석 실행 스크립트
 │
 ├── analysis/
