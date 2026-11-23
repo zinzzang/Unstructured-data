@@ -35,6 +35,7 @@ STOP = {
     "취소", "한편", "대형", "고객", "경험", "성능", "인식", "보고", "범위",
     "합리", "임원", "인원", "단계", "한국", "제출", "회원권", "구분", "품목",
     "건물", "토지", "구축물", "건설", "기계", "장치", "차량", "운반", "공구", "사용권자산",
+    "유형", "회계", "소재지", "비품", "기구", "과제명", "llc", "kce",
     "and", "the", "with", "on", "in", "of", "co", "ltd", "inc", "company",
     "col", "Col", "COL",  # 표 아티팩트
 }
@@ -82,8 +83,8 @@ def tokenize_ko(text: str) -> list[str]:
     tokens = []
     for token in _kiwi.tokenize(text):
         if token.tag in ("NNG", "NNP", "SL") and len(token.form) >= 2:
-            if token.form not in STOP:
-                tokens.append(token.form)
+            if token.form.lower() not in STOP and token.form not in STOP:
+                tokens.append(token.form.lower() if token.tag == "SL" else token.form)
     return tokens
 
 
@@ -152,7 +153,8 @@ def analyze(csv_path: Path) -> dict:
         detail: list[dict] = []
 
         if len(texts) >= 5:
-            lda_res = run_lda(texts)
+            n_topics = 2 if len(texts) < 20 else 3 if len(texts) < 50 else 4
+            lda_res = run_lda(texts, n_topics=n_topics)
             if lda_res:
                 lda_ok = True
                 topics = lda_res["topics"]
