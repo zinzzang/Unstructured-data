@@ -36,7 +36,8 @@ STOP = {
     "합리", "임원", "인원", "단계", "한국", "제출", "회원권", "구분", "품목",
     "건물", "토지", "구축물", "건설", "기계", "장치", "차량", "운반", "공구", "사용권자산",
     "유형", "회계", "소재지", "비품", "기구", "과제명", "연구과제명", "llc", "kce", "최대",
-    "and", "the", "with", "on", "in", "of", "co", "ltd", "inc", "company",
+    "and", "the", "with", "on", "in", "of", "co", "ltd", "Ltd", "inc", "Inc", "LLC", "company",
+    "sk이노베이션",
     "col", "Col", "COL",  # 표 아티팩트
 }
 
@@ -83,8 +84,11 @@ def tokenize_ko(text: str) -> list[str]:
     tokens = []
     for token in _kiwi.tokenize(text):
         if token.tag in ("NNG", "NNP", "SL") and len(token.form) >= 2:
-            if token.form.lower() not in STOP and token.form not in STOP:
-                tokens.append(token.form.lower() if token.tag == "SL" else token.form)
+            form = token.form.strip(".,;:()[]") if token.tag == "SL" else token.form
+            if not form or len(form) < 2:
+                continue
+            if form.lower() not in STOP and form not in STOP:
+                tokens.append(form.lower() if token.tag == "SL" else form)
     return tokens
 
 
