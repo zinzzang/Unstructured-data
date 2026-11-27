@@ -9,6 +9,13 @@ SUB_RE = re.compile(r"^(\(\d+\)|\d+\)|[가-힣]\.)\s")  # 가. / (1) / 1)
 
 
 BARE_AMP = re.compile(rb"&(?!(?:[A-Za-z][A-Za-z0-9]*|#[0-9]+|#x[0-9A-Fa-f]+);)")
+# DART 원문에는 '<도시가스 사업>', '<II. 사업의 내용 - …>', '<Celltrion Asia Pacific PTE>' 처럼 이스케이프 안 된 '<'가 있다.
+# lxml recover는 이를 닫히지 않는 태그로 보고 이후 문서 전체를 그 안에 넣어, 한 <P>에 보고서 끝까지 들어가 버린다.
+# -> DART 문서에서 실제로 쓰는 태그 이름만 태그로 인정하고 나머지 '<'는 '&lt;'로 바꾼다.
+DART_TAGS = (b"A|ACI|BODY|COL|COLGROUP|COMPANY-NAME|CORRECTION|COVER|COVER-TITLE|DOCUMENT|DOCUMENT-NAME|EXTRACTION|"
+             b"FORMULA-VERSION|IMAGE|IMG|IMG-CAPTION|LIBRARY|P|PGBRK|SECTION-[0-9]+|SPAN|SUMMARY|TABLE|TABLE-GROUP|"
+             b"TBODY|TD|TE|TH|THEAD|TITLE|TR|TU")
+BARE_LT = re.compile(rb"<(?!/?(?:" + DART_TAGS + rb")(?=[\s>/])|[!?])")
 
 
 class ParseError(Exception):
@@ -24,6 +31,7 @@ def load(source):
     if not isinstance(source, (bytes, bytearray)):
         source = Path(source).read_bytes()
     source = BARE_AMP.sub(b"&amp;", bytes(source))  # recover만 쓰면 'S&P'가 'S'로 잘려 원문 손실 -> 먼저 이스케이프
+    source = BARE_LT.sub(b"&lt;", source)  # 텍스트 속 '<도시가스 사업>'이 태그로 해석돼 문서 뒷부분을 삼키는 것 방지
     return etree.fromstring(source, etree.XMLParser(recover=True, huge_tree=True))
 
 

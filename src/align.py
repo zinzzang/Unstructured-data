@@ -39,7 +39,7 @@ def align_pair(con, company, y0, y1, method, cfg):
 
 
 def run(methods=("tfidf", "embedding")):
-    cfg = yaml.safe_load((ROOT / "config" / "settings.yaml").read_text())
+    cfg = yaml.safe_load((ROOT / "config" / "settings.yaml").read_text(encoding="utf-8"))
     ys = cfg["mvp"]["years"]
     con = database.connect()
     for method in methods:

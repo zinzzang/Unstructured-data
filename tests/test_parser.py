@@ -43,6 +43,20 @@ NESTED = """<DOCUMENT><SECTION-1><TITLE>II. 사업의 내용</TITLE>
 </SECTION-2></SECTION-1></DOCUMENT>""".encode()
 
 
+BARE_LT = """<DOCUMENT><SECTION-1><TITLE>II. 사업의 내용</TITLE>
+<SECTION-2><TITLE>3. 원재료 및 생산설비</TITLE><P><도시가스 사업></P><P>가격은 <Celltrion Asia> 기준이다.</P>
+<P>다음 문단.</P></SECTION-2></SECTION-1>
+<SECTION-1><TITLE>III. 재무에 관한 사항</TITLE><SECTION-2><TITLE>1. 요약</TITLE><P>제외될 재무 문장.</P></SECTION-2></SECTION-1>
+</DOCUMENT>""".encode()
+
+
+def test_unescaped_lt_does_not_swallow_rest_of_document():
+    secs = extract_chapter2(BARE_LT)
+    assert [s["section_title"] for s in secs] == ["3. 원재료 및 생산설비"]
+    texts = [i["text"] for i in secs[0]["items"]]
+    assert texts == ["<도시가스 사업>", "가격은 <Celltrion Asia> 기준이다.", "다음 문단."]
+
+
 def test_chapter_end_even_if_next_chapter_is_nested():
     secs = extract_chapter2(NESTED)
     assert [s["section_title"] for s in secs] == ["1. 사업의 개요"]
