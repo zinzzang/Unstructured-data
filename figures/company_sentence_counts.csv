@@ -1,0 +1,10 @@
+﻿industry,company,preprocessed_sentences,tfidf_pairs,changed_pairs
+Semiconductor,Samsung Electronics,1566,1429,506
+Semiconductor,SK hynix,1310,1197,444
+Semiconductor,Hanmi Semiconductor,330,289,92
+Bio-pharma,Samsung Biologics,1365,1306,504
+Bio-pharma,Celltrion,1573,1482,714
+Bio-pharma,Yuhan,1701,1395,680
+Secondary Battery,LG Energy Solution,1011,750,256
+Secondary Battery,Samsung SDI,988,836,306
+Secondary Battery,SK Innovation,5481,4558,1149
