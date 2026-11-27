@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "SK하이닉스",
+    "industry": "semiconductor",
+    "year_old": 2022,
+    "year_new": 2023,
+    "change_type": "REDUCED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 514,
+    "change_rows_of_type": 29,
+    "candidates": 1,
+    "join_failures": 28,
+    "join_failures_by_reason": {
+      "table_row": 27,
+      "lda_filtered": 1
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 1,
+      "label": "메모리 시황·파운드리 공정",
+      "keywords": [
+        "pc",
+        "메모리",
+        "ai",
+        "고객",
+        "모바일",
+        "재고",
+        "공정",
+        "성능",
+        "응용",
+        "고객사"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.977139,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20230321001209-P0240-S01",
+          "old_text": "당사는 탄소정보 공개 프로젝트(CDP: Carbon Disclosure Project) 한국위원회가 선정하는탄소경영최우수 그룹인 '탄소경영 글로벌 리더스 클럽'에 5년 연속 편입되어 국내 최초로명예의 전당에 입성, 2022년 명예의 전당 10년차를 유지하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (2) 기후변화 협약 대응",
+          "old_xml_line": 5025,
+          "new_sentence_id": "20240319000684-P0235-S01",
+          "new_text": "당사는 탄소정보 공개 프로젝트(CDP: Carbon Disclosure Project) 한국위원회가 선정하는 탄소경영최우수 그룹인 '탄소경영 글로벌 리더스 클럽'에 5년 연속 편입되어 국내 최초로 명예의 전당에 입성한 이후 명예의 전당 10년차를 유지하고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > [CDP 탄소경영 최우수기업 명예의 전당 10년차 유지]",
+          "new_xml_line": 5436,
+          "analysis_area": "OTHER",
+          "source_change_row": 7837,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

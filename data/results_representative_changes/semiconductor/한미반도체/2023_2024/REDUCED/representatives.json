@@ -1,0 +1,74 @@
+{
+  "request": {
+    "company": "한미반도체",
+    "industry": "semiconductor",
+    "year_old": 2023,
+    "year_new": 2024,
+    "change_type": "REDUCED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 136,
+    "change_rows_of_type": 3,
+    "candidates": 1,
+    "join_failures": 2,
+    "join_failures_by_reason": {
+      "table_row": 2
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 5,
+      "label": "반도체 장비·웨이퍼 조달",
+      "keywords": [
+        "반도체",
+        "장비",
+        "개발",
+        "검사",
+        "공급",
+        "가격",
+        "생산",
+        "웨이퍼",
+        "hbm",
+        "공정"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.911105,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20240314001257-P0077-S01",
+          "old_text": "5) 지적재산관리당사는 지적재산관리 전담부서를 설치ㆍ운영하면서 당사가 개발ㆍ창출하는 지적재산의 보호와 활용을 위해 노력하고 있으며 본 보고서 제출일 현재 당사가 출원 또는등록한 지적재산권의 현황은 아래와 같습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항",
+          "old_xml_line": 2903,
+          "new_sentence_id": "20250313001171-P0074-S01",
+          "new_text": "1) 지적재산관리 당사는 지적재산관리 전담부서를 설치ㆍ운영하면서 당사가 개발ㆍ창출하는 지적재산의 보호와 활용을 위해 노력하고 있으며 본 보고서 제출일 현재 당사가 출원 또는등록한 지적재산권의 현황은 아래와 같습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항",
+          "new_xml_line": 2833,
+          "analysis_area": "OTHER",
+          "source_change_row": 17900,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

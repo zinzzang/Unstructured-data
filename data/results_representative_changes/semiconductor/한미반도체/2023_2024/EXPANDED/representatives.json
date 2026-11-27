@@ -1,0 +1,138 @@
+{
+  "request": {
+    "company": "한미반도체",
+    "industry": "semiconductor",
+    "year_old": 2023,
+    "year_new": 2024,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 136,
+    "change_rows_of_type": 9,
+    "candidates": 3,
+    "join_failures": 6,
+    "join_failures_by_reason": {
+      "table_row": 6
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 3,
+    "selected": 3,
+    "expected_selected": 3,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 3,
+      "label": "AI·자율주행발 반도체 성장",
+      "keywords": [
+        "반도체",
+        "투자",
+        "메모리",
+        "자동차",
+        "생산",
+        "업체",
+        "장비",
+        "주행",
+        "자율",
+        "hbm"
+      ],
+      "candidate_count": 2,
+      "candidate_share": 0.666667,
+      "deduplicated_count": 2,
+      "quota": 2,
+      "representatives": [
+        {
+          "topic_probability": 0.993042,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.666667,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.897907,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20240314001257-P0075-S01",
+          "old_text": "2) 산업의 성장성과거, 반도체 시장이 PC나 서버, 스마트폰과 같은 특정 시장에 의존하여 성장해 왔다면 지금의 반도체 시장은 인공지능, 자율주행전기차, 저궤도 위성통신 서비스, 도심형 항공 모빌리티(UAM), 사물인터넷(IoT)과 같은 다변화된 4차산업 분야를 매개체로 성장하고 있습니다.최근 반도체 업계에서 화두가 되고 있는 Chat GPT 구현을 위해 AI 소프트웨어에 탑재되는 광대역폭메모리반도체(HBM: High Bandwidth Memory)의 필요성이 부각되고 있고, 이에 따라 전세계적으로 HBM 및 관련 고성능 생산 장비에 대한 수요가 확대될것으로 전망됩니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항",
+          "old_xml_line": 2892,
+          "new_sentence_id": "20250313001171-P0079-S01",
+          "new_text": "4) 산업의 성장성 과거, 반도체 시장이 PC나 서버, 스마트폰과 같은 특정 시장에 의존하여 성장해 왔다면 지금의 반도체 시장은 인공지능, 자율주행전기차, 저궤도 위성통신 서비스, 도심형 항공 모빌리티(UAM), 사물인터넷(IoT)과 같은 다변화된 4차산업 분야를 매개체로 성장하고 있습니다.최근 반도체 업계에서 화두가 되고 있는 AI반도체 구현을 위해 AI 소프트웨어에 탑재되는 광대역폭메모리반도체(HBM: High Bandwidth Memory)의 필요성이 부각되고 있고, 이에 따라 전 세계적으로 HBM 및 관련 고성능 생산 장비에 대한 수요가 확대될것으로 전망됩니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항",
+          "new_xml_line": 2906,
+          "analysis_area": "OTHER",
+          "source_change_row": 17890,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.993042,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.666667,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.897907,
+          "rank_in_topic": 2,
+          "global_selection_rank": 3,
+          "old_sentence_id": "20240314001257-P0075-S02",
+          "old_text": "3) 경기변동의 특성반도체 장비 산업은 반도체를 모태로 한 산업으로 고객사(소자업체, 패키징업체, 검사/서비스업체)의 설비투자를 전제로 하므로 글로벌 반도체 산업과 함께 거시적 경기변화에 민감한 산업이라 할 수 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항",
+          "old_xml_line": 2892,
+          "new_sentence_id": "20250313001171-P0079-S02",
+          "new_text": "5) 경기변동의 특성 반도체 장비 산업은 반도체를 모태로 한 산업으로 고객사(소자업체, 패키징업체, 검사/서비스업체)의 설비투자를 전제로 하므로 글로벌 반도체 산업과 함께 거시적 경기변화에 민감한 산업이라 할 수 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항",
+          "new_xml_line": 2906,
+          "analysis_area": "OTHER",
+          "source_change_row": 17891,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 5,
+      "label": "반도체 장비·웨이퍼 조달",
+      "keywords": [
+        "반도체",
+        "장비",
+        "개발",
+        "검사",
+        "공급",
+        "가격",
+        "생산",
+        "웨이퍼",
+        "hbm",
+        "공정"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.333333,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.982977,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.333333,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20240314001257-P0074-S01",
+          "old_text": "1) 산업의 특성 반도체 장비 산업은 반도체 회로설계, 실리콘 웨이퍼 제조 등 반도체 제조를 위한 준비단계부터 웨이퍼를 가공하여 칩을 만들고, 조립 및 검사하는 단계까지의 모든 공정에 이용되는 장비와 관련된 산업을 의미합니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항",
+          "old_xml_line": 2887,
+          "new_sentence_id": "20250313001171-P0078-S02",
+          "new_text": "3) 산업의 특성 반도체 장비 산업은 반도체 회로설계, 실리콘 웨이퍼 제조 등 반도체 제조를 위한 준비단계부터 웨이퍼를 가공하여 칩을 만들고, 조립 및 검사하는 단계까지의 모든 공정에 이용되는 장비와 관련된 산업을 의미합니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항",
+          "new_xml_line": 2897,
+          "analysis_area": "OTHER",
+          "source_change_row": 17887,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

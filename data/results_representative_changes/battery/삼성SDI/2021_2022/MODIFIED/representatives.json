@@ -1,0 +1,96 @@
+{
+  "request": {
+    "company": "삼성SDI",
+    "industry": "battery",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "MODIFIED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 382,
+    "change_rows_of_type": 20,
+    "candidates": 2,
+    "join_failures": 18,
+    "join_failures_by_reason": {
+      "table_row": 16,
+      "lda_filtered": 2
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 2,
+    "selected": 2,
+    "expected_selected": 2,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 4,
+      "label": "연구개발·특허·경영실적",
+      "keywords": [
+        "전지",
+        "개발",
+        "연구",
+        "영업",
+        "솔루션",
+        "에너지",
+        "센터",
+        "이익",
+        "배터리",
+        "매출액"
+      ],
+      "candidate_count": 2,
+      "candidate_share": 1.0,
+      "deduplicated_count": 2,
+      "quota": 2,
+      "representatives": [
+        {
+          "topic_probability": 0.76798,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.960924,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20220308000915-P0187-S05",
+          "old_text": "뿐만 아니라 전지 안전성 강화를 위한 연구를 지속 수행하고 있으며, 제품 경쟁력 강화를 위해 전기화학 메커니즘 해석 및 분석 고도화도 진행중입니다.",
+          "old_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동 > 가. 경영상의 주요계약 등",
+          "old_xml_line": 4622,
+          "new_sentence_id": "20230313000726-P0177-S02",
+          "new_text": "뿐만 아니라 전지안전성 강화를 위한 연구를 지속 수행하고 있으며, 제품 경쟁력 강화를 위해 전기화학 메커니즘 해석 및 분석 고도화도 진행중입니다.당사는 기존 전지의 한계를 극복하는 차세대 전지 개발을 위하여 국내외 R&D 협력 강화를 통해 역량을 강화하고 있으며, 글로벌 기술 리더쉽을 확보해 나가면서 끊임없이 신규 아이템을 탐색하므로서 당사의 에너지 신성장동력을 창출해 나가고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동",
+          "new_xml_line": 4016,
+          "analysis_area": "RND_CONTRACT",
+          "source_change_row": 2552,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.76798,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.960924,
+          "rank_in_topic": 2,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20220308000915-P0187-S06",
+          "old_text": "당사는 기존 전지의 한계를 극복하는 차세대 전지 개발을 위하여 국내/외 RD 협력 강화를 통해 역량을 강화하며, 글로벌 기술 리더쉽을 확보해 나가고 있으며, 끊임없이 신규 아이템을 탐색하므로서 당사의 에너지 신성장동력을 창출해 나가고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동 > 가. 경영상의 주요계약 등",
+          "old_xml_line": 4622,
+          "new_sentence_id": "20230313000726-P0177-S02",
+          "new_text": "뿐만 아니라 전지안전성 강화를 위한 연구를 지속 수행하고 있으며, 제품 경쟁력 강화를 위해 전기화학 메커니즘 해석 및 분석 고도화도 진행중입니다.당사는 기존 전지의 한계를 극복하는 차세대 전지 개발을 위하여 국내외 R&D 협력 강화를 통해 역량을 강화하고 있으며, 글로벌 기술 리더쉽을 확보해 나가면서 끊임없이 신규 아이템을 탐색하므로서 당사의 에너지 신성장동력을 창출해 나가고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동",
+          "new_xml_line": 4016,
+          "analysis_area": "RND_CONTRACT",
+          "source_change_row": 2553,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

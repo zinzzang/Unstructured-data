@@ -1,0 +1,182 @@
+{
+  "request": {
+    "company": "삼성바이오로직스",
+    "industry": "biopharma",
+    "year_old": 2022,
+    "year_new": 2023,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 518,
+    "change_rows_of_type": 29,
+    "candidates": 4,
+    "join_failures": 25,
+    "join_failures_by_reason": {
+      "lda_filtered": 1,
+      "table_row": 24
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 4,
+    "selected": 4,
+    "expected_selected": 4,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 1,
+      "label": "환경경영·공급계약",
+      "keywords": [
+        "계약",
+        "환경",
+        "공급",
+        "체결",
+        "판매",
+        "관리",
+        "특허",
+        "전략",
+        "의약품",
+        "상표"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.25,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.744041,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.25,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20230309000835-P0254-S08",
+          "old_text": "[삼성바이오에피스] 삼성바이오에피스는 당사 출시 제품과 관련하여 공시서류작성일 기준으로 '삼페넷', '레마로체', 에톨로체', '온베브지' 등 국내외 등록 상표 200건 이상을 보유하고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항",
+          "old_xml_line": 5663,
+          "new_sentence_id": "20240307000835-P0285-S06",
+          "new_text": "[삼성바이오에피스]삼성바이오에피스는 당사 출시 제품과 관련하여 공시서류작성일 기준으로 '삼페넷', '레마로체', '에톨로체', '온베브지' 등 국내외 등록 상표 300건 이상을 보유하고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항",
+          "new_xml_line": 6066,
+          "analysis_area": "OTHER",
+          "source_change_row": 8592,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 2,
+      "label": "바이오시밀러 해외 허가·출시",
+      "keywords": [
+        "판매",
+        "미국",
+        "바이오시밀러",
+        "허가",
+        "유럽",
+        "질환",
+        "국가",
+        "출시",
+        "승인",
+        "치료제"
+      ],
+      "candidate_count": 2,
+      "candidate_share": 0.5,
+      "deduplicated_count": 2,
+      "quota": 2,
+      "representatives": [
+        {
+          "topic_probability": 0.938458,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.5,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.931886,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20230309000835-P0294-S02",
+          "old_text": "Pfizer는 3종(레미케이드, 허셉틴, 아바스틴), Amgen은 4종(휴미라, 허셉틴, 아바스틴, 레미케이드), Sandoz는 3종(레미케이드, 엔브렐, 휴미라), 셀트리온 4종(휴미라, 레미케이드, 허셉틴, 아바스틴) 시밀러 제품에서 미국, 유럽 등 주요 국가에서 당사와 경쟁하고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 3) 제약사대상 end-to-end CDMO service 제공 니즈 증가",
+          "old_xml_line": 6089,
+          "new_sentence_id": "20240307000835-P0323-S02",
+          "new_text": "Pfizer는 4종(레미케이드, 허셉틴, 아바스틴, 휴미라), Amgen은 5종(휴미라, 허셉틴, 아바스틴, 레미케이드, 솔리리스), Sandoz는 4종(레미케이드, 엔브렐, 아바스틴, 휴미라), 셀트리온 4종(레미케이드, 허셉틴, 아바스틴, 휴미라) 시밀러 제품에서 미국, 유럽 등 주요 국가에서 당사와 경쟁하고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (3) 경기변동의 특성해당사항 없습니다.",
+          "new_xml_line": 6452,
+          "analysis_area": "OTHER",
+          "source_change_row": 8664,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.927266,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.5,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.931886,
+          "rank_in_topic": 2,
+          "global_selection_rank": 4,
+          "old_sentence_id": "20230309000835-P0296-S06",
+          "old_text": "[삼성바이오에피스]당사는 설립 후 현재까지 항체 바이오시밀러 6종(레미케이드, 허셉틴, 엔브렐, 휴미라, 아바스틴, 루센티스의 시밀러) 제품을 출시하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 3) 제약사대상 end-to-end CDMO service 제공 니즈 증가",
+          "old_xml_line": 6095,
+          "new_sentence_id": "20240307000835-P0324-S07",
+          "new_text": "[삼성바이오에피스]삼성바이오에피스는 설립 후 현재까지 항체 바이오시밀러 7종(레미케이드, 허셉틴, 엔브렐, 휴미라, 아바스틴, 루센티스, 솔리리스의 시밀러) 제품을 출시하였습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 바. 경쟁력 분석 [삼성바이오로직스]",
+          "new_xml_line": 6461,
+          "analysis_area": "OTHER",
+          "source_change_row": 8673,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 4,
+      "label": "바이오의약품 연구개발·임상",
+      "keywords": [
+        "개발",
+        "의약품",
+        "바이오",
+        "임상",
+        "연구",
+        "관리",
+        "항체",
+        "공정",
+        "플랫폼",
+        "신약"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.25,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.390986,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.25,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 3,
+          "old_sentence_id": "20230309000835-P0001-S08",
+          "old_text": "(Evaluate Pharma 2022.5월 기준) 바이오 CDMO 시장 규모는 1) 블록버스터 바이오 의약품 지속 개발 2) 글로벌 제약사 및 중소형 바이오텍의 생산분야 아웃소싱 확대 3) 제약사 대상 end-to-end CDMO service 제공 니즈 증가 4) 공급안정성 확보를 위한 dual sourcing 수요 확보 등의 성장 요인에 기인하여 2022년 기준 191억불에서 향후 3년간 연평균 12.2% 성장해 2026년 기준 270억불 규모로 성장할 것으로 전망됩니다.",
+          "old_section_path": "II. 사업의 내용 > 1. 사업의 개요",
+          "old_xml_line": 2033,
+          "new_sentence_id": "20240307000835-P0001-S08",
+          "new_text": "(Evaluate Pharma 2023.5월 기반 내부 분석) 바이오 CDMO 시장 규모는 1) 블록버스터 바이오의약품 지속 개발 2) 글로벌 제약사 및 중소형 바이오텍의 생산 분야 아웃소싱 확대 3) 제약사 대상 end-to-end CDMO service 제공 니즈 증가 4) 공급 안정성 확보를 위한 dual sourcing 수요 확보 등의 성장 요인에 기인하여 2023년 기준 191억불에서 향후 3년간 연평균 12.2% 성장해 2026년 기준 270억 불 규모로 성장할 것으로 전망됩니다.",
+          "new_section_path": "II. 사업의 내용 > 1. 사업의 개요",
+          "new_xml_line": 2155,
+          "analysis_area": "BUSINESS",
+          "source_change_row": 8532,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "LG에너지솔루션",
+    "industry": "battery",
+    "year_old": 2022,
+    "year_new": 2023,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 308,
+    "change_rows_of_type": 40,
+    "candidates": 1,
+    "join_failures": 39,
+    "join_failures_by_reason": {
+      "table_row": 38,
+      "lda_filtered": 1
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 6,
+      "label": "전기차 보급·설비 투자",
+      "keywords": [
+        "투자",
+        "생산",
+        "분리",
+        "시설",
+        "향후",
+        "경쟁",
+        "보급",
+        "충전",
+        "설치",
+        "가스"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.891301,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20230315001342-P0071-S01",
+          "old_text": "5) 주요 투자에 관한 사항- 당사는 2022년 당기 중 신·증설 투자 및 품질 강화 투자 등에 총 6.3조원을 사용하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > (3) 생산과 영업에 중요한 재산의 변동 및 사유- 해당사항 없습니다.",
+          "old_xml_line": 2783,
+          "new_sentence_id": "20240314001110-P0078-S01",
+          "new_text": "- 당사는 2023년 당기 중 신·증설 투자 및 품질 강화 투자 등에 총 10.9조원을 사용하였습니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 5) 주요 투자에 관한 사항",
+          "new_xml_line": 3213,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 5945,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "request": {
+    "company": "삼성전자",
+    "industry": "semiconductor",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "REDUCED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 614,
+    "change_rows_of_type": 10,
+    "candidates": 0,
+    "join_failures": 10,
+    "join_failures_by_reason": {
+      "table_row": 10
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 0,
+    "selected": 0,
+    "expected_selected": 0,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": []
+}

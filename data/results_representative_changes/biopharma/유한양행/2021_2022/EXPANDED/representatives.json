@@ -1,0 +1,161 @@
+{
+  "request": {
+    "company": "유한양행",
+    "industry": "biopharma",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 883,
+    "change_rows_of_type": 128,
+    "candidates": 3,
+    "join_failures": 125,
+    "join_failures_by_reason": {
+      "table_row": 112,
+      "lda_filtered": 13
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 3,
+    "selected": 3,
+    "expected_selected": 3,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 1,
+      "label": "환경경영·공급계약",
+      "keywords": [
+        "계약",
+        "환경",
+        "공급",
+        "체결",
+        "판매",
+        "관리",
+        "특허",
+        "전략",
+        "의약품",
+        "상표"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.333333,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.965206,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.333333,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20220310001178-P0877-S01",
+          "old_text": "제99기에 약품사업부문은 코로나19 팬데믹으로 인한 전세계적 경기침체와 지속되는 제약산업 규제 및 주요 품목의 약가 인하 등으로 인한 어려운 환경 속에서도 차별화된 신제품을 출품하고, 임직원 모두가 목표 달성을 위한 뜨거운 열정과 강한 책임의식으로 맡은 바 업무에 최선을 다 한 결과, 전년대비 11.4%의 높은 성장을 하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 1) 영업개황 및 사업부문의 구분 (연결기준)",
+          "old_xml_line": 11179,
+          "new_sentence_id": "20230315001431-P0810-S01",
+          "new_text": "제100기에 약품사업부문은 지속되는 제약산업 규제 및 주요 품목의 약가 인하, 급여 재평가 등으로 인한 어려운 환경 속에서도 전략적 신제품을 출품하고, 임직원 모두가 목표 달성을 위한 뜨거운 열정과 강한 책임의식으로 맡은 바 업무에 최선을 다 한 결과, 전년대비 12.2% 성장하였습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 1) 영업개황 및 사업부문의 구분 (연결기준)",
+          "new_xml_line": 10289,
+          "analysis_area": "OTHER",
+          "source_change_row": 4884,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 2,
+      "label": "바이오시밀러 해외 허가·출시",
+      "keywords": [
+        "판매",
+        "미국",
+        "바이오시밀러",
+        "허가",
+        "유럽",
+        "질환",
+        "국가",
+        "출시",
+        "승인",
+        "치료제"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.333333,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.95788,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.333333,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20220310001178-P0878-S01",
+          "old_text": "주요 품목으로는 경구용 혈당강하제 트라젠타가 약 1,200억원의 매출을 실현하였고, 트윈스타, 비리어드, 자디앙, 로수바미브 등 총 30개 품목이 100억원 이상의 실적을 나타내었습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 1) 영업개황 및 사업부문의 구분 (연결기준)",
+          "old_xml_line": 11181,
+          "new_sentence_id": "20230315001431-P0811-S01",
+          "new_text": "주요품목으로는 경구용 혈당강하제 트라젠타가 약 1,200억원의 매출을 실현하였고, 트윈스타, 비리어드, 자디앙, 로수바미브 등 총 31개 품목이 100억원 이상의 실적을 나타내었습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 1) 영업개황 및 사업부문의 구분 (연결기준)",
+          "new_xml_line": 10291,
+          "analysis_area": "OTHER",
+          "source_change_row": 4885,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 3,
+      "label": "의약품 시장·매출 실적",
+      "keywords": [
+        "연구",
+        "의약품",
+        "개발",
+        "영업",
+        "순이익",
+        "이익",
+        "매출",
+        "누계",
+        "치료제",
+        "계약"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.333333,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.993277,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.333333,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 3,
+          "old_sentence_id": "20220310001178-P0901-S01",
+          "old_text": "가) 의약품 (1) 시장규모는 약 20조원 규모이며 400여 제약사가 과당경쟁을 하고 있음.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 3) 시장의 특성",
+          "old_xml_line": 11280,
+          "new_sentence_id": "20230315001431-P0831-S01",
+          "new_text": "가) 의약품 (1) 시장규모는 약 25조원 규모이며 약 400여개 제약사가 과당경쟁을 하고 있음.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 3) 시장의 특성",
+          "new_xml_line": 10384,
+          "analysis_area": "OTHER",
+          "source_change_row": 4912,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

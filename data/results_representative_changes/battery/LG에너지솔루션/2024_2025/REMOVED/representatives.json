@@ -1,0 +1,159 @@
+{
+  "request": {
+    "company": "LG에너지솔루션",
+    "industry": "battery",
+    "year_old": 2024,
+    "year_new": 2025,
+    "change_type": "REMOVED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 349,
+    "change_rows_of_type": 6,
+    "candidates": 4,
+    "join_failures": 2,
+    "join_failures_by_reason": {
+      "lda_filtered": 2
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 4,
+    "selected": 4,
+    "expected_selected": 4,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 3,
+      "label": "수주·공급계약·판매",
+      "keywords": [
+        "자동차",
+        "계약",
+        "판매",
+        "공급",
+        "고객",
+        "매출",
+        "규제",
+        "생산",
+        "배터리",
+        "정책"
+      ],
+      "candidate_count": 3,
+      "candidate_share": 0.75,
+      "deduplicated_count": 3,
+      "quota": 3,
+      "representatives": [
+        {
+          "topic_probability": 0.52456,
+          "topic_candidate_count": 3,
+          "topic_candidate_share": 0.75,
+          "topic_quota": 3,
+          "centroid_cosine_similarity": 0.894799,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20250312000405-P0281-S01",
+          "old_text": "당사의 배터리가 적용된 기존 시장뿐만 아니라, 신규 시장 발굴 등으로 지속적인 수요 증가가 예상됩니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (4) 시장여건",
+          "old_xml_line": 5438,
+          "new_sentence_id": null,
+          "new_text": null,
+          "new_section_path": null,
+          "new_xml_line": null,
+          "analysis_area": "OTHER",
+          "source_change_row": 18048,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.52456,
+          "topic_candidate_count": 3,
+          "topic_candidate_share": 0.75,
+          "topic_quota": 3,
+          "centroid_cosine_similarity": 0.886569,
+          "rank_in_topic": 2,
+          "global_selection_rank": 3,
+          "old_sentence_id": "20250312000405-P0281-S02",
+          "old_text": "Global OEM의 대규모 EV 프로젝트가 증가하고 있어 EV용 배터리 수요 확대가 전망되며, 신재생에너지 보급 트렌드 가속화 및 각국의 규제 및 지원 정책을 바탕으로 산업이 지속 성장할 것으로 전망됩니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (4) 시장여건",
+          "old_xml_line": 5438,
+          "new_sentence_id": null,
+          "new_text": null,
+          "new_section_path": null,
+          "new_xml_line": null,
+          "analysis_area": "OTHER",
+          "source_change_row": 18049,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.52456,
+          "topic_candidate_count": 3,
+          "topic_candidate_share": 0.75,
+          "topic_quota": 3,
+          "centroid_cosine_similarity": 0.866009,
+          "rank_in_topic": 3,
+          "global_selection_rank": 4,
+          "old_sentence_id": "20250312000405-P0281-S03",
+          "old_text": "또한, 물류 및 자율배송 등 신규 Application의 2차전지 적용 확대가 예상됩니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (4) 시장여건",
+          "old_xml_line": 5438,
+          "new_sentence_id": null,
+          "new_text": null,
+          "new_section_path": null,
+          "new_xml_line": null,
+          "analysis_area": "OTHER",
+          "source_change_row": 18050,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 4,
+      "label": "연구개발·특허·경영실적",
+      "keywords": [
+        "전지",
+        "개발",
+        "연구",
+        "영업",
+        "솔루션",
+        "에너지",
+        "센터",
+        "이익",
+        "배터리",
+        "매출액"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.25,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.861098,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.25,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20250312000405-P0002-S01",
+          "old_text": "당사는 연결 기준으로 2024년 연간 약 25조 6,196억원의 매출과 약 5,754억원의 영업이익을 기록하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 1. 사업의 개요",
+          "old_xml_line": 2116,
+          "new_sentence_id": null,
+          "new_text": null,
+          "new_section_path": null,
+          "new_xml_line": null,
+          "analysis_area": "BUSINESS",
+          "source_change_row": 18016,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

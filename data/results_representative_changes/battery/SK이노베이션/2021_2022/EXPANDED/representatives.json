@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "SK이노베이션",
+    "industry": "battery",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 1426,
+    "change_rows_of_type": 76,
+    "candidates": 1,
+    "join_failures": 75,
+    "join_failures_by_reason": {
+      "table_row": 71,
+      "lda_filtered": 4
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 6,
+      "label": "전기차 보급·설비 투자",
+      "keywords": [
+        "투자",
+        "생산",
+        "분리",
+        "시설",
+        "향후",
+        "경쟁",
+        "보급",
+        "충전",
+        "설치",
+        "가스"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.760469,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20220323000978-P0904-S03",
+          "old_text": "자본력을 갖추고 있으면서도 이러한 고품질 분리막을 생산할 수 있는 기업은 한국, 일본 및 일부 중국 업체 등 5~6개사 내외인 것으로 판단됩니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (1) 산업의 특성, 성장성, 경기변동의 특성, 계절성",
+          "old_xml_line": 19025,
+          "new_sentence_id": "20230322000906-P0931-S03",
+          "new_text": "자본력을 갖추고 있으면서도 이러한 고품질 분리막을 생산할 수 있는 기업은 한국, 일본 및 일부 중국 업체 등 6~7개사 내외인 것으로 판단됩니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (2) 국내외 시장 여건",
+          "new_xml_line": 15460,
+          "analysis_area": "OTHER",
+          "source_change_row": 448,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

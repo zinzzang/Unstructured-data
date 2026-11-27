@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "셀트리온",
+    "industry": "biopharma",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "MODIFIED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 1127,
+    "change_rows_of_type": 44,
+    "candidates": 1,
+    "join_failures": 43,
+    "join_failures_by_reason": {
+      "table_row": 42,
+      "lda_filtered": 1
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 5,
+      "label": "CDMO 생산·신규 사업",
+      "keywords": [
+        "생산",
+        "계약",
+        "공장",
+        "바이오",
+        "서비스",
+        "체결",
+        "변동",
+        "의약품",
+        "매출",
+        "cdmo"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.502703,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20220512000853-P0614-S21",
+          "old_text": "생명 및 건강과 직접적으로 관련이 있으며 질병 치료라는 목적으로 소비되는 제품이기 때문에 경기 변동에 따른 영향이 크지 않고, 안정적으로 성장한다는 산업적 특성이 있습니다 . 따라서, 타 산업과 비교하여 계절적 요인이나 경기 변동에 민감한 산업으로 볼 수는 없습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 라. 사업의 내용 (산업분석)",
+          "old_xml_line": 12308,
+          "new_sentence_id": "20230320000842-P0633-S08",
+          "new_text": "생명 및 건강과 직접적으로 관련이 있으며 질병 치료라는 목적으로 소비되는 제품이기 때문에 경기 변동에 따른 영향이 크지 않고, 안정적으로 성장한다는 산업적 특성이 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 라. 사업의 내용 (산업분석)",
+          "new_xml_line": 7478,
+          "analysis_area": "OTHER",
+          "source_change_row": 3762,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

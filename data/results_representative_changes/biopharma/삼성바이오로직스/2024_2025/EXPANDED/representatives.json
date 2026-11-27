@@ -1,0 +1,31 @@
+{
+  "request": {
+    "company": "삼성바이오로직스",
+    "industry": "biopharma",
+    "year_old": 2024,
+    "year_new": 2025,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 572,
+    "change_rows_of_type": 10,
+    "candidates": 0,
+    "join_failures": 10,
+    "join_failures_by_reason": {
+      "lda_filtered": 1,
+      "table_row": 9
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 0,
+    "selected": 0,
+    "expected_selected": 0,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": []
+}

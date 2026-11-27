@@ -1,0 +1,96 @@
+{
+  "request": {
+    "company": "SK이노베이션",
+    "industry": "battery",
+    "year_old": 2023,
+    "year_new": 2024,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 1918,
+    "change_rows_of_type": 53,
+    "candidates": 2,
+    "join_failures": 51,
+    "join_failures_by_reason": {
+      "table_row": 46,
+      "lda_filtered": 5
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 2,
+    "selected": 2,
+    "expected_selected": 2,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 2,
+      "label": "미·중 통상·IRA 규제",
+      "keywords": [
+        "중국",
+        "미국",
+        "변동",
+        "배터리",
+        "업체",
+        "경기",
+        "차별",
+        "감축",
+        "포트폴리오",
+        "기능"
+      ],
+      "candidate_count": 2,
+      "candidate_share": 1.0,
+      "deduplicated_count": 2,
+      "quota": 2,
+      "representatives": [
+        {
+          "topic_probability": 0.963231,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.88617,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20240320000950-P0342-S03",
+          "old_text": "경영진은 회수가능액을 추정하기 위하여 사용된 주요 가정의 합리적으로 발생가능한 변동으로 인하여 현금창출단위의 총 장부금액이 총 회수가능액인 7,916백만원을 27,062백만원 초과할 것으로 판단하여 이에 대한 유형자산 손상차손을 인식하였음.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > (1) 주요 사업장의 현황",
+          "old_xml_line": 9320,
+          "new_sentence_id": "20250318000862-P0444-S03",
+          "new_text": "경영진은 회수가능액을 추정하기 위하여 사용된 주요 가정의 합리적으로 발생가능한 변동으로 인하여 현금창출단위의 총 장부금액이 총 회수가능액인 467,227백만원을 50,149백만원 초과할 것으로 판단하여 이에 대한 유형자산 손상차손을 인식하였습니다.(주5) 매각예정자산으로 대체된 금액입니다.(주6) 환율변동효과 등이 포함 되어 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 나. 생산실적 및 가동률(1) 생산실적",
+          "new_xml_line": 10026,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 13152,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.963231,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.88617,
+          "rank_in_topic": 2,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20240320000950-P0343-S01",
+          "old_text": "한편, 당기 및 전기 중 자본화된 차입원가는 각각 221,442백만원 및 84,959백만원입니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > (1) 주요 사업장의 현황",
+          "old_xml_line": 9348,
+          "new_sentence_id": "20250318000862-P0444-S04",
+          "new_text": "한편, 당기 및 전기 중 자본화된 차입원가는 각각 277,931백만원 및 221,442백만원입니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 나. 생산실적 및 가동률(1) 생산실적",
+          "new_xml_line": 10026,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 13153,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

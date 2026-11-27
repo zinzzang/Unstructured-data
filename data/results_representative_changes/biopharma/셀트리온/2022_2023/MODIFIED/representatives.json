@@ -1,0 +1,117 @@
+{
+  "request": {
+    "company": "셀트리온",
+    "industry": "biopharma",
+    "year_old": 2022,
+    "year_new": 2023,
+    "change_type": "MODIFIED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 1130,
+    "change_rows_of_type": 56,
+    "candidates": 2,
+    "join_failures": 54,
+    "join_failures_by_reason": {
+      "table_row": 54
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 2,
+    "selected": 2,
+    "expected_selected": 2,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 1,
+      "label": "환경경영·공급계약",
+      "keywords": [
+        "계약",
+        "환경",
+        "공급",
+        "체결",
+        "판매",
+        "관리",
+        "특허",
+        "전략",
+        "의약품",
+        "상표"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.5,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.967991,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.5,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20230320000842-P0647-S02",
+          "old_text": "간장용제 고덱스 포함 케미컬의약품이 2,149억 원의 매출을 달성하였으며 램시마, 허쥬마, 트룩시마, 유플라이마 4종의 바이오시밀러도 약 620억원을 기록하며 전년 동기 대비 약 21% 성장 하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (1) 셀트리온제약",
+          "old_xml_line": 7539,
+          "new_sentence_id": "20240318000913-P0579-S02",
+          "new_text": "간장용제 고덱스 포함 케미컬의약품이 2,068억 원의 매출을 달성하였으며 램시마, 허쥬마, 트룩시마, 유플라이마, 베그젤마 5종의 바이오시밀러 매출은 약 733억 원을 기록하며 전년 동기 대비 약 18.2% 성장하였습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 1) 사업의 개요",
+          "new_xml_line": 7957,
+          "analysis_area": "OTHER",
+          "source_change_row": 9787,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 3,
+      "label": "의약품 시장·매출 실적",
+      "keywords": [
+        "연구",
+        "의약품",
+        "개발",
+        "영업",
+        "순이익",
+        "이익",
+        "매출",
+        "누계",
+        "치료제",
+        "계약"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.5,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.946658,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.5,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20230320000842-P0499-S01",
+          "old_text": "(2) 연구개발 인력현황공시서류 작성기준일 현재 당사는 박사급 4명, 석사급 30명 등 총 66명의 연구인력을 보유하고 있습니다.(3) 핵심연구인력",
+          "old_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동 > (2) 연구개발 완료 실적- 공시서류 작성기준일 현재 개발이 완료된 신약{개량신약, 복제약(시밀러) 등 포함}의 현황은 다음과 같습니다.",
+          "old_xml_line": 6180,
+          "new_sentence_id": "20240318000913-P0489-S01",
+          "new_text": "(2) 연구개발 인력현황공시서류 작성기준일 현재 당사는 박사급 8명, 석사급 29명 등 총 42명의 연구인력을 보유하고 있습니다.(3) 핵심연구인력",
+          "new_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동 > (2) 연구개발 완료 실적- 공시서류 작성기준일 현재 개발이 완료된 신약{개량신약, 복제약(시밀러) 등 포함}의 현황은 다음과 같습니다.",
+          "new_xml_line": 6961,
+          "analysis_area": "RND_CONTRACT",
+          "source_change_row": 10539,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

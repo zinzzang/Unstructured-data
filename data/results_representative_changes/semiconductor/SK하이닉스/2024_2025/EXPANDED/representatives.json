@@ -1,0 +1,246 @@
+{
+  "request": {
+    "company": "SK하이닉스",
+    "industry": "semiconductor",
+    "year_old": 2024,
+    "year_new": 2025,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 447,
+    "change_rows_of_type": 39,
+    "candidates": 6,
+    "join_failures": 33,
+    "join_failures_by_reason": {
+      "lda_filtered": 1,
+      "table_row": 32
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 6,
+    "selected": 6,
+    "expected_selected": 6,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 1,
+      "label": "메모리 시황·파운드리 공정",
+      "keywords": [
+        "pc",
+        "메모리",
+        "ai",
+        "고객",
+        "모바일",
+        "재고",
+        "공정",
+        "성능",
+        "응용",
+        "고객사"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.166667,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.977139,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.166667,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 3,
+          "old_sentence_id": "20250319000665-P0203-S01",
+          "old_text": "당사는 탄소정보 공개 프로젝트(CDP: Carbon Disclosure Project) 한국위원회가 선정하는 탄소경영최우수 그룹인 '탄소경영 글로벌 리더스 클럽'에 5년 연속 편입되어 국내 최초로 명예의 전당에 입성한 이후 명예의 전당 10년차를 유지하고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > [CDP 탄소경영 최우수기업 명예의 전당 10년차 유지]",
+          "old_xml_line": 5603,
+          "new_sentence_id": "20260317000635-P0206-S01",
+          "new_text": "당사는 탄소정보 공개 프로젝트(CDP: Carbon Disclosure Project) 한국위원회가 선정하는 탄소경영최우수 그룹인 '탄소경영 글로벌 리더스 클럽'에 5년 연속 편입되어 국내 최초로 명예의 전당에 입성, 2025년 명예의 전당 10년차를 유지하고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 바. 환경보호 정책 및 현황",
+          "new_xml_line": 5997,
+          "analysis_area": "OTHER",
+          "source_change_row": 20456,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 2,
+      "label": "업황 회복·System LSI·친환경 인증",
+      "keywords": [
+        "인증",
+        "soc",
+        "nand",
+        "회복",
+        "모바일",
+        "메모리",
+        "에너지",
+        "탄소",
+        "하반기",
+        "감축"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.166667,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.911092,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.166667,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 4,
+          "old_sentence_id": "20250319000665-P0028-S01",
+          "old_text": "3. 생산설비의 현황당사의 시설 및 설비의 장부가액은 작성기준일 현재 60,157,474백만원이며, 상세 내역은 다음과 같습니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > (2) 가동률",
+          "old_xml_line": 3788,
+          "new_sentence_id": "20260317000635-P0027-S01",
+          "new_text": "3. 생산설비의 현황당사의 시설 및 설비의 장부가액은 작성기준일 현재 77,502,704백만원이며, 상세 내역은 다음과 같습니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > (2) 가동률",
+          "new_xml_line": 4261,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 20584,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 3,
+      "label": "AI·자율주행발 반도체 성장",
+      "keywords": [
+        "반도체",
+        "투자",
+        "메모리",
+        "자동차",
+        "생산",
+        "업체",
+        "장비",
+        "주행",
+        "자율",
+        "hbm"
+      ],
+      "candidate_count": 2,
+      "candidate_share": 0.333333,
+      "deduplicated_count": 2,
+      "quota": 2,
+      "representatives": [
+        {
+          "topic_probability": 0.970363,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.333333,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.877882,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20250319000665-P0136-S02",
+          "old_text": "시장 조사기관인 가트너(Gartner, 2024년 12월 금액기준)에 따르면, 지난 2024년도 세계 반도체 시장규모는 US$6,260억에 달하며, 이 중 메모리 제품은 전체 반도체 시장의 약 25% 수준에 달하는 US$1,579억을 기록하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 가. 업계의 현황",
+          "old_xml_line": 5038,
+          "new_sentence_id": "20260317000635-P0138-S02",
+          "new_text": "시장 조사기관인 가트너(출처: Gartner, 2026.01)에 따르면, 지난 2025년도 세계 반도체 시장규모는 US$7,934억에 달하며 이 중 메모리 제품은 전체 반도체 시장의 약 26% 수준에 달하는 US$2,086억을 기록하였습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 가. 업계의 현황",
+          "new_xml_line": 5509,
+          "analysis_area": "OTHER",
+          "source_change_row": 20310,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.495458,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.333333,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.877882,
+          "rank_in_topic": 2,
+          "global_selection_rank": 5,
+          "old_sentence_id": "20250319000665-P0137-S01",
+          "old_text": "아래 표에 나타낸 바와 같이, 반도체 산업은 우리나라 수출에 있어서 18.6%의 비중을 차지하는 매우 중요한 기간 산업 중 하나입니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 가. 업계의 현황",
+          "old_xml_line": 5041,
+          "new_sentence_id": "20260317000635-P0139-S01",
+          "new_text": "아래 표에 나타낸 바와 같이, 반도체 산업은 우리나라 수출에 있어 24.4%의 비중을 차지하는 매우 중요한 기간 산업 중 하나입니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 가. 업계의 현황",
+          "new_xml_line": 5512,
+          "analysis_area": "OTHER",
+          "source_change_row": 20312,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 4,
+      "label": "AI 서버·HBM 메모리",
+      "keywords": [
+        "ai",
+        "메모리",
+        "hbm",
+        "성능",
+        "용량",
+        "공급",
+        "데이터",
+        "본더",
+        "서버",
+        "dram"
+      ],
+      "candidate_count": 2,
+      "candidate_share": 0.333333,
+      "deduplicated_count": 2,
+      "quota": 2,
+      "representatives": [
+        {
+          "topic_probability": 0.508782,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.333333,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.940828,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20250319000665-P0149-S03",
+          "old_text": "2021년은 팬데믹 회복 및 5G 전환 확대와 고사양 스마트폰 출시, 데이터센터 업체의 투자 재개로 인해 모바일과 Server 수요가 크게 증가하였으며, 팬데믹 이후 WFH(Working From Home), 재택교육 등과 같은 근무 환경 및 교육 문화의 변화로 PC 수요도 증가하여 $929억(+40.9%)를 기록했습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (나) 시스템 반도체",
+          "old_xml_line": 5230,
+          "new_sentence_id": "20260317000635-P0153-S01",
+          "new_text": "시장 조사기관 가트너(출처: Gartner, 2026.01)에 따르면, 2021년은 팬데믹 회복 및 5G 전환 확대와 고사양 스마트폰 출시, 데이터센터 업체의 투자 재개로 인해 모바일과 Server 수요가 크게 증가하였으며, 팬데믹 이후 재택근무, 재택교육 등과 같은 근무 환경 및 교육 문화의 변화로 PC 수요도 증가하여 $929억(+40.9%)를 기록했습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (2) 시스템 반도체",
+          "new_xml_line": 5678,
+          "analysis_area": "OTHER",
+          "source_change_row": 20340,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.741605,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.333333,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.940828,
+          "rank_in_topic": 2,
+          "global_selection_rank": 6,
+          "old_sentence_id": "20250319000665-P0150-S02",
+          "old_text": "2021년에는 고용량 스마트폰의 출시로 데이터 저장소 역할을 하는 NAND 채용량 수요가 증가했으며, PC와 게임 콘솔 수요의 증가, 데이터센터 고객들의 투자 확대로 eSSD 수요도 크게 증가 하여 +24.0%($659억)의 성장을 기록했습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (나) 시스템 반도체",
+          "old_xml_line": 5231,
+          "new_sentence_id": "20260317000635-P0155-S01",
+          "new_text": "시장 조사기관 가트너(출처: Gartner, 2026.01)에 따르면, 2021년은 고용량 스마트폰의 출시로 데이터 저장소 역할을 하는 NAND 채용량 수요가 증가했으며, PC와 게임 콘솔 수요의 증가, 데이터센터 고객들의 투자 확대로 eSSD 수요도 크게 증가하여 $659억(+24.0%)의 성장을 기록했습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (2) 시스템 반도체",
+          "new_xml_line": 5680,
+          "analysis_area": "OTHER",
+          "source_change_row": 20345,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

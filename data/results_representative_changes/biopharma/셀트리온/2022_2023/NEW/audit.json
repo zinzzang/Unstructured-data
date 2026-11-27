@@ -1,0 +1,959 @@
+{
+  "request": {
+    "company": "셀트리온",
+    "industry": "biopharma",
+    "year_old": 2022,
+    "year_new": 2023,
+    "change_type": "NEW",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "inputs": {
+    "source_change_csv": {
+      "path": "data/results_v2/tfidf_masked_th0.6.csv",
+      "sha256": "3b8e15dea7dfdb813d0d68d401e5991fea5c6ec98a80daa480f673a4ef77ab5d"
+    },
+    "paragraphs_jsonl": {
+      "path": "data/processed/preprocessing_v2/biopharma/paragraphs.jsonl",
+      "sha256": "9e3fbf2daf03196c74bc00e97cbde8cbab72210bb1e38cff5eb4d24707fe61c8"
+    },
+    "topic_probabilities_new": {
+      "path": "data/results_industry_lda_corrected/biopharma/sentence_topic_probabilities.csv",
+      "sha256": "6b289e938e26ac2c3eb6f97ec7b6c2498dc632a9922d8e00355dcac1c4d86a92"
+    },
+    "topic_probabilities_old": {
+      "path": "data/results_industry_lda_corrected/biopharma/sentence_topic_probabilities_old.csv",
+      "sha256": "06a395e2289eb8d2aeee67e0f84c62a6a89983bce98f9f50e9cadff8b92ad11f"
+    },
+    "topics": {
+      "path": "data/results_industry_lda_corrected/biopharma/topics.txt",
+      "sha256": "bcc4a051a86c798d106b2867d82cc0e64329cfc554e76206de0ffc7bfb4a05ac"
+    },
+    "lda_artifact": {
+      "path": "data/results_industry_lda_corrected/biopharma/lda_artifacts.joblib",
+      "sha256": "c3ca297d94ace6f628c091b7784ddb3bef54bf0723c0dc810154e5a7aace3904"
+    },
+    "topic_labels": {
+      "path": "data/results_industry_lda_corrected/biopharma/topic_labels.json",
+      "sha256": "cea856a5a454a5b7969fca4542130d02dc9d405c3455be32c11874e00770dba5"
+    },
+    "embeddings_npz": {
+      "path": "data/results_representative_changes/embeddings/bge-m3_sentence_embeddings.npz",
+      "sha256": "bbce85422572e3116c759524c11b1297b640f9aec5f0c8e39d3b8d25fdc90a69"
+    }
+  },
+  "lda_metadata": {
+    "industry": "biopharma",
+    "companies": [
+      "삼성바이오로직스",
+      "셀트리온",
+      "유한양행"
+    ],
+    "n_topics": 5,
+    "model_seed": 0,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "k_range": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "k_override": 5,
+    "train_sample_rng_seed": 42,
+    "chunk": 8,
+    "max_paragraph_sentences": 100,
+    "balance": 3.0,
+    "specific_share": 0.9,
+    "input_change_csv": "data\\results_v2\\tfidf_masked_th0.6.csv",
+    "input_change_csv_sha256": "3b8e15dea7dfdb813d0d68d401e5991fea5c6ec98a80daa480f673a4ef77ab5d",
+    "input_paragraphs_jsonl": "data\\processed\\preprocessing_v2\\biopharma\\paragraphs.jsonl",
+    "input_paragraphs_jsonl_sha256": "9e3fbf2daf03196c74bc00e97cbde8cbab72210bb1e38cff5eb4d24707fe61c8",
+    "versions": {
+      "sklearn": "1.5.1",
+      "kiwipiepy": "0.25.1",
+      "numpy": "1.26.4",
+      "joblib": "1.4.2"
+    },
+    "removed_dropped": {
+      "footnote/short/reference": 85,
+      "not in paragraph source": 796,
+      "oversized paragraph or risk/derivatives section": 46,
+      "no vocabulary tokens": 2
+    },
+    "artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "counts": {
+    "change_rows_for_pair": 1130,
+    "by_type": {
+      "UNCHANGED": 425,
+      "UNCERTAIN": 118,
+      "REMOVED": 192,
+      "NEW": 193,
+      "REDUCED": 42,
+      "EXPANDED": 104,
+      "MODIFIED": 56
+    },
+    "change_rows_of_type": 193,
+    "joined": 70,
+    "join_failed": 123,
+    "after_dedup": 68,
+    "selected": 10
+  },
+  "scope_check": {
+    "all_candidates_in_scope": true,
+    "company": "셀트리온",
+    "year_old": 2022,
+    "year_new": 2023,
+    "change_type": "NEW",
+    "topic_range": [
+      1,
+      5
+    ]
+  },
+  "topic_allocation": [
+    {
+      "topic_id": 1,
+      "candidates": 5,
+      "after_dedup": 5,
+      "ideal": 0.7143,
+      "quota": 1,
+      "selected": 1
+    },
+    {
+      "topic_id": 2,
+      "candidates": 32,
+      "after_dedup": 30,
+      "ideal": 4.5714,
+      "quota": 4,
+      "selected": 4
+    },
+    {
+      "topic_id": 3,
+      "candidates": 2,
+      "after_dedup": 2,
+      "ideal": 0.2857,
+      "quota": 1,
+      "selected": 1
+    },
+    {
+      "topic_id": 4,
+      "candidates": 24,
+      "after_dedup": 24,
+      "ideal": 3.4286,
+      "quota": 3,
+      "selected": 3
+    },
+    {
+      "topic_id": 5,
+      "candidates": 7,
+      "after_dedup": 7,
+      "ideal": 1.0,
+      "quota": 1,
+      "selected": 1
+    }
+  ],
+  "join_failures": [
+    {
+      "source_change_row": 9904,
+      "sentence_id": "20240318000913-P0659-S03",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 9905,
+      "sentence_id": "20240318000913-P0659-S04",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 9907,
+      "sentence_id": "20240318000913-P0673-S02",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 9912,
+      "sentence_id": "20240318000913-P0673-S07",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 9913,
+      "sentence_id": "20240318000913-P0674-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 9914,
+      "sentence_id": "20240318000913-P0675-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 9915,
+      "sentence_id": "20240318000913-P0676-S01",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 9916,
+      "sentence_id": "20240318000913-P0676-S02",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 9918,
+      "sentence_id": "20240318000913-P0678-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 9919,
+      "sentence_id": "20240318000913-P0679-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 9920,
+      "sentence_id": "20240318000913-P0680-S01",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 9921,
+      "sentence_id": "20240318000913-P0680-S02",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 9924,
+      "sentence_id": "20240318000913-P0681-S03",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 9925,
+      "sentence_id": "20240318000913-P0682-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 9926,
+      "sentence_id": "20240318000913-P0683-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 9927,
+      "sentence_id": "20240318000913-P0684-S01",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 10041,
+      "sentence_id": "20240318000913-P0081-S01",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 10042,
+      "sentence_id": "20240318000913-P0082-S01",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 10043,
+      "sentence_id": "20240318000913-P0092-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10617,
+      "sentence_id": "20240318000913-P0185-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10618,
+      "sentence_id": "20240318000913-P0186-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10619,
+      "sentence_id": "20240318000913-P0191-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10620,
+      "sentence_id": "20240318000913-P0193-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10621,
+      "sentence_id": "20240318000913-P0206-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10622,
+      "sentence_id": "20240318000913-P0207-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10623,
+      "sentence_id": "20240318000913-P0208-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10624,
+      "sentence_id": "20240318000913-P0210-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10625,
+      "sentence_id": "20240318000913-P0211-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10626,
+      "sentence_id": "20240318000913-P0212-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10627,
+      "sentence_id": "20240318000913-P0213-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10628,
+      "sentence_id": "20240318000913-P0214-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10629,
+      "sentence_id": "20240318000913-P0215-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10631,
+      "sentence_id": "20240318000913-P0223-S01",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 10632,
+      "sentence_id": "20240318000913-P0234-S01",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 10633,
+      "sentence_id": "20240318000913-P0237-S01",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 10637,
+      "sentence_id": "20240318000913-P0238-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10638,
+      "sentence_id": "20240318000913-P0239-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10639,
+      "sentence_id": "20240318000913-P0240-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10640,
+      "sentence_id": "20240318000913-P0241-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10641,
+      "sentence_id": "20240318000913-P0242-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10642,
+      "sentence_id": "20240318000913-P0243-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10648,
+      "sentence_id": "20240318000913-P0247-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10649,
+      "sentence_id": "20240318000913-P0248-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10650,
+      "sentence_id": "20240318000913-P0250-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10651,
+      "sentence_id": "20240318000913-P0251-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10652,
+      "sentence_id": "20240318000913-P0252-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10653,
+      "sentence_id": "20240318000913-P0253-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10654,
+      "sentence_id": "20240318000913-P0255-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10655,
+      "sentence_id": "20240318000913-P0256-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10656,
+      "sentence_id": "20240318000913-P0257-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10657,
+      "sentence_id": "20240318000913-P0258-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10658,
+      "sentence_id": "20240318000913-P0259-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10659,
+      "sentence_id": "20240318000913-P0260-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10660,
+      "sentence_id": "20240318000913-P0262-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10661,
+      "sentence_id": "20240318000913-P0263-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10662,
+      "sentence_id": "20240318000913-P0264-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10663,
+      "sentence_id": "20240318000913-P0266-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10664,
+      "sentence_id": "20240318000913-P0267-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10665,
+      "sentence_id": "20240318000913-P0268-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10666,
+      "sentence_id": "20240318000913-P0269-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10667,
+      "sentence_id": "20240318000913-P0270-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10668,
+      "sentence_id": "20240318000913-P0271-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10669,
+      "sentence_id": "20240318000913-P0273-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10683,
+      "sentence_id": "20240318000913-P0329-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10684,
+      "sentence_id": "20240318000913-P0329-S02",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10685,
+      "sentence_id": "20240318000913-P0329-S03",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10686,
+      "sentence_id": "20240318000913-P0329-S04",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10687,
+      "sentence_id": "20240318000913-P0329-S05",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10688,
+      "sentence_id": "20240318000913-P0329-S07",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10689,
+      "sentence_id": "20240318000913-P0329-S08",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10690,
+      "sentence_id": "20240318000913-P0329-S09",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10691,
+      "sentence_id": "20240318000913-P0329-S11",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10692,
+      "sentence_id": "20240318000913-P0329-S12",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10693,
+      "sentence_id": "20240318000913-P0329-S14",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10694,
+      "sentence_id": "20240318000913-P0329-S15",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10695,
+      "sentence_id": "20240318000913-P0329-S17",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10696,
+      "sentence_id": "20240318000913-P0329-S18",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10697,
+      "sentence_id": "20240318000913-P0329-S19",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10698,
+      "sentence_id": "20240318000913-P0329-S20",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10699,
+      "sentence_id": "20240318000913-P0329-S21",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10700,
+      "sentence_id": "20240318000913-P0329-S22",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10701,
+      "sentence_id": "20240318000913-P0331-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10702,
+      "sentence_id": "20240318000913-P0331-S02",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10703,
+      "sentence_id": "20240318000913-P0331-S04",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10704,
+      "sentence_id": "20240318000913-P0331-S05",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10705,
+      "sentence_id": "20240318000913-P0331-S07",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10706,
+      "sentence_id": "20240318000913-P0331-S10",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10708,
+      "sentence_id": "20240318000913-P0384-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10709,
+      "sentence_id": "20240318000913-P0389-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10710,
+      "sentence_id": "20240318000913-P0393-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10711,
+      "sentence_id": "20240318000913-P0398-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10712,
+      "sentence_id": "20240318000913-P0402-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10713,
+      "sentence_id": "20240318000913-P0405-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10714,
+      "sentence_id": "20240318000913-P0411-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10715,
+      "sentence_id": "20240318000913-P0420-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10716,
+      "sentence_id": "20240318000913-P0425-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10717,
+      "sentence_id": "20240318000913-P0426-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10718,
+      "sentence_id": "20240318000913-P0427-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10719,
+      "sentence_id": "20240318000913-P0428-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10720,
+      "sentence_id": "20240318000913-P0431-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10721,
+      "sentence_id": "20240318000913-P0435-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10722,
+      "sentence_id": "20240318000913-P0436-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10723,
+      "sentence_id": "20240318000913-P0437-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10724,
+      "sentence_id": "20240318000913-P0440-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10725,
+      "sentence_id": "20240318000913-P0453-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10726,
+      "sentence_id": "20240318000913-P0455-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10727,
+      "sentence_id": "20240318000913-P0457-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10728,
+      "sentence_id": "20240318000913-P0461-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10729,
+      "sentence_id": "20240318000913-P0469-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10730,
+      "sentence_id": "20240318000913-P0477-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10731,
+      "sentence_id": "20240318000913-P0478-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10732,
+      "sentence_id": "20240318000913-P0487-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10733,
+      "sentence_id": "20240318000913-P0488-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10734,
+      "sentence_id": "20240318000913-P0522-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10735,
+      "sentence_id": "20240318000913-P0524-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10736,
+      "sentence_id": "20240318000913-P0525-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10737,
+      "sentence_id": "20240318000913-P0526-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10738,
+      "sentence_id": "20240318000913-P0527-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10756,
+      "sentence_id": "20240318000913-P0048-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10757,
+      "sentence_id": "20240318000913-P0049-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10758,
+      "sentence_id": "20240318000913-P0050-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10759,
+      "sentence_id": "20240318000913-P0051-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 10760,
+      "sentence_id": "20240318000913-P0052-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    }
+  ],
+  "duplicates_excluded": [
+    {
+      "source_change_row": 10645,
+      "kind": "exact",
+      "duplicate_of": 9653,
+      "similarity": 1.0
+    },
+    {
+      "source_change_row": 10646,
+      "kind": "exact",
+      "duplicate_of": 9654,
+      "similarity": 1.0
+    }
+  ],
+  "embeddings": {
+    "requested": 70,
+    "reused": 70,
+    "created": 0,
+    "settings": {
+      "model": "BAAI/bge-m3",
+      "max_seq_length": 512,
+      "number_masking": "True:NUM"
+    }
+  },
+  "parameters": {
+    "top_k": 10,
+    "duplicate_method": "tfidf_char_cosine",
+    "duplicate_threshold": 0.92,
+    "pair_vector": "NEW=new, REMOVED=old, 매칭형=concat(old,new) 정규화",
+    "topic_assignment": "argmax topic probability (동률 시 작은 번호)",
+    "tfidf": {
+      "analyzer": "char",
+      "ngram_range": [
+        2,
+        5
+      ],
+      "number_masking": {
+        "enabled": true,
+        "token": "NUM"
+      }
+    },
+    "duplicate_text": "exact=원문 공백 정규화 일치, near=숫자 마스킹 텍스트의 TF-IDF char 코사인"
+  },
+  "package_versions": {
+    "numpy": "1.26.4",
+    "scikit-learn": "1.5.1",
+    "joblib": "1.4.2",
+    "kiwipiepy": "0.25.1",
+    "sentence-transformers": "6.2.0",
+    "torch": "2.15.0+cu134",
+    "transformers": "5.24.1",
+    "pyyaml": "6.0.3"
+  }
+}

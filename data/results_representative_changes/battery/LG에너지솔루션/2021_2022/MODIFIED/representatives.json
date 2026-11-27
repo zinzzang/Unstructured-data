@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "LG에너지솔루션",
+    "industry": "battery",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "MODIFIED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 340,
+    "change_rows_of_type": 6,
+    "candidates": 1,
+    "join_failures": 5,
+    "join_failures_by_reason": {
+      "table_row": 4,
+      "lda_filtered": 1
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 4,
+      "label": "연구개발·특허·경영실적",
+      "keywords": [
+        "전지",
+        "개발",
+        "연구",
+        "영업",
+        "솔루션",
+        "에너지",
+        "센터",
+        "이익",
+        "배터리",
+        "매출액"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.992601,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20220315001026-P0181-S02",
+          "old_text": "2) 연구개발활동 의 개요 및 연구개발 담당조직 - 당사의 연구개발활동은 BEV, PHEV 등 자동차 전지 분야, 스마트폰, e-mobility, 전동공구 등의 소형 전지 분야와 전력망, 주택용 등 에너지저장장치 분야의 연구를 통해 현 사업의 경쟁력을 강화하고 Recycle, Reuse, 차세대 전지 등의 미래 성장을 위한 신규 사업영역을 지속적으로 발굴해 나가는 데 핵심 역할을 하고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동",
+          "old_xml_line": 4197,
+          "new_sentence_id": "20230315001342-P0180-S01",
+          "new_text": "2) 연구개발활동의 개요 및 연구개발 담당조직- 당사의 연구개발활동은 BEV, PHEV 등 자동차 전지 분야, 스마트폰, e-mobility, 전동공구 등의 소형 전지 분야와 전력망, 주택용 등 에너지저장장치 분야의 연구를 통해 현 사업의 경쟁력을 강화하고 Recycle, Reuse, 차세대 전지, BaaS 등의 미래 성장을 위한 신규 사업영역을 지속적으로 발굴해 나가는 데 핵심 역할을 하고 있습니다.LG에너지솔루션은 연구개발에 대한 지속적인 투자와 고도의 핵심 기술 확보 및 융합을 통한 신규 유망사업 발굴을 위해 끊임없이 노력하고 있으며, 특히 차세대 고용량/고안전성 소재, 스마트팩토리 가속화 등과 같은 당사의 핵심 기술을 중심으로 현 사업의 경쟁력을 강화하고 신제품 개발에 집중하고 있습니다.LG에너지솔루션 R&D 조직은 CTO, 사업부 개발센터 및 CPO.기술센터, 개발품질 조직으로 구성되어 있으며, 미국, 독일, 폴란드, 중국, 일본 등에서 글로벌 R&D 네트워크를 구축함으로써 글로벌 파트너십을 강화해 나가고 있습니다.기술분야가 고도화, 다양화됨에 따라 기술의 아웃소싱은 중요한 조건이 되었습니다.",
+          "new_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동 > 1) 경영상의 주요계약 등- 해당사항 없습니다.",
+          "new_xml_line": 4242,
+          "analysis_area": "RND_CONTRACT",
+          "source_change_row": 284,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

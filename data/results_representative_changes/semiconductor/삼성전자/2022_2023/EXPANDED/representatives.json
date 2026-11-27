@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "삼성전자",
+    "industry": "semiconductor",
+    "year_old": 2022,
+    "year_new": 2023,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 588,
+    "change_rows_of_type": 27,
+    "candidates": 1,
+    "join_failures": 26,
+    "join_failures_by_reason": {
+      "lda_filtered": 3,
+      "table_row": 23
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 4,
+      "label": "AI 서버·HBM 메모리",
+      "keywords": [
+        "ai",
+        "메모리",
+        "hbm",
+        "성능",
+        "용량",
+        "공급",
+        "데이터",
+        "본더",
+        "서버",
+        "dram"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.938448,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20230307000542-P0044-S02",
+          "old_text": "DS 부문의 메모리 생산실적은 1,905,732백만개(1Gb 환산 기준)이며 한국(화성, 평택 등), 중국에서 생산하고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 다. 생산능력, 생산실적, 가동률 (생산능력)",
+          "old_xml_line": 3684,
+          "new_sentence_id": "20240312000736-P0050-S03",
+          "new_text": "DS 부문의 메모리 생산실적은 1,926,652백만개(1Gb 환산 기준)이며 한국(화성, 평택 등), 중국에서 생산하고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 다. 생산능력, 생산실적, 가동률 (생산능력)",
+          "new_xml_line": 4175,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 9337,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

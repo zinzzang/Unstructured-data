@@ -1,0 +1,138 @@
+{
+  "request": {
+    "company": "셀트리온",
+    "industry": "biopharma",
+    "year_old": 2024,
+    "year_new": 2025,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 893,
+    "change_rows_of_type": 62,
+    "candidates": 3,
+    "join_failures": 59,
+    "join_failures_by_reason": {
+      "table_row": 59
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 3,
+    "selected": 3,
+    "expected_selected": 3,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 1,
+      "label": "환경경영·공급계약",
+      "keywords": [
+        "계약",
+        "환경",
+        "공급",
+        "체결",
+        "판매",
+        "관리",
+        "특허",
+        "전략",
+        "의약품",
+        "상표"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.333333,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.885706,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.333333,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20250317000929-P0475-S03",
+          "old_text": "일본 시장에서는 약 72%의 점유율을 기록하는 등 가파른 상승세를 보이고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (1) 바이오시밀러",
+          "old_xml_line": 7082,
+          "new_sentence_id": "20260316001415-P0545-S03",
+          "new_text": "또한 일본 시장에서는 약 75%의 점유율을 기록하는 등 가파른 상승세를 보이고 있습니다.5) 유플라이마",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > [바이오시밀러]",
+          "new_xml_line": 8349,
+          "analysis_area": "OTHER",
+          "source_change_row": 22337,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 4,
+      "label": "바이오의약품 연구개발·임상",
+      "keywords": [
+        "개발",
+        "의약품",
+        "바이오",
+        "임상",
+        "연구",
+        "관리",
+        "항체",
+        "공정",
+        "플랫폼",
+        "신약"
+      ],
+      "candidate_count": 2,
+      "candidate_share": 0.666667,
+      "deduplicated_count": 2,
+      "quota": 2,
+      "representatives": [
+        {
+          "topic_probability": 0.9619,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.666667,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.923815,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20250317000929-P0039-S02",
+          "old_text": "한편 당기 중 리스의 총 현금유출은 14,744백만원(전기: 4,737백만원)이며, 상기 리스이용자의 사용권자산 전대리스와 관련하여 당기 중 인식한 리스료 수익은 14백만원(전기: 5백만원)입니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > (2) 생산능력의 산출근거1) 산출기준 (1공장 기준)",
+          "old_xml_line": 3314,
+          "new_sentence_id": "20260316001415-P0039-S02",
+          "new_text": "한편 당기 중 리스의 총 현금유출은 21,013백만원(전기: 14,744백만원)이며, 상기 리스이용자의 사용권자산 전대리스와 관련하여 당기 중 인식한 리스료 수익은 8백만원(전기: 14백만원)입니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > (2) 생산능력의 산출근거1) 산출기준 (1공장 기준)",
+          "new_xml_line": 4134,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 22491,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.9619,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.666667,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.923815,
+          "rank_in_topic": 2,
+          "global_selection_rank": 3,
+          "old_sentence_id": "20250317000929-P0039-S03",
+          "old_text": "또한 당기중 리스부채와 관련한 이자비용은 1,324백만원(전기: 196백만원)입니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > (2) 생산능력의 산출근거1) 산출기준 (1공장 기준)",
+          "old_xml_line": 3314,
+          "new_sentence_id": "20260316001415-P0039-S03",
+          "new_text": "또한 당기중 리스부채와 관련한 이자비용은 1,359백만원(전기: 1,324백만원)입니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > (2) 생산능력의 산출근거1) 산출기준 (1공장 기준)",
+          "new_xml_line": 4134,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 22492,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "SK이노베이션",
+    "industry": "battery",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "REDUCED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 1426,
+    "change_rows_of_type": 37,
+    "candidates": 1,
+    "join_failures": 36,
+    "join_failures_by_reason": {
+      "table_row": 35,
+      "lda_filtered": 1
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 6,
+      "label": "전기차 보급·설비 투자",
+      "keywords": [
+        "투자",
+        "생산",
+        "분리",
+        "시설",
+        "향후",
+        "경쟁",
+        "보급",
+        "충전",
+        "설치",
+        "가스"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.924227,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20220323000978-P0596-S01",
+          "old_text": "- 당사는 2025년 글로벌 1위 습식 분리막 업체로의 도약을 위해 다양한 전략을 수립하고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 4. 매출 및 수주상황 > (3) 판매 전략",
+          "old_xml_line": 13786,
+          "new_sentence_id": "20230322000906-P0598-S01",
+          "new_text": "(3) 판매 전략 - 당사는 2025년 글로벌1위 습식 분리막 업체로의 도약을 위해 다양한 전략을 수립하고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 4. 매출 및 수주상황 > (2) 판매 방법 및 조건",
+          "new_xml_line": 10833,
+          "analysis_area": "SALES",
+          "source_change_row": 1711,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

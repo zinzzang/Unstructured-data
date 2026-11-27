@@ -216,7 +216,7 @@ for d in docs:
     d['tokens'] = [w for w in d['tokens'] if w not in specific]
 with (out / 'removed_company_specific_terms.csv').open('w', encoding='utf-8-sig', newline='') as f:
     w = csv.writer(f); w.writerow(['term', 'company', 'normalized_share', 'doc_freq'])
-    for t, (c, s, n) in sorted(specific.items(), key=lambda x: -x[1][2]):
+    for t, (c, s, n) in sorted(specific.items(), key=lambda x: (-x[1][2], x[0])):  # 동률은 용어 순(실행마다 같은 순서)
         w.writerow([t, c, round(s, 3), n])
 
 # ---------------------------------------------------------------- vectorize
@@ -368,16 +368,103 @@ old_text = {}
 for pid, p in paras.items():
     for s in p['sentences']:
         old_text[s['sentence_id']] = s['text']
-oldtheta = {}
-for pid, sids in old_by_para.items():
-    sids = sorted(sids, key=sent_order.get)
-    for n in range(0, len(sids), CHUNK):
-        part = sids[n:n + CHUNK]
-        x = vec.transform([' '.join(w for w in tokenize(' '.join(old_text[s] for s in part)) if w not in specific)])
-        if x.nnz:
-            t = model.transform(x)[0]
-            for s in part:
-                oldtheta[s] = t
+
+def old_side_theta(groups, tag):
+    """{paragraph_id: {old sentence ids}} -> {sid: (doc_id, theta)}. 새 쪽과 같은 문서 구성(문단 내 최대 CHUNK문장)에
+    기존 vectorizer/model의 transform()만 적용한다(재학습 없음). 토큰이 없는 묶음은 확률 없음."""
+    res = {}
+    for pid, sids in groups.items():
+        sids = sorted(sids, key=sent_order.get)
+        for n in range(0, len(sids), CHUNK):
+            part = sids[n:n + CHUNK]
+            x = vec.transform([' '.join(w for w in tokenize(' '.join(old_text[s] for s in part)) if w not in specific)])
+            if x.nnz:
+                t = model.transform(x)[0]
+                for s in part:
+                    res[s] = (f'{pid}-{tag}{n // CHUNK + 1}', t)
+    return res
+
+old_matched = old_side_theta(old_by_para, 'OC')
+oldtheta = {s: t for s, (_, t) in old_matched.items()}
+
+# REMOVED old sentences: same filters as the new side (paragraph size/section, footnotes, industry scope), then
+# transform() with the existing model so they land in the same topic space. Kept separate from the matched groups
+# so the matched-side probabilities (and the sankey) stay exactly as before.
+removed_by_para, removed_dropped = defaultdict(set), Counter()
+for r in tfidf_rows:
+    if r['company'] not in companies or r['change_type'] != 'REMOVED':
+        continue
+    sid, text = r['old_id'], r['old_text'].strip()
+    pid = sent_para.get(sid)
+    if pid is None or paras[pid]['company'] != r['company']:
+        removed_dropped['not in paragraph source'] += 1; continue
+    if not para_ok(pid):
+        removed_dropped['oversized paragraph or risk/derivatives section'] += 1; continue
+    if bad_sentence(text):
+        removed_dropped['footnote/short/reference'] += 1; continue
+    if not in_scope(r['company'], sid, text, pid):
+        removed_dropped['out of industry scope'] += 1; continue
+    removed_by_para[pid].add(sid)
+old_removed = old_side_theta(removed_by_para, 'RC')
+removed_dropped['no vocabulary tokens'] = sum(len(v) for v in removed_by_para.values()) - len(old_removed)
+
+old_types = defaultdict(set)
+for r in tfidf_rows:
+    if r['company'] in companies and r['old_id'] and (r['old_id'] in old_matched or r['old_id'] in old_removed):
+        if r['change_type'] in ('MODIFIED', 'EXPANDED', 'REDUCED', 'REMOVED'):
+            old_types[r['old_id']].add(r['change_type'])
+with (out / 'sentence_topic_probabilities_old.csv').open('w', encoding='utf-8-sig', newline='') as f:
+    w = csv.writer(f)
+    w.writerow(['company', 'year', 'sentence_id', 'paragraph_id', 'doc_id', 'old_side', 'change_types', 'text']
+               + [f'topic_{i+1}' for i in range(k)])
+    for side, d in (('matched', old_matched), ('removed', old_removed)):
+        for sid, (doc_id, t) in sorted(d.items()):
+            p = paras[sent_para[sid]]
+            w.writerow([p['company'], p['business_year'], sid, sent_para[sid], doc_id, side,
+                        '|'.join(sorted(old_types[sid])), old_text[sid], *t])
+
+# one row per change pair of the source CSV (5 types) with a stable pair id and the topic side it uses
+import hashlib
+def pair_id(r):
+    key = '|'.join([r['company'], r['year_old'], r['year_new'], r['area'], r['change_type'], r.get('old_id') or '', r.get('new_id') or ''])
+    return hashlib.sha1(key.encode('utf-8')).hexdigest()[:16]
+new_theta = {sid: theta[doc_of[sid]] for sid in changed}
+old_theta_all = {**{s: t for s, (_, t) in old_matched.items()}, **{s: t for s, (_, t) in old_removed.items()}}
+with (out / 'sentence_topic_probabilities_pairs.csv').open('w', encoding='utf-8-sig', newline='') as f:
+    w = csv.writer(f)
+    w.writerow(['pair_id', 'source_change_row', 'company', 'year_old', 'year_new', 'area', 'change_type',
+                'old_sentence_id', 'new_sentence_id', 'topic_side', 'join_status'] + [f'topic_{i+1}' for i in range(k)])
+    for i, r in enumerate(tfidf_rows, start=1):
+        if r['company'] not in companies or r['change_type'] not in CHANGE_TYPES | {'REMOVED'}:
+            continue
+        side, sid = ('old', r['old_id']) if r['change_type'] == 'REMOVED' else ('new', r['new_id'])
+        t = (old_theta_all if side == 'old' else new_theta).get(sid)
+        w.writerow([pair_id(r), i, r['company'], r['year_old'], r['year_new'], r['area'], r['change_type'],
+                    r.get('old_id') or '', r.get('new_id') or '', side, 'ok' if t is not None else 'no_topic',
+                    *(t if t is not None else [''] * k)])
+
+# fitted model + everything needed to transform new text into the same topic space
+import joblib, sklearn, kiwipiepy
+def sha256_of(path):
+    h = hashlib.sha256()
+    with open(path, 'rb') as fh:
+        for b in iter(lambda: fh.read(1 << 20), b''):
+            h.update(b)
+    return h.hexdigest()
+src_csv = root / 'data/results_v2/tfidf_masked_th0.6.csv'
+src_jsonl = root / f'data/processed/preprocessing_v2/{industry}/paragraphs.jsonl'
+meta = dict(industry=industry, companies=companies, n_topics=k, model_seed=SEEDS[central(runs)],
+            seeds=SEEDS, k_range=list(K_RANGE), k_override=K_OVERRIDE.get(industry), train_sample_rng_seed=42,
+            chunk=CHUNK, max_paragraph_sentences=MAX_PARA, balance=BALANCE, specific_share=SPECIFIC_SHARE,
+            input_change_csv=str(src_csv.relative_to(root)), input_change_csv_sha256=sha256_of(src_csv),
+            input_paragraphs_jsonl=str(src_jsonl.relative_to(root)), input_paragraphs_jsonl_sha256=sha256_of(src_jsonl),
+            versions=dict(sklearn=sklearn.__version__, kiwipiepy=kiwipiepy.__version__, numpy=np.__version__, joblib=joblib.__version__),
+            removed_dropped=dict(removed_dropped))
+meta['artifact_version'] = f"{industry}-k{k}-{meta['input_change_csv_sha256'][:12]}"
+joblib.dump(dict(vectorizer=vec, model=model, specific_terms=sorted(specific), stopwords=sorted(STOP),
+                 unit_codes=sorted(UNIT_CODES), metadata=meta), out / 'lda_artifacts.joblib')
+(out / 'lda_artifacts_metadata.json').write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding='utf8')
+print('REMOVED old-side:', len(old_removed), 'sentences, dropped', dict(removed_dropped))
 
 # ---------------------------------------------------------------- figures (same design as industry_lda_compare.py)
 import matplotlib

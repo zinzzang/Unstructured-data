@@ -1,0 +1,139 @@
+{
+  "request": {
+    "company": "삼성바이오로직스",
+    "industry": "biopharma",
+    "year_old": 2023,
+    "year_new": 2024,
+    "change_type": "REDUCED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 550,
+    "change_rows_of_type": 12,
+    "candidates": 3,
+    "join_failures": 9,
+    "join_failures_by_reason": {
+      "table_row": 7,
+      "lda_filtered": 2
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 3,
+    "selected": 3,
+    "expected_selected": 3,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 2,
+      "label": "바이오시밀러 해외 허가·출시",
+      "keywords": [
+        "판매",
+        "미국",
+        "바이오시밀러",
+        "허가",
+        "유럽",
+        "질환",
+        "국가",
+        "출시",
+        "승인",
+        "치료제"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.333333,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.983669,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.333333,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20240307000835-P0314-S01",
+          "old_text": "2000년 전후에 출시된 블록버스터 바이오의약품(자가면역질환 치료제, 항암제, 당뇨치료제 등)이 여전히 높은 매출 성장을 지속하고 있으며, 최근에는 면역 항암제, 고지혈증, 아토피 등 새로운 분야에서 유망 치료제 신약이 지속적으로 출시되고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 1) 블록버스터 바이오의약품 지속 개발",
+          "old_xml_line": 6391,
+          "new_sentence_id": "20250814004283-P0316-S01",
+          "new_text": "1) 블록버스터 바이오의약품 지속 개발 2000년 전후에 출시된 블록버스터 바이오의약품(자가면역질환 치료제, 항암제, 당뇨병 치료제 등)이 여전히 높은 매출 성장을 지속하고 있으며, 최근에는 알츠하이머, 비만 치료제, 면역항암제, 고지혈증 치료제, 아토피 치료제 등 새로운 분야에서 유망 치료제 신약이 지속적으로 출시되고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (2) 산업의 성장성",
+          "new_xml_line": 6855,
+          "analysis_area": "OTHER",
+          "source_change_row": 14921,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 5,
+      "label": "CDMO 생산·신규 사업",
+      "keywords": [
+        "생산",
+        "계약",
+        "공장",
+        "바이오",
+        "서비스",
+        "체결",
+        "변동",
+        "의약품",
+        "매출",
+        "cdmo"
+      ],
+      "candidate_count": 2,
+      "candidate_share": 0.666667,
+      "deduplicated_count": 2,
+      "quota": 2,
+      "representatives": [
+        {
+          "topic_probability": 0.913703,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.666667,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.878538,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20240307000835-P0222-S05",
+          "old_text": "(3) 삼성바이오에피스 지분 인수 계약 체결당사는 바이오 제약사로서 포트폴리오 다각화 및 사업경쟁력 강화를 위하여 Biogen Therapeutics Inc.가 보유한 삼성바이오에피스㈜의 주식 10,341,852주를 취득하고자 2022년 1월 28일 이사회 결의 후 주식매매계약을 체결하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동 > 다. 판매 계약",
+          "old_xml_line": 5219,
+          "new_sentence_id": "20250814004283-P0230-S03",
+          "new_text": "(2) 삼성바이오에피스 지분 인수 계약 체결당사는 바이오 제약사로서 포트폴리오 다각화 및 사업경쟁력 강화를 위하여 Biogen Therapeutics Inc.가 보유한 삼성바이오에피스㈜의 주식 10,341,852주를 취득하고자 2022년 1월 28일 이사회 결의 후 주식매매계약을 체결하였습니다.",
+          "new_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동 > [삼성바이오에피스]",
+          "new_xml_line": 5686,
+          "analysis_area": "RND_CONTRACT",
+          "source_change_row": 15205,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.913703,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.666667,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.878538,
+          "rank_in_topic": 2,
+          "global_selection_rank": 3,
+          "old_sentence_id": "20240307000835-P0222-S08",
+          "old_text": "(4) 제2바이오캠퍼스 부지매입 계약 체결당사는 2022년 7월 18일 제2바이오캠퍼스 부지매입을 목적으로 인천광역시경제자유구역청(IFEZ)과 토지 매매계약을 체결하였으며, 매매대금은 4,260억원입니다.",
+          "old_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동 > 다. 판매 계약",
+          "old_xml_line": 5219,
+          "new_sentence_id": "20250814004283-P0230-S06",
+          "new_text": "(3) 제2바이오캠퍼스 부지매입 계약 체결당사는 2022년 7월 18일 제2바이오캠퍼스 부지매입을 목적으로 인천광역시경제자유구역청(IFEZ)과 토지 매매계약을 체결하였으며, 매매대금은 4,260억원입니다.",
+          "new_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동 > [삼성바이오에피스]",
+          "new_xml_line": 5686,
+          "analysis_area": "RND_CONTRACT",
+          "source_change_row": 15208,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

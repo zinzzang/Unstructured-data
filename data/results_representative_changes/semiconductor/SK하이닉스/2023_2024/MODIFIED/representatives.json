@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "SK하이닉스",
+    "industry": "semiconductor",
+    "year_old": 2023,
+    "year_new": 2024,
+    "change_type": "MODIFIED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 484,
+    "change_rows_of_type": 16,
+    "candidates": 1,
+    "join_failures": 15,
+    "join_failures_by_reason": {
+      "table_row": 14,
+      "lda_filtered": 1
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 4,
+      "label": "AI 서버·HBM 메모리",
+      "keywords": [
+        "ai",
+        "메모리",
+        "hbm",
+        "성능",
+        "용량",
+        "공급",
+        "데이터",
+        "본더",
+        "서버",
+        "dram"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.493268,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20240319000684-P0153-S03",
+          "old_text": "메모리 제품 중 DRAM은 전체 메모리 반도체 시장의 54%를 차지하는 US$484억을 기록하였으며, 그 뒤를 이어 낸드플래시가 US$362억으로 40%, 기타 메모리가 US$57억으로 6%의 비중을 차지하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 가. 업계의 현황",
+          "old_xml_line": 4878,
+          "new_sentence_id": "20250319000665-P0136-S03",
+          "new_text": "메모리 제품 중 DRAM은 전체 메모리 반도체 시장의 55%를 차지하는 US$875억을 기록하였으며, 그 뒤를 이어 NAND Flash가 US$651억으로 41%, 기타 메모리가 US$53억으로 3%의 비중을 차지하였습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 가. 업계의 현황",
+          "new_xml_line": 5038,
+          "analysis_area": "OTHER",
+          "source_change_row": 14008,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "request": {
+    "company": "SK하이닉스",
+    "industry": "semiconductor",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "MODIFIED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 475,
+    "change_rows_of_type": 16,
+    "candidates": 1,
+    "join_failures": 15,
+    "join_failures_by_reason": {
+      "table_row": 15
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 4,
+      "label": "AI 서버·HBM 메모리",
+      "keywords": [
+        "ai",
+        "메모리",
+        "hbm",
+        "성능",
+        "용량",
+        "공급",
+        "데이터",
+        "본더",
+        "서버",
+        "dram"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.547699,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20220322000590-P0190-S02",
+          "old_text": "또한, 각종 이동통신 기기의 폭발적 성장에 따라 스마트폰 및 태블릿PC 등에도 모바일용 DRAM의 채용량이 급증하고 있으며, 4차 산업혁명으로 급격하게 Data 수요가 증가하고 글로벌 데이터센터 투자가 가속화 됨에 따라 Server향 DRAM의 수요도 급증하고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 가. 업계의 현황",
+          "old_xml_line": 5499,
+          "new_sentence_id": "20230321001209-P0178-S02",
+          "new_text": "또한, 각종 이동통신 기기의 폭발적 성장에 따라 스마트폰 및 태블릿 PC 등에도 모바일용 DRAM의 채용량이 급증하고 있으며, 4차 산업혁명으로 급격하게 Data 수요가 증가하고 글로벌 데이터센터 투자가 가속화 됨에 따라 Server향 DRAM의 수요도 급증하고 있습니다.[플래시메모리(Flash Memory)]플래시메모리는 전원이 공급되지 않아도 저장된 데이터가 지워지지 않는 비휘발성 메모리로 크게 노어(NOR)형(Code저장형)과 낸드(NAND)형(Data저장형)으로 나눌 수 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 가. 업계의 현황",
+          "new_xml_line": 4756,
+          "analysis_area": "OTHER",
+          "source_change_row": 1798,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

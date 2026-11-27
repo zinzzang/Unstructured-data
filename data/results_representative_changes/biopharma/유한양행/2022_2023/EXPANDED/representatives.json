@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "유한양행",
+    "industry": "biopharma",
+    "year_old": 2022,
+    "year_new": 2023,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 860,
+    "change_rows_of_type": 117,
+    "candidates": 1,
+    "join_failures": 116,
+    "join_failures_by_reason": {
+      "table_row": 109,
+      "lda_filtered": 7
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 3,
+      "label": "의약품 시장·매출 실적",
+      "keywords": [
+        "연구",
+        "의약품",
+        "개발",
+        "영업",
+        "순이익",
+        "이익",
+        "매출",
+        "누계",
+        "치료제",
+        "계약"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.993277,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20230315001431-P0831-S01",
+          "old_text": "가) 의약품 (1) 시장규모는 약 25조원 규모이며 약 400여개 제약사가 과당경쟁을 하고 있음.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 3) 시장의 특성",
+          "old_xml_line": 10384,
+          "new_sentence_id": "20240307000960-P0812-S01",
+          "new_text": "가) 의약품 (1) 시장규모는 약 29조원 규모이며 400여 제약사가 과당경쟁을 하고 있음.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 3) 시장의 특성",
+          "new_xml_line": 10994,
+          "analysis_area": "OTHER",
+          "source_change_row": 10860,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

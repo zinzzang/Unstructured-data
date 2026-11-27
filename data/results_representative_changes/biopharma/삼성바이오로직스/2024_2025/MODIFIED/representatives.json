@@ -1,0 +1,117 @@
+{
+  "request": {
+    "company": "삼성바이오로직스",
+    "industry": "biopharma",
+    "year_old": 2024,
+    "year_new": 2025,
+    "change_type": "MODIFIED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 572,
+    "change_rows_of_type": 13,
+    "candidates": 2,
+    "join_failures": 11,
+    "join_failures_by_reason": {
+      "table_row": 11
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 2,
+    "selected": 2,
+    "expected_selected": 2,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 1,
+      "label": "환경경영·공급계약",
+      "keywords": [
+        "계약",
+        "환경",
+        "공급",
+        "체결",
+        "판매",
+        "관리",
+        "특허",
+        "전략",
+        "의약품",
+        "상표"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.5,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.540986,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.5,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20250814004283-P0324-S03",
+          "old_text": "당사에서는 글로벌 수주 영업조직이 판매활동을 담당하고 있으며, 미국 샌프란시스코, 보스턴, 뉴저지 등 동서부의 주요거점에서 현지인력을 활용하여 수주영업을 지원하고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (2) 산업의 성장성",
+          "old_xml_line": 6918,
+          "new_sentence_id": "20260515001658-P0183-S04",
+          "new_text": "뿐만 아니라 생산 과정에서 발생한 모든 절차 및 결과에 대해 문서화하여 관리하고 있습니다.당사에서는 글로벌 수주 영업조직이 판매활동을 담당하고 있으며, 미국 보스턴, 뉴저지 등 동서부의 주요거점에서 현지인력을 활용하여 수주영업을 지원하고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 바. 경쟁력 분석",
+          "new_xml_line": 5584,
+          "analysis_area": "OTHER",
+          "source_change_row": 21235,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 5,
+      "label": "CDMO 생산·신규 사업",
+      "keywords": [
+        "생산",
+        "계약",
+        "공장",
+        "바이오",
+        "서비스",
+        "체결",
+        "변동",
+        "의약품",
+        "매출",
+        "cdmo"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.5,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.505938,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.5,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20250814004283-P0001-S05",
+          "old_text": "지역별로는 유럽(65.2%)과 미국(25.8%)에서 대부분의 매출이 발생하고 있으며, 국내(3.0%) 및 기타 지역(6.0%)에서도 안정적인 매출을 기록하고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 1. 사업의 개요",
+          "old_xml_line": 2501,
+          "new_sentence_id": "20260515001658-P0001-S03",
+          "new_text": "지역별로는 유럽(52.0%)과 미국(38.0%)에서 대부분의 매출이 발생하고 있으며, 국내(8.2%) 및 기타 지역(1.8%)에서도 안정적인 매출을 기록하고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 1. 사업의 개요",
+          "new_xml_line": 2897,
+          "analysis_area": "BUSINESS",
+          "source_change_row": 21077,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

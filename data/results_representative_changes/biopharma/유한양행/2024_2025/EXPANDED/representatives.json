@@ -1,0 +1,118 @@
+{
+  "request": {
+    "company": "유한양행",
+    "industry": "biopharma",
+    "year_old": 2024,
+    "year_new": 2025,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 1002,
+    "change_rows_of_type": 118,
+    "candidates": 2,
+    "join_failures": 116,
+    "join_failures_by_reason": {
+      "table_row": 114,
+      "lda_filtered": 2
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 2,
+    "selected": 2,
+    "expected_selected": 2,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 3,
+      "label": "의약품 시장·매출 실적",
+      "keywords": [
+        "연구",
+        "의약품",
+        "개발",
+        "영업",
+        "순이익",
+        "이익",
+        "매출",
+        "누계",
+        "치료제",
+        "계약"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.5,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.885701,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.5,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20250312001137-P0223-S01",
+          "old_text": "- 상기자료는 K-IFRS 연결기준으로 작성되었음 - 2024. 4. 1 기준 기존 '생활유통사업부'는 '생활건강사업부'로 개칭됨",
+          "old_section_path": "II. 사업의 내용 > 4. 매출 및 수주상황 > 1) 판매경로",
+          "old_xml_line": 5915,
+          "new_sentence_id": "20260312001236-P0227-S01",
+          "new_text": "- 상기자료는 K-IFRS 연결기준으로 작성되었음 - 2025. 8. 1 기준, 기존 '생활건강사업부'는 '헬스케어사업부'로 개칭됨",
+          "new_section_path": "II. 사업의 내용 > 4. 매출 및 수주상황 > 1) 판매경로",
+          "new_xml_line": 6400,
+          "analysis_area": "SALES",
+          "source_change_row": 24093,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 4,
+      "label": "바이오의약품 연구개발·임상",
+      "keywords": [
+        "개발",
+        "의약품",
+        "바이오",
+        "임상",
+        "연구",
+        "관리",
+        "항체",
+        "공정",
+        "플랫폼",
+        "신약"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.5,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.938457,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.5,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20250312001137-P0152-S02",
+          "old_text": "당기말과 전기말 현재 토지의 공정가치는 각각 132,869,688천원 및 131,864,947천원이며, 건물의 공정가치는 각각 9,852,376천원 및 11,199,248천원입니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > (1) 당기 및 전기 중 투자부동산 장부금액의 변동내역은 다음과 같습니다.",
+          "old_xml_line": 5216,
+          "new_sentence_id": "20260312001236-P0154-S02",
+          "new_text": "당기말 및 전기말 현재 토지의 공정가치는 각각 145,623,576천원 및 132,869,688천원이며, 건물의 공정가치는 각각 11,875,851천원 및 9,852,376천원입니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > (1) 당기 및 전기 중 투자부동산의 변동내역은 다음과 같습니다.",
+          "new_xml_line": 5685,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 23488,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

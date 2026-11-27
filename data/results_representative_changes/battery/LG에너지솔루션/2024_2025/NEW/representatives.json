@@ -1,0 +1,139 @@
+{
+  "request": {
+    "company": "LG에너지솔루션",
+    "industry": "battery",
+    "year_old": 2024,
+    "year_new": 2025,
+    "change_type": "NEW",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 349,
+    "change_rows_of_type": 7,
+    "candidates": 3,
+    "join_failures": 4,
+    "join_failures_by_reason": {
+      "table_row": 3,
+      "lda_filtered": 1
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 3,
+    "selected": 3,
+    "expected_selected": 3,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 3,
+      "label": "수주·공급계약·판매",
+      "keywords": [
+        "자동차",
+        "계약",
+        "판매",
+        "공급",
+        "고객",
+        "매출",
+        "규제",
+        "생산",
+        "배터리",
+        "정책"
+      ],
+      "candidate_count": 2,
+      "candidate_share": 0.666667,
+      "deduplicated_count": 2,
+      "quota": 2,
+      "representatives": [
+        {
+          "topic_probability": 0.394277,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.666667,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.906057,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": null,
+          "old_text": null,
+          "old_section_path": null,
+          "old_xml_line": null,
+          "new_sentence_id": "20260312000217-P0315-S01",
+          "new_text": "신재생에너지 보급 트렌드 가속화 및 각국의 규제 및 지원 정책을 바탕으로 산업은 지속적인 성장세를 이어갈 것으로 예상되며, 물류 및 자율배송 등 신규 Application 영역에서도 2차전지 적용이 확대될 것으로 전망됩니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (4) 시장여건",
+          "new_xml_line": 5871,
+          "analysis_area": "OTHER",
+          "source_change_row": 18065,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.394277,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.666667,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.906057,
+          "rank_in_topic": 2,
+          "global_selection_rank": 3,
+          "old_sentence_id": null,
+          "old_text": null,
+          "old_section_path": null,
+          "old_xml_line": null,
+          "new_sentence_id": "20260312000217-P0315-S02",
+          "new_text": "이에 따라 당사의 배터리가 적용된 기존 시장뿐 아니라 신규 시장 발굴을 통해 전반적인 수요 역시 지속적으로 증가할 것으로 예상됩니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (4) 시장여건",
+          "new_xml_line": 5871,
+          "analysis_area": "OTHER",
+          "source_change_row": 18066,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 4,
+      "label": "연구개발·특허·경영실적",
+      "keywords": [
+        "전지",
+        "개발",
+        "연구",
+        "영업",
+        "솔루션",
+        "에너지",
+        "센터",
+        "이익",
+        "배터리",
+        "매출액"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.333333,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.673901,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.333333,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": null,
+          "old_text": null,
+          "old_section_path": null,
+          "old_xml_line": null,
+          "new_sentence_id": "20260312000217-P0002-S01",
+          "new_text": "당사는 2025년 4분기 누계 약 23조 6,718억원의 연결 매출과 약 1조 3,461억원의 연결 영업이익을 기록하였습니다.",
+          "new_section_path": "II. 사업의 내용 > 1. 사업의 개요",
+          "new_xml_line": 2247,
+          "analysis_area": "BUSINESS",
+          "source_change_row": 18024,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "셀트리온",
+    "industry": "biopharma",
+    "year_old": 2024,
+    "year_new": 2025,
+    "change_type": "MODIFIED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 893,
+    "change_rows_of_type": 29,
+    "candidates": 1,
+    "join_failures": 28,
+    "join_failures_by_reason": {
+      "table_row": 27,
+      "lda_filtered": 1
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 5,
+      "label": "CDMO 생산·신규 사업",
+      "keywords": [
+        "생산",
+        "계약",
+        "공장",
+        "바이오",
+        "서비스",
+        "체결",
+        "변동",
+        "의약품",
+        "매출",
+        "cdmo"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.979484,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20250317000929-P0020-S01",
+          "old_text": "- 당사 의약품 제조에 사용되는 원재료 등은 사업의 특성상 매입처에서 주문생산 방식으로 조달하고 있으며, 계약 당사자 간의 상호 협의를 통해 가격을 조정하고 있어 가격변동 추이는 별도로 산정하지 않았습니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 가. 주요 원재료 등의 현황(연결 기준)",
+          "old_xml_line": 3017,
+          "new_sentence_id": "20260316001415-P0020-S01",
+          "new_text": "- 당사 의약품 제조에 사용되는 원재료 등은 사업의 특성상 매입처에서 주문생산 방식으로 조달하고 있으며, 계약 당사자 간의 상호 협의를 통해 가격을 조정하고 있어 가격변동 추이는 별도로 산정하지 않았습니다.- 주요 매입처의 경우 경쟁상황 및 상호 계약내용에 따라 기재하지 않습니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 가. 주요 원재료 등의 현황(연결 기준)",
+          "new_xml_line": 3837,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 22468,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,347 @@
+{
+  "request": {
+    "company": "한미반도체",
+    "industry": "semiconductor",
+    "year_old": 2024,
+    "year_new": 2025,
+    "change_type": "NEW",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "inputs": {
+    "source_change_csv": {
+      "path": "data/results_v2/tfidf_masked_th0.6.csv",
+      "sha256": "3b8e15dea7dfdb813d0d68d401e5991fea5c6ec98a80daa480f673a4ef77ab5d"
+    },
+    "paragraphs_jsonl": {
+      "path": "data/processed/preprocessing_v2/semiconductor/paragraphs.jsonl",
+      "sha256": "01d8115046a74260150ecde44723f44117bfaf5b020056e9cac2a7e387a19d81"
+    },
+    "topic_probabilities_new": {
+      "path": "data/results_industry_lda_corrected/semiconductor/sentence_topic_probabilities.csv",
+      "sha256": "15631d0f4aa8d6b1e952ccbe395d7194934874ed3d1cc1d90265bd0e5dee907d"
+    },
+    "topic_probabilities_old": {
+      "path": "data/results_industry_lda_corrected/semiconductor/sentence_topic_probabilities_old.csv",
+      "sha256": "3183d9abbe84996e2e0694d56a98667f7aacac604b1e8b62406bd200c32674c4"
+    },
+    "topics": {
+      "path": "data/results_industry_lda_corrected/semiconductor/topics.txt",
+      "sha256": "94a16514158ed1d067b8ebf5a73ec074cdf137e3c1be3afeca80f77b73ece624"
+    },
+    "lda_artifact": {
+      "path": "data/results_industry_lda_corrected/semiconductor/lda_artifacts.joblib",
+      "sha256": "cdc9844b52994c4af2b4d27c1a37b74fd39ed9cf7906d5b669c573000ac31d66"
+    },
+    "topic_labels": {
+      "path": "data/results_industry_lda_corrected/semiconductor/topic_labels.json",
+      "sha256": "bfec1f13b70bb1107e4ae1ccd35c17639a6f665938cfb99a0f5682375950dcbb"
+    },
+    "embeddings_npz": {
+      "path": "data/results_representative_changes/embeddings/bge-m3_sentence_embeddings.npz",
+      "sha256": "bbce85422572e3116c759524c11b1297b640f9aec5f0c8e39d3b8d25fdc90a69"
+    }
+  },
+  "lda_metadata": {
+    "industry": "semiconductor",
+    "companies": [
+      "SK하이닉스",
+      "삼성전자",
+      "한미반도체"
+    ],
+    "n_topics": 5,
+    "model_seed": 3,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "k_range": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "k_override": 5,
+    "train_sample_rng_seed": 42,
+    "chunk": 8,
+    "max_paragraph_sentences": 100,
+    "balance": 3.0,
+    "specific_share": 0.9,
+    "input_change_csv": "data\\results_v2\\tfidf_masked_th0.6.csv",
+    "input_change_csv_sha256": "3b8e15dea7dfdb813d0d68d401e5991fea5c6ec98a80daa480f673a4ef77ab5d",
+    "input_paragraphs_jsonl": "data\\processed\\preprocessing_v2\\semiconductor\\paragraphs.jsonl",
+    "input_paragraphs_jsonl_sha256": "01d8115046a74260150ecde44723f44117bfaf5b020056e9cac2a7e387a19d81",
+    "versions": {
+      "sklearn": "1.5.1",
+      "kiwipiepy": "0.25.1",
+      "numpy": "1.26.4",
+      "joblib": "1.4.2"
+    },
+    "removed_dropped": {
+      "footnote/short/reference": 56,
+      "oversized paragraph or risk/derivatives section": 25,
+      "not in paragraph source": 197,
+      "out of industry scope": 207,
+      "no vocabulary tokens": 0
+    },
+    "artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "counts": {
+    "change_rows_for_pair": 178,
+    "by_type": {
+      "REMOVED": 25,
+      "NEW": 50,
+      "UNCHANGED": 55,
+      "REDUCED": 6,
+      "UNCERTAIN": 36,
+      "EXPANDED": 6
+    },
+    "change_rows_of_type": 50,
+    "joined": 37,
+    "join_failed": 13,
+    "after_dedup": 27,
+    "selected": 10
+  },
+  "scope_check": {
+    "all_candidates_in_scope": true,
+    "company": "한미반도체",
+    "year_old": 2024,
+    "year_new": 2025,
+    "change_type": "NEW",
+    "topic_range": [
+      1,
+      5
+    ]
+  },
+  "topic_allocation": [
+    {
+      "topic_id": 1,
+      "candidates": 0,
+      "after_dedup": 0,
+      "ideal": 0.0,
+      "quota": 0,
+      "selected": 0
+    },
+    {
+      "topic_id": 2,
+      "candidates": 0,
+      "after_dedup": 0,
+      "ideal": 0.0,
+      "quota": 0,
+      "selected": 0
+    },
+    {
+      "topic_id": 3,
+      "candidates": 2,
+      "after_dedup": 2,
+      "ideal": 0.5405,
+      "quota": 1,
+      "selected": 1
+    },
+    {
+      "topic_id": 4,
+      "candidates": 23,
+      "after_dedup": 14,
+      "ideal": 6.2162,
+      "quota": 6,
+      "selected": 6
+    },
+    {
+      "topic_id": 5,
+      "candidates": 12,
+      "after_dedup": 11,
+      "ideal": 3.2432,
+      "quota": 3,
+      "selected": 3
+    }
+  ],
+  "join_failures": [
+    {
+      "source_change_row": 24170,
+      "sentence_id": "20260312001230-P0085-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 24171,
+      "sentence_id": "20260312001230-P0086-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 24172,
+      "sentence_id": "20260312001230-P0087-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 24173,
+      "sentence_id": "20260312001230-P0088-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 24174,
+      "sentence_id": "20260312001230-P0089-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 24175,
+      "sentence_id": "20260312001230-P0090-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 24176,
+      "sentence_id": "20260312001230-P0091-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 24177,
+      "sentence_id": "20260312001230-P0092-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 24178,
+      "sentence_id": "20260312001230-P0093-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 24265,
+      "sentence_id": "20260312001230-P0068-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 24266,
+      "sentence_id": "20260312001230-P0075-S01",
+      "side": "new",
+      "reason": "table_row: 산업 LDA는 문단 문장만 학습·추론"
+    },
+    {
+      "source_change_row": 24300,
+      "sentence_id": "20260312001230-P0042-S03",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    },
+    {
+      "source_change_row": 24301,
+      "sentence_id": "20260312001230-P0042-S04",
+      "side": "new",
+      "reason": "lda_filtered: 산업 범위·위험관리 섹션·각주/짧은 문장·문단 크기 필터 또는 토큰 없음"
+    }
+  ],
+  "duplicates_excluded": [
+    {
+      "source_change_row": 24184,
+      "kind": "near",
+      "duplicate_of": 24135,
+      "similarity": 0.9472
+    },
+    {
+      "source_change_row": 24183,
+      "kind": "exact",
+      "duplicate_of": 24134,
+      "similarity": 1.0
+    },
+    {
+      "source_change_row": 24185,
+      "kind": "exact",
+      "duplicate_of": 24139,
+      "similarity": 1.0
+    },
+    {
+      "source_change_row": 24180,
+      "kind": "exact",
+      "duplicate_of": 24131,
+      "similarity": 1.0
+    },
+    {
+      "source_change_row": 24182,
+      "kind": "near",
+      "duplicate_of": 24133,
+      "similarity": 0.92
+    },
+    {
+      "source_change_row": 24181,
+      "kind": "near",
+      "duplicate_of": 24132,
+      "similarity": 0.927
+    },
+    {
+      "source_change_row": 24130,
+      "kind": "near",
+      "duplicate_of": 24179,
+      "similarity": 0.95
+    },
+    {
+      "source_change_row": 24189,
+      "kind": "exact",
+      "duplicate_of": 24143,
+      "similarity": 1.0
+    },
+    {
+      "source_change_row": 24186,
+      "kind": "exact",
+      "duplicate_of": 24140,
+      "similarity": 1.0
+    },
+    {
+      "source_change_row": 24141,
+      "kind": "exact",
+      "duplicate_of": 24187,
+      "similarity": 1.0
+    }
+  ],
+  "embeddings": {
+    "requested": 37,
+    "reused": 37,
+    "created": 0,
+    "settings": {
+      "model": "BAAI/bge-m3",
+      "max_seq_length": 512,
+      "number_masking": "True:NUM"
+    }
+  },
+  "parameters": {
+    "top_k": 10,
+    "duplicate_method": "tfidf_char_cosine",
+    "duplicate_threshold": 0.92,
+    "pair_vector": "NEW=new, REMOVED=old, 매칭형=concat(old,new) 정규화",
+    "topic_assignment": "argmax topic probability (동률 시 작은 번호)",
+    "tfidf": {
+      "analyzer": "char",
+      "ngram_range": [
+        2,
+        5
+      ],
+      "number_masking": {
+        "enabled": true,
+        "token": "NUM"
+      }
+    },
+    "duplicate_text": "exact=원문 공백 정규화 일치, near=숫자 마스킹 텍스트의 TF-IDF char 코사인"
+  },
+  "package_versions": {
+    "numpy": "1.26.4",
+    "scikit-learn": "1.5.1",
+    "joblib": "1.4.2",
+    "kiwipiepy": "0.25.1",
+    "sentence-transformers": "6.2.0",
+    "torch": "2.15.0+cu134",
+    "transformers": "5.24.1",
+    "pyyaml": "6.0.3"
+  }
+}

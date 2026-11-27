@@ -1,0 +1,96 @@
+{
+  "request": {
+    "company": "SK하이닉스",
+    "industry": "semiconductor",
+    "year_old": 2022,
+    "year_new": 2023,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 514,
+    "change_rows_of_type": 21,
+    "candidates": 2,
+    "join_failures": 19,
+    "join_failures_by_reason": {
+      "table_row": 18,
+      "lda_filtered": 1
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 2,
+    "selected": 2,
+    "expected_selected": 2,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 4,
+      "label": "AI 서버·HBM 메모리",
+      "keywords": [
+        "ai",
+        "메모리",
+        "hbm",
+        "성능",
+        "용량",
+        "공급",
+        "데이터",
+        "본더",
+        "서버",
+        "dram"
+      ],
+      "candidate_count": 2,
+      "candidate_share": 1.0,
+      "deduplicated_count": 2,
+      "quota": 2,
+      "representatives": [
+        {
+          "topic_probability": 0.970366,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.936816,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20230321001209-P0021-S01",
+          "old_text": "Substrate의 경우 당사는 한국, 일본, 중국에 생산시설을 보유한 7개사로부터 Substrate 완제품을 공급받고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 나. 주요 원재료의 매입처 및 원재료 공급시장과 공급의 안정성",
+          "old_xml_line": 3095,
+          "new_sentence_id": "20240319000684-P0020-S01",
+          "new_text": "Substrate의 경우 당사는 한국, 일본, 중국 및 말레이시아에 생산시설을 보유한 8개사로부터 Substrate 완제품을 공급받고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 나. 주요 원재료의 매입처 및 원재료 공급시장과 공급의 안정성",
+          "new_xml_line": 3371,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 7969,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.970366,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.936816,
+          "rank_in_topic": 2,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20230321001209-P0021-S02",
+          "old_text": "전세계 기준 50여개 이상의 Substrate 공급사가 있으며, 당사와 거래하는 7개사는 품질 및 공급 Capacity 측면에서 당사가 요구하는 수준을 만족하는 공급사들입니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 나. 주요 원재료의 매입처 및 원재료 공급시장과 공급의 안정성",
+          "old_xml_line": 3095,
+          "new_sentence_id": "20240319000684-P0020-S02",
+          "new_text": "전세계 기준 50여개 이상의 Substrate 공급사가 있으며, 당사와 거래하는 8개사는 품질 및 공급 Capacity 측면에서 당사가 요구하는 수준을 만족하는 공급사들 입니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 나. 주요 원재료의 매입처 및 원재료 공급시장과 공급의 안정성",
+          "new_xml_line": 3371,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 7970,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

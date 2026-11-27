@@ -1,0 +1,21 @@
+{
+  "input_sha256": "9f68eb45e710e3dd2ef54ff25c89ecaa9a71985cb8b9e9839d92c27b739155e8",
+  "dimension": 1024,
+  "rows": 1978,
+  "settings": {
+    "model": "BAAI/bge-m3",
+    "max_seq_length": 512,
+    "number_masking": "True:NUM"
+  },
+  "batch_size": 16,
+  "package_versions": {
+    "numpy": "1.26.4",
+    "scikit-learn": "1.5.1",
+    "joblib": "1.4.2",
+    "kiwipiepy": "0.25.1",
+    "sentence-transformers": "6.2.0",
+    "torch": "2.15.0+cu134",
+    "transformers": "5.24.1",
+    "pyyaml": "6.0.3"
+  }
+}

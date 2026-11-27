@@ -102,9 +102,21 @@ python run_v1.py tfidf --output-dir data/results_v2
 # [4] LDA 분석
 python scripts/run_lda_analysis.py
 
+# [4-1] 산업 공동 LDA (+ lda_artifacts.joblib, old 쪽·쌍 단위 토픽 확률)
+python scripts/industry_lda_corrected.py battery   # semiconductor | battery | biopharma
+
+# [4-2] 대표 변화 문장쌍 (BGE-M3 임베딩, GPU 있으면 사용)
+python scripts/extract_representative_changes.py --company 삼성SDI --year-old 2023 --year-new 2024 --change-type EXPANDED --top-k 10
+python scripts/extract_representative_changes.py --all --update-demo   # 전체 생성 후 demo.html에 번들
+
 # [5] 데모 열기
 open analysis/demo.html
 ```
+
+대표 변화 문장쌍은 `data/results_representative_changes/<산업>/<기업>/<연도>_<연도>/<유형>/`에
+`representatives.csv`, `representatives.json`, `audit.json`으로 저장된다. 설정은 `config/settings.yaml`의
+`representative_changes`(K, 중복 임계값, 입력 CSV). 산업 LDA는 문단 문장만 다루므로 표 행 변화(대부분의
+EXPANDED·MODIFIED·REDUCED)는 토픽 조인에서 빠지고, 그 수는 `audit.json`의 `join_failures`에 남는다.
 
 ---
 

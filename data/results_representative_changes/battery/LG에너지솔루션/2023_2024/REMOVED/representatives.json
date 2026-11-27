@@ -1,0 +1,139 @@
+{
+  "request": {
+    "company": "LG에너지솔루션",
+    "industry": "battery",
+    "year_old": 2023,
+    "year_new": 2024,
+    "change_type": "REMOVED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 329,
+    "change_rows_of_type": 6,
+    "candidates": 3,
+    "join_failures": 3,
+    "join_failures_by_reason": {
+      "lda_filtered": 1,
+      "table_row": 2
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 3,
+    "selected": 3,
+    "expected_selected": 3,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 3,
+      "label": "수주·공급계약·판매",
+      "keywords": [
+        "자동차",
+        "계약",
+        "판매",
+        "공급",
+        "고객",
+        "매출",
+        "규제",
+        "생산",
+        "배터리",
+        "정책"
+      ],
+      "candidate_count": 2,
+      "candidate_share": 0.666667,
+      "deduplicated_count": 2,
+      "quota": 2,
+      "representatives": [
+        {
+          "topic_probability": 0.559631,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.666667,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.899763,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20240314001110-P0001-S04",
+          "old_text": "영업이익은 지속적인 메탈 가격 하락으로 배터리 판매가격 대비 투입 원재료비가 높아서 발생하는 Lagging 영향이 있었으나, 물류비 절감, 수율 및 생산성 향상 등 원가개선 노력과 약 6,769억원의 IRA Tax Credit의 수익 인식으로 전년 대비 +78% 개선된 약 2조 1,632억원을 기록했습니다.당사는 시작부터 끊임없는 EV 시장 연구개발과 신제품 출시 및 품질 혁신을 통해 한국의 에너지솔루션 산업을 대표하는 글로벌 기업으로 성장하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 1. 사업의 개요",
+          "old_xml_line": 1931,
+          "new_sentence_id": null,
+          "new_text": null,
+          "new_section_path": null,
+          "new_xml_line": null,
+          "analysis_area": "BUSINESS",
+          "source_change_row": 11751,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.559631,
+          "topic_candidate_count": 2,
+          "topic_candidate_share": 0.666667,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.899763,
+          "rank_in_topic": 2,
+          "global_selection_rank": 3,
+          "old_sentence_id": "20240314001110-P0001-S05",
+          "old_text": "중장기적인 관점으로도 당사가 주력하는 EV용 배터리 시장은 각국의 탄소배출 규제 및 지원 정책을 바탕으로 Global OEM의 수요가 증가하고 있어 시장 규모는 지속 성장할 것으로 전망되고 있으며, EV 외 ESS, Micro Mobility 등 신규 시장의 확대로 당사 배터리 수요는 지속적으로 증가할 것으로 예상됩니다.당사는 향후 폭발적으로 성장하는 배터리 시장에서 선두 기업으로 영속하기 위해 집중적인 R&D 투자를 통해 철저히 미래를 준비하고, 제품 안전성 강화 및 품질 향상으로 고객별/포트폴리오별 최적의 솔루션을 도출할 것입니다.",
+          "old_section_path": "II. 사업의 내용 > 1. 사업의 개요",
+          "old_xml_line": 1931,
+          "new_sentence_id": null,
+          "new_text": null,
+          "new_section_path": null,
+          "new_xml_line": null,
+          "analysis_area": "BUSINESS",
+          "source_change_row": 11752,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 4,
+      "label": "연구개발·특허·경영실적",
+      "keywords": [
+        "전지",
+        "개발",
+        "연구",
+        "영업",
+        "솔루션",
+        "에너지",
+        "센터",
+        "이익",
+        "배터리",
+        "매출액"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.333333,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.615678,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.333333,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20240314001110-P0256-S03",
+          "old_text": "또한, 폼팩터의 다양성 및 빠른 충전시간을 바탕으로 하이엔드 스마트폰 시장을 공략해 나가고 있으며, 원통형전지의 검증된 성능과 안정성을 바탕으로 신규 Application으로 적극 확대 중입니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (5) 경쟁우위요소",
+          "old_xml_line": 5257,
+          "new_sentence_id": null,
+          "new_text": null,
+          "new_section_path": null,
+          "new_xml_line": null,
+          "analysis_area": "OTHER",
+          "source_change_row": 11790,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

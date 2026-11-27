@@ -1,0 +1,74 @@
+{
+  "request": {
+    "company": "삼성바이오로직스",
+    "industry": "biopharma",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "REDUCED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 441,
+    "change_rows_of_type": 8,
+    "candidates": 1,
+    "join_failures": 7,
+    "join_failures_by_reason": {
+      "table_row": 7
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 5,
+      "label": "CDMO 생산·신규 사업",
+      "keywords": [
+        "생산",
+        "계약",
+        "공장",
+        "바이오",
+        "서비스",
+        "체결",
+        "변동",
+        "의약품",
+        "매출",
+        "cdmo"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.978919,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20220321000862-P0163-S03",
+          "old_text": "(2) 4공 장 건설 도급 계약 체결 당사는 2021년 10월 26일 이사회에서 4공장 건설과 관련하여 삼성엔지니어링(주)와의 도급 계약 체결을 결의하고, 2021년 10월 29일 본계약을 체결하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동",
+          "old_xml_line": 4297,
+          "new_sentence_id": "20230309000835-P0191-S02",
+          "new_text": "기타 계약 (1) 4공장 건설 도급 계약 체결당사는 2021년 10월 26일 이사회에서 4공장 건설과 관련하여 삼성엔지니어링(주)와의 도급 계약 체결을 결의하고, 2021년 10월 29일 본계약을 체결하였습니다.",
+          "new_section_path": "II. 사업의 내용 > 6. 주요계약 및 연구개발활동",
+          "new_xml_line": 4825,
+          "analysis_area": "RND_CONTRACT",
+          "source_change_row": 2936,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

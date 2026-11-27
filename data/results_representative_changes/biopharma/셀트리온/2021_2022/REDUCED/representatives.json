@@ -1,0 +1,118 @@
+{
+  "request": {
+    "company": "셀트리온",
+    "industry": "biopharma",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "REDUCED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 1127,
+    "change_rows_of_type": 36,
+    "candidates": 2,
+    "join_failures": 34,
+    "join_failures_by_reason": {
+      "table_row": 32,
+      "lda_filtered": 2
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 2,
+    "selected": 2,
+    "expected_selected": 2,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 3,
+      "label": "의약품 시장·매출 실적",
+      "keywords": [
+        "연구",
+        "의약품",
+        "개발",
+        "영업",
+        "순이익",
+        "이익",
+        "매출",
+        "누계",
+        "치료제",
+        "계약"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.5,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.494463,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.5,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20220512000853-P0665-S01",
+          "old_text": "4) 주요 제품 등의 현황 회사는 의약품 제조 및 판매업을 영위하고 있으며 본 보고서 작성기준일 현재 주요 의약품의 매출 및 총매출액에서 차지하는 비율은 다음과 같습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 3) 사업부문별 주요재무정보 당사는 의약품 제조 및 판매를 단일사업부문으로 영위하고 있으며, 별도로 구분될 사업부문별 재무정보가 없습니다.",
+          "old_xml_line": 13208,
+          "new_sentence_id": "20230320000842-P0648-S01",
+          "new_text": "2. 주요 제품 등의 현황회사는 의약품 제조 및 판매업을 영위하고 있으며 본 보고서 작성기준일 현재 주요제품의 매출액 및 총 매출액에서 차지하는 비율은 다음과 같습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (1) 셀트리온제약",
+          "new_xml_line": 7540,
+          "analysis_area": "OTHER",
+          "source_change_row": 3855,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 4,
+      "label": "바이오의약품 연구개발·임상",
+      "keywords": [
+        "개발",
+        "의약품",
+        "바이오",
+        "임상",
+        "연구",
+        "관리",
+        "항체",
+        "공정",
+        "플랫폼",
+        "신약"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.5,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.957891,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.5,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20220512000853-P0724-S01",
+          "old_text": "(9) Shanghai Vcell Biotech 2019년 4월 설립되었으며, 중국 내 바이오의약품 임상시험 등 연구개발을 위해 설립되었습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 7) 생산설비의 현황 등",
+          "old_xml_line": 13942,
+          "new_sentence_id": "20230320000842-P0728-S01",
+          "new_text": "(7) Shanghai Vcell Biotech2019년 4월 설립되었으며, 중국 내 바이오의약품 임상시험 등 연구개발을 위해 설립되었습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (2) 셀트리온유럽",
+          "new_xml_line": 8381,
+          "analysis_area": "OTHER",
+          "source_change_row": 3924,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "biopharma-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

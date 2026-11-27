@@ -23,3 +23,13 @@ embedding:
   number_masking:
     enabled: true
     token: NUM
+# 대표 변화 문장쌍 추출 (src/representative_change.py, scripts/extract_representative_changes.py)
+representative_changes:
+  source_change_csv: data/results_v2/tfidf_masked_th0.6.csv   # 산업 LDA 입력과 같은 변화 CSV
+  lda_dir: data/results_industry_lda_corrected
+  paragraphs_dir: data/processed/preprocessing_v2
+  top_k: 10
+  duplicate_method: tfidf_char_cosine
+  duplicate_threshold: 0.92
+  output_dir: data/results_representative_changes
+  embedding_artifact_dir: data/results_representative_changes/embeddings

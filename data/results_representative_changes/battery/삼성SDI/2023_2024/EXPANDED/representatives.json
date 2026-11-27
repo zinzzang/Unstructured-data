@@ -1,0 +1,74 @@
+{
+  "request": {
+    "company": "삼성SDI",
+    "industry": "battery",
+    "year_old": 2023,
+    "year_new": 2024,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 328,
+    "change_rows_of_type": 32,
+    "candidates": 1,
+    "join_failures": 31,
+    "join_failures_by_reason": {
+      "table_row": 31
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 2,
+      "label": "미·중 통상·IRA 규제",
+      "keywords": [
+        "중국",
+        "미국",
+        "변동",
+        "배터리",
+        "업체",
+        "경기",
+        "차별",
+        "감축",
+        "포트폴리오",
+        "기능"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.891303,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20240312000853-P0209-S01",
+          "old_text": "당사는 본사를 거점으로 헝가리, 미국, 말레이시아, 중국 등 각 국에 20개의 종속기업을 두고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (3) 기후변화 대응",
+          "old_xml_line": 4293,
+          "new_sentence_id": "20250311001275-P0217-S01",
+          "new_text": "당사는 본사를 거점으로 헝가리, 미국, 말레이시아, 중국 등 각 국에 21개의 종속기업을 두고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (3) 기후변화 대응",
+          "new_xml_line": 4334,
+          "analysis_area": "OTHER",
+          "source_change_row": 14512,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

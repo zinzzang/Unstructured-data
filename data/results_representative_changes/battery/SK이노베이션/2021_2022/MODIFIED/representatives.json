@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "SK이노베이션",
+    "industry": "battery",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "MODIFIED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 1426,
+    "change_rows_of_type": 30,
+    "candidates": 1,
+    "join_failures": 29,
+    "join_failures_by_reason": {
+      "lda_filtered": 2,
+      "table_row": 27
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 4,
+      "label": "연구개발·특허·경영실적",
+      "keywords": [
+        "전지",
+        "개발",
+        "연구",
+        "영업",
+        "솔루션",
+        "에너지",
+        "센터",
+        "이익",
+        "배터리",
+        "매출액"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.981881,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20220323000978-P1029-S02",
+          "old_text": "특히, 배터리 사업에서는 중대형 리튬 이차전지 관련 소재, 셀, 모듈, 시스템 분야 특허 출원을 강화하고 있으며, 보유중인 배터리 특허는 상용화 제품에 쓰이거나 향후 배터리 사업에서 핵심기능으로 활용될 예정입니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (6) Iberian Lube Base Oils Company, S.A.",
+          "old_xml_line": 21093,
+          "new_sentence_id": "20230322000906-P1071-S02",
+          "new_text": "특히, 배터리 사업에서는 리튬 이차전지 관련 소재, 셀, 모듈, 시스템 분야 특허 출원을 강화하고 있으며, 보유중인 배터리 특허는 상용화 제품에 적용중인 기술을 보호할 뿐만 아니라 향후 배터리 사업 경쟁력 강화에 있어 핵심적인 기능을 할 예정입니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > [신규사업 등의 내용 및 전망]",
+          "new_xml_line": 17419,
+          "analysis_area": "OTHER",
+          "source_change_row": 655,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

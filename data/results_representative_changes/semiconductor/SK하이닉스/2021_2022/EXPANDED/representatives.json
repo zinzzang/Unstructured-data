@@ -1,0 +1,31 @@
+{
+  "request": {
+    "company": "SK하이닉스",
+    "industry": "semiconductor",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 475,
+    "change_rows_of_type": 43,
+    "candidates": 0,
+    "join_failures": 43,
+    "join_failures_by_reason": {
+      "table_row": 42,
+      "lda_filtered": 1
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 0,
+    "selected": 0,
+    "expected_selected": 0,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": []
+}

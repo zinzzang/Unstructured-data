@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "LG에너지솔루션",
+    "industry": "battery",
+    "year_old": 2024,
+    "year_new": 2025,
+    "change_type": "REDUCED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 349,
+    "change_rows_of_type": 36,
+    "candidates": 1,
+    "join_failures": 35,
+    "join_failures_by_reason": {
+      "table_row": 33,
+      "lda_filtered": 2
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 3,
+      "label": "수주·공급계약·판매",
+      "keywords": [
+        "자동차",
+        "계약",
+        "판매",
+        "공급",
+        "고객",
+        "매출",
+        "규제",
+        "생산",
+        "배터리",
+        "정책"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.910704,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20250312000405-P0110-S01",
+          "old_text": "- 당사의 주요 매출처는 자동차 OEM 업체로서 주요 5대 매출처에 대한 매출 비중은 약 67% 수준입니다.",
+          "old_section_path": "II. 사업의 내용 > 4. 매출 및 수주상황 > (4) 주요매출처",
+          "old_xml_line": 3693,
+          "new_sentence_id": "20260312000217-P0116-S01",
+          "new_text": "- 당사의 주요 매출처는 자동차 OEM 업체로서 주요 5대 매출처에 대한 매출 비중은 약 63% 수준입니다.",
+          "new_section_path": "II. 사업의 내용 > 4. 매출 및 수주상황 > (4) 주요매출처",
+          "new_xml_line": 3899,
+          "analysis_area": "SALES",
+          "source_change_row": 18360,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

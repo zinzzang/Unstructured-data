@@ -1,0 +1,118 @@
+{
+  "request": {
+    "company": "삼성전자",
+    "industry": "semiconductor",
+    "year_old": 2023,
+    "year_new": 2024,
+    "change_type": "EXPANDED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 576,
+    "change_rows_of_type": 49,
+    "candidates": 2,
+    "join_failures": 47,
+    "join_failures_by_reason": {
+      "table_row": 44,
+      "lda_filtered": 3
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 2,
+    "selected": 2,
+    "expected_selected": 2,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 4,
+      "label": "AI 서버·HBM 메모리",
+      "keywords": [
+        "ai",
+        "메모리",
+        "hbm",
+        "성능",
+        "용량",
+        "공급",
+        "데이터",
+        "본더",
+        "서버",
+        "dram"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.5,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.938448,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.5,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20240312000736-P0050-S03",
+          "old_text": "DS 부문의 메모리 생산실적은 1,926,652백만개(1Gb 환산 기준)이며 한국(화성, 평택 등), 중국에서 생산하고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 다. 생산능력, 생산실적, 가동률 (생산능력)",
+          "old_xml_line": 4175,
+          "new_sentence_id": "20250311001085-P0046-S03",
+          "new_text": "DS 부문의 메모리 생산실적은 2,238,240백만개(1Gb 환산 기준)이며 한국(화성, 평택 등), 중국에서 생산하고 있습니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 다. 생산능력, 생산실적, 가동률 (생산능력)",
+          "new_xml_line": 3659,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 15672,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 5,
+      "label": "반도체 장비·웨이퍼 조달",
+      "keywords": [
+        "반도체",
+        "장비",
+        "개발",
+        "검사",
+        "공급",
+        "가격",
+        "생산",
+        "웨이퍼",
+        "hbm",
+        "공정"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.5,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.965216,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.5,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20240312000736-P0040-S02",
+          "old_text": "DS 부문의 주요 원재료 중 반도체 Wafer 가격은 전년 연간 평균 대비 약 1% 상승하였으며, SDC의 FPCA 가격은 약 5% 상승, 강화유리용Cover Glass 가격은 약 4% 하락하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비",
+          "old_xml_line": 4014,
+          "new_sentence_id": "20250311001085-P0037-S02",
+          "new_text": "DS 부문의 주요 원재료 중 반도체 Wafer 가격은 전년 대비 약 4% 하락하였으며, SDC의 FPCA 가격은 약 21% 하락, 강화유리용 Cover Glass 가격은 약 23% 하락하였습니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비",
+          "new_xml_line": 3536,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 15656,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

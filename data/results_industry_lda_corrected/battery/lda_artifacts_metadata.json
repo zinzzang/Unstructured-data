@@ -1,0 +1,50 @@
+{
+  "industry": "battery",
+  "companies": [
+    "LG에너지솔루션",
+    "삼성SDI",
+    "SK이노베이션"
+  ],
+  "n_topics": 6,
+  "model_seed": 0,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "k_range": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "k_override": 6,
+  "train_sample_rng_seed": 42,
+  "chunk": 8,
+  "max_paragraph_sentences": 100,
+  "balance": 3.0,
+  "specific_share": 0.9,
+  "input_change_csv": "data\\results_v2\\tfidf_masked_th0.6.csv",
+  "input_change_csv_sha256": "3b8e15dea7dfdb813d0d68d401e5991fea5c6ec98a80daa480f673a4ef77ab5d",
+  "input_paragraphs_jsonl": "data\\processed\\preprocessing_v2\\battery\\paragraphs.jsonl",
+  "input_paragraphs_jsonl_sha256": "7541a03d076676c4aba0b04b0fbada913bde5a30b710e7fa90851054893a42f9",
+  "versions": {
+    "sklearn": "1.5.1",
+    "kiwipiepy": "0.25.1",
+    "numpy": "1.26.4",
+    "joblib": "1.4.2"
+  },
+  "removed_dropped": {
+    "not in paragraph source": 435,
+    "footnote/short/reference": 111,
+    "oversized paragraph or risk/derivatives section": 100,
+    "out of industry scope": 146,
+    "no vocabulary tokens": 0
+  },
+  "artifact_version": "battery-k6-3b8e15dea7df"
+}

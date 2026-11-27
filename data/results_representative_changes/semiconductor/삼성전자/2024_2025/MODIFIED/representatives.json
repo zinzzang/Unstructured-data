@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "삼성전자",
+    "industry": "semiconductor",
+    "year_old": 2024,
+    "year_new": 2025,
+    "change_type": "MODIFIED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 585,
+    "change_rows_of_type": 20,
+    "candidates": 1,
+    "join_failures": 19,
+    "join_failures_by_reason": {
+      "lda_filtered": 1,
+      "table_row": 18
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 5,
+      "label": "반도체 장비·웨이퍼 조달",
+      "keywords": [
+        "반도체",
+        "장비",
+        "개발",
+        "검사",
+        "공급",
+        "가격",
+        "생산",
+        "웨이퍼",
+        "hbm",
+        "공정"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.970369,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20250311001085-P0037-S02",
+          "old_text": "DS 부문의 주요 원재료 중 반도체 Wafer 가격은 전년 대비 약 4% 하락하였으며, SDC의 FPCA 가격은 약 21% 하락, 강화유리용 Cover Glass 가격은 약 23% 하락하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비",
+          "old_xml_line": 3536,
+          "new_sentence_id": "20260310002820-P0037-S02",
+          "new_text": "DS 부문의 주요 원재료 중 반도체 Wafer 가격은 전년 연간평균 대비 약 10% 하락하였으며, SDC의 FPCA 가격은 약 6% 상승, 강화유리용 Cover Glass 가격은 약 12% 상승하였습니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비",
+          "new_xml_line": 4484,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 21950,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

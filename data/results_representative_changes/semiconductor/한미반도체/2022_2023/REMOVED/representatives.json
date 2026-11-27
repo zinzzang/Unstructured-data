@@ -1,0 +1,93 @@
+{
+  "request": {
+    "company": "한미반도체",
+    "industry": "semiconductor",
+    "year_old": 2022,
+    "year_new": 2023,
+    "change_type": "REMOVED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 127,
+    "change_rows_of_type": 3,
+    "candidates": 3,
+    "join_failures": 0,
+    "join_failures_by_reason": {},
+    "duplicates_excluded": 1,
+    "deduplicated_candidates": 2,
+    "selected": 2,
+    "expected_selected": 2,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 5,
+      "label": "반도체 장비·웨이퍼 조달",
+      "keywords": [
+        "반도체",
+        "장비",
+        "개발",
+        "검사",
+        "공급",
+        "가격",
+        "생산",
+        "웨이퍼",
+        "hbm",
+        "공정"
+      ],
+      "candidate_count": 3,
+      "candidate_share": 1.0,
+      "deduplicated_count": 2,
+      "quota": 2,
+      "representatives": [
+        {
+          "topic_probability": 0.946665,
+          "topic_candidate_count": 3,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.946275,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20230316001554-P0001-S04",
+          "old_text": "특히, 2022년 9월 반도체 웨이퍼(원판) 절단을 위한 마이크로 쏘 장비인 '풀 오토메이션 웨이퍼 마이크로 쏘' 를 출시하며 신규 매출 확보를 기대하고 있습니다.",
+          "old_section_path": "II. 사업의 내용 > 1. 사업의 개요",
+          "old_xml_line": 1848,
+          "new_sentence_id": null,
+          "new_text": null,
+          "new_section_path": null,
+          "new_xml_line": null,
+          "analysis_area": "BUSINESS",
+          "source_change_row": 11624,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        },
+        {
+          "topic_probability": 0.56167,
+          "topic_candidate_count": 3,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 2,
+          "centroid_cosine_similarity": 0.76272,
+          "rank_in_topic": 2,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20230316001554-P0009-S01",
+          "old_text": "- 반도체 장비용 원재료는 당사의 요구조건 및 옵션에 따라 상이한 가격으로 매입되므로 가격변동 추이를 제시하기 곤란합니다.",
+          "old_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 2) 주요 원재료 등의 가격변동추이",
+          "old_xml_line": 2009,
+          "new_sentence_id": null,
+          "new_text": null,
+          "new_section_path": null,
+          "new_xml_line": null,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 11656,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}

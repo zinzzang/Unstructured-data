@@ -1,0 +1,75 @@
+{
+  "request": {
+    "company": "삼성SDI",
+    "industry": "battery",
+    "year_old": 2021,
+    "year_new": 2022,
+    "change_type": "REDUCED",
+    "change_type_selection": {
+      "mode": "requested"
+    },
+    "top_k": 10
+  },
+  "summary": {
+    "change_rows_for_pair": 382,
+    "change_rows_of_type": 27,
+    "candidates": 1,
+    "join_failures": 26,
+    "join_failures_by_reason": {
+      "table_row": 24,
+      "lda_filtered": 2
+    },
+    "duplicates_excluded": 0,
+    "deduplicated_candidates": 1,
+    "selected": 1,
+    "expected_selected": 1,
+    "topic_labels_source": "topic_labels.json",
+    "embedding_model": "BAAI/bge-m3",
+    "lda_artifact_version": "battery-k6-3b8e15dea7df"
+  },
+  "topics": [
+    {
+      "topic_id": 3,
+      "label": "수주·공급계약·판매",
+      "keywords": [
+        "자동차",
+        "계약",
+        "판매",
+        "공급",
+        "고객",
+        "매출",
+        "규제",
+        "생산",
+        "배터리",
+        "정책"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 1.0,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.984661,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 1.0,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 1,
+          "old_sentence_id": "20220308000915-P0244-S01",
+          "old_text": "2022년 자동차전지 시장은 세계 각국이 전기차 보급 확대 정책과 이산화탄소 배출 규제를 강화하고 자동차 회사들이 전기차 생산을 크게 확대하면서 약 540GWh 규모로 전년 대비 50% 성장할 것으로 전망됩니다.",
+          "old_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > 나. 환경물질의 배출 또는 환경보호와 관련된 사항 등 ( 1 ) 환경관련 규제사항",
+          "old_xml_line": 5361,
+          "new_sentence_id": "20230313000726-P0233-S01",
+          "new_text": "④ 시장여건2023년 자동차전지 시장은 세계 각국이 전기차 보급 확대 정책과 이산화탄소 배출 규제를 강화하고 자동차 회사들이 전기차 생산을 크게 확대하면서 $159B 규모로 2022년 대비 39% 성장할 것으로 전망됩니다.",
+          "new_section_path": "II. 사업의 내용 > 7. 기타 참고사항 > (3) 기후변화 대응",
+          "new_xml_line": 4538,
+          "analysis_area": "OTHER",
+          "source_change_row": 2286,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    }
+  ]
+}
