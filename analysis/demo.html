@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>사업보고서 변화 분석 데모</title>
+<title>Annual Report Change Analysis Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">
 <style>
@@ -102,10 +102,10 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--i
 <div class="page">
 
   <div class="sel-bar">
-    <span class="sel-title">사업보고서 변화 분석</span>
-    <span class="sel-label">기업</span>
-    <select class="sel-company" id="sel-company"><option value="LG에너지솔루션">LG에너지솔루션</option><option value="SK이노베이션">SK이노베이션</option><option value="SK하이닉스"  selected>SK하이닉스</option><option value="삼성SDI">삼성SDI</option><option value="삼성바이오로직스">삼성바이오로직스</option><option value="삼성전자">삼성전자</option><option value="셀트리온">셀트리온</option><option value="유한양행">유한양행</option><option value="한미반도체">한미반도체</option></select>
-    <span class="sel-label">연도</span>
+    <span class="sel-title">Annual Report Change Analysis</span>
+    <span class="sel-label">Company</span>
+    <select class="sel-company" id="sel-company"><option value="LG에너지솔루션">LG Energy Solution</option><option value="SK이노베이션">SK Innovation</option><option value="SK하이닉스" selected>SK hynix</option><option value="삼성SDI">Samsung SDI</option><option value="삼성바이오로직스">Samsung Biologics</option><option value="삼성전자">Samsung Electronics</option><option value="셀트리온">Celltrion</option><option value="유한양행">Yuhan</option><option value="한미반도체">Hanmi Semiconductor</option></select>
+    <span class="sel-label">Year-pair</span>
     <div class="period-pills" id="period-pills">
       <button class="pill active" data-p="21→22">21→22</button>
       <button class="pill" data-p="22→23">22→23</button>
@@ -115,41 +115,41 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--i
   </div>
 
   <div class="kpi-row">
-    <div class="kpi"><div class="kpi-label">비교 문장</div><div class="kpi-value" id="kv-total">-</div></div>
-    <div class="kpi"><div class="kpi-label">실질 변화</div><div class="kpi-value" id="kv-changed">-</div></div>
-    <div class="kpi"><div class="kpi-label">변화율</div><div class="kpi-value" id="kv-pct">-</div></div>
-    <div class="kpi"><div class="kpi-label">주요 변화 유형</div><div class="kpi-value kpi-value--type"><span id="kv-top">-</span><span class="kpi-count" id="kd-top">-</span></div></div>
+    <div class="kpi"><div class="kpi-label">Sentence Pairs</div><div class="kpi-value" id="kv-total">-</div></div>
+    <div class="kpi"><div class="kpi-label">Changed</div><div class="kpi-value" id="kv-changed">-</div></div>
+    <div class="kpi"><div class="kpi-label">Change Rate</div><div class="kpi-value" id="kv-pct">-</div></div>
+    <div class="kpi"><div class="kpi-label">Top Change Type</div><div class="kpi-value kpi-value--type"><span id="kv-top">-</span><span class="kpi-count" id="kd-top">-</span></div></div>
   </div>
 
   <div class="overview-grid">
     <section class="card" aria-labelledby="distribution-title">
-      <h2 class="card-title" id="distribution-title">TF-IDF 기반 변화 유형 분포</h2>
+      <h2 class="card-title" id="distribution-title">Change Type Distribution (TF-IDF)</h2>
       <div class="card-sub" id="bar-sub">-</div>
-      <div class="vchart" id="bar-chart" aria-label="변화 유형별 건수"></div>
+      <div class="vchart" id="bar-chart" aria-label="Change type counts"></div>
     </section>
     <aside class="card insight-card" aria-labelledby="insight-title">
-      <h2 class="card-title" id="insight-title">이번 비교의 핵심 변화</h2>
-      <div class="insight-primary"><div class="insight-eyebrow">가장 많은 변화 유형</div><div class="insight-value" id="insight-type">-</div></div>
-      <div class="direction"><div class="direction-head"><span>추가 · 확장</span><span id="insight-direction">-</span></div><div class="direction-track"><div class="direction-add" id="insight-add"></div><div class="direction-sub" id="insight-sub"></div></div></div>
-      <div class="topic-summary"><div class="topic-summary-title">주요 변화 토픽</div><div id="insight-topics"></div></div>
+      <h2 class="card-title" id="insight-title">Key Changes This Period</h2>
+      <div class="insight-primary"><div class="insight-eyebrow">Most Frequent Change Type</div><div class="insight-value" id="insight-type">-</div></div>
+      <div class="direction"><div class="direction-head"><span>Added · Expanded</span><span id="insight-direction">-</span></div><div class="direction-track"><div class="direction-add" id="insight-add"></div><div class="direction-sub" id="insight-sub"></div></div></div>
+      <div class="topic-summary"><div class="topic-summary-title">Key Change Topics</div><div id="insight-topics"></div></div>
     </aside>
   </div>
 
   <section class="card" id="tbar-card" aria-labelledby="topic-by-change-title">
-    <h2 class="card-title" id="topic-by-change-title">LDA 토픽별 변화 패턴</h2>
-    <div class="card-sub">토픽마다 두드러진 변화 유형</div>
+    <h2 class="card-title" id="topic-by-change-title">Change Pattern by LDA Topic</h2>
+    <div class="card-sub">Dominant change type per topic</div>
     <div id="tbar-chart"></div>
     <div class="leg-row" id="tbar-legend"></div>
   </section>
 
   <div class="topic-legend-card" id="topic-legend-card">
-    <div class="tl-title">토픽 색상 기준</div>
+    <div class="tl-title">Topic Color Legend</div>
     <div class="tl-grid" id="tl-grid"></div>
   </div>
 
   <section class="card topic-focus" id="sbar-card" aria-labelledby="change-by-topic-title">
-    <h2 class="card-title" id="change-by-topic-title">LDA 변화 유형별 토픽 집중도</h2>
-    <div class="card-sub">각 변화 유형이 집중된 토픽</div>
+    <h2 class="card-title" id="change-by-topic-title">Topic Concentration by Change Type</h2>
+    <div class="card-sub">Topic distribution per change type</div>
     <div id="sbar-chart"></div>
     <div class="leg-row" id="sbar-legend"></div>
   </section>
@@ -157,16 +157,16 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--i
   <section class="card" id="rep-card" aria-labelledby="rep-title">
     <div class="rep-head">
       <div>
-        <h2 class="card-title" id="rep-title">대표 변화 문장쌍</h2>
+        <h2 class="card-title" id="rep-title">Representative Sentence Pairs</h2>
         <div class="card-sub" id="rep-sub">-</div>
       </div>
     </div>
-    <div class="rep-types" id="rep-types" aria-label="변화 유형 선택" style="margin-bottom:14px;"></div>
-    <p class="rep-note">기업별 LDA 토픽 기준(위 차트와 같은 토픽 번호) · 토픽별 변화가 가장 뚜렷한 3개(TF-IDF 유사도 낮은 순) · 중복 제외</p>
+    <div class="rep-types" id="rep-types" aria-label="Select change type" style="margin-bottom:14px;"></div>
+    <p class="rep-note">LDA topics per company (same topic numbers as chart above) · Top 3 most distinct changes per topic (lowest TF-IDF similarity first) · Duplicates excluded</p>
     <div id="rep-body"></div>
   </section>
 
-  <div class="note">TF-IDF (Number Masked, th=0.3) → LDA (KiwiPy) · 금융감독원 사업보고서 2021–2025</div>
+  <div class="note">TF-IDF (Number Masked, th=0.3) → LDA (KiwiPy) · Korea FSS Annual Reports 2021–2025</div>
 </div>
 <div class="tt" id="tt"></div>
 <script>
@@ -198,8 +198,8 @@ function ctColor(ct){const c=C();return c.changes[ct]||c.changes.UNCERTAIN;}
 
 const CT_ORDER=['NEW','EXPANDED','MODIFIED','REDUCED','REMOVED','UNCERTAIN'];
 const CT_CHANGED=['NEW','EXPANDED','REMOVED','MODIFIED','REDUCED'];
-const CT_DESC={UNCERTAIN:'판정 불확실',NEW:'새로 추가',EXPANDED:'내용 증가',REMOVED:'삭제',MODIFIED:'수정',REDUCED:'내용 감소'};
-const CT_LABEL={NEW:'신규',EXPANDED:'확장',MODIFIED:'수정',REDUCED:'축소',REMOVED:'삭제',UNCERTAIN:'판정 보류'};
+const CT_DESC={UNCERTAIN:'Uncertain',NEW:'Newly added',EXPANDED:'Content increased',REMOVED:'Deleted',MODIFIED:'Modified',REDUCED:'Content decreased'};
+const CT_LABEL={NEW:'New',EXPANDED:'Expanded',MODIFIED:'Modified',REDUCED:'Reduced',REMOVED:'Removed',UNCERTAIN:'Uncertain'};
 
 function topicLabel(kws,ti,d){
   if(d&&d.topic_labels&&d.topic_labels[ti])return d.topic_labels[ti];
@@ -215,35 +215,35 @@ function renderKpi(d){
   document.getElementById('kv-pct').textContent=d.pct+'%';
   const top=CT_CHANGED.reduce((a,c)=>((d.bar[c]||0)>(d.bar[a]||0)?c:a));
   document.getElementById('kv-top').textContent=top;
-  document.getElementById('kd-top').textContent='('+d.bar[top]+'건)';
+  document.getElementById('kd-top').textContent='('+d.bar[top]+')';
 }
 
 function renderBars(d){
   const el=document.getElementById('bar-chart');el.innerHTML='';
   const classified=CT_ORDER.reduce((sum,ct)=>sum+(d.bar[ct]||0),0);
-  document.getElementById('bar-sub').textContent='분류된 변화 '+classified.toLocaleString()+'건';
+  document.getElementById('bar-sub').textContent=classified.toLocaleString()+' classified changes';
   const max=Math.max(...CT_ORDER.map(ct=>d.bar[ct]||0));
   CT_ORDER.forEach(function(ct){
     const cnt=d.bar[ct]||0;
     const pct=classified?Math.round(cnt/classified*100):0;
     const item=document.createElement('div');item.className='vbar-item';
     item.innerHTML='<div class="vbar-value">'+cnt.toLocaleString()+'</div><div class="vbar-track"><div class="vbar-fill" style="height:'+(max?cnt/max*100:0).toFixed(1)+'%;background:'+ctColor(ct)+';"></div></div><div class="vbar-label">'+ct+'<span>'+CT_LABEL[ct]+' · '+pct+'%</span></div>';
-    item.addEventListener('mousemove',function(e){showTt(e,ct+': '+cnt+'건 · '+CT_DESC[ct]);});
+    item.addEventListener('mousemove',function(e){showTt(e,ct+': '+cnt+' · '+CT_DESC[ct]);});
     item.addEventListener('mouseleave',hideTt);el.appendChild(item);
   });
 }
 
 function renderInsights(d){
   const top=CT_CHANGED.reduce((a,c)=>((d.bar[c]||0)>(d.bar[a]||0)?c:a));
-  document.getElementById('insight-type').innerHTML=top+' <span>('+((d.bar[top]||0).toLocaleString())+'건)</span>';
+  document.getElementById('insight-type').innerHTML=top+' <span>('+((d.bar[top]||0).toLocaleString())+')</span>';
   const added=(d.bar.NEW||0)+(d.bar.EXPANDED||0);
   const reduced=(d.bar.REMOVED||0)+(d.bar.REDUCED||0);
   const directional=added+reduced;
-  document.getElementById('insight-direction').textContent=added.toLocaleString()+'건 : '+reduced.toLocaleString()+'건';
+  document.getElementById('insight-direction').textContent=added.toLocaleString()+' : '+reduced.toLocaleString();
   document.getElementById('insight-add').style.width=(directional?added/directional*100:0)+'%';
   document.getElementById('insight-sub').style.width=(directional?reduced/directional*100:0)+'%';
   const list=document.getElementById('insight-topics');list.innerHTML='';
-  if(!d.lda_ok||!d.topics.length){list.innerHTML='<div class="no-lda">LDA 미적용</div>';return;}
+  if(!d.lda_ok||!d.topics.length){list.innerHTML='<div class="no-lda">LDA not applied</div>';return;}
   const tc=topicColors();
   const ranked=d.topics.map(function(kws,ti){
     const total=CT_CHANGED.reduce(function(sum,ct){return sum+((d.sbar[ct]&&d.sbar[ct][ti])||0);},0);
@@ -251,7 +251,7 @@ function renderInsights(d){
   }).sort(function(a,b){return b.total-a.total;}).slice(0,3);
   ranked.forEach(function(item){
     const row=document.createElement('div');row.className='topic-summary-row';
-    row.innerHTML='<span class="topic-summary-dot" style="background:'+tc[item.ti]+'"></span><span class="topic-summary-name">T'+(item.ti+1)+'. '+item.name+'</span><span class="topic-summary-n">'+item.total.toLocaleString()+'건</span>';
+    row.innerHTML='<span class="topic-summary-dot" style="background:'+tc[item.ti]+'"></span><span class="topic-summary-name">T'+(item.ti+1)+'. '+item.name+'</span><span class="topic-summary-n">'+item.total.toLocaleString()+'</span>';
     list.appendChild(row);
   });
 }
@@ -276,7 +276,7 @@ function renderTopicByCt(d){
       var seg=document.createElement('div');seg.className='sbar-seg';
       seg.style.width=pct+'%';seg.style.background=ctColor(ct);
       if(parseFloat(pct)>13)seg.textContent=Math.round(pct)+'%';
-      seg.addEventListener('mousemove',function(e){showTt(e,'T'+(ti+1)+'('+name+') → '+ct+': '+cnt+'개 ('+Math.round(pct)+'%)');});
+      seg.addEventListener('mousemove',function(e){showTt(e,'T'+(ti+1)+'('+name+') → '+ct+': '+cnt+' ('+Math.round(pct)+'%)');});
       seg.addEventListener('mouseleave',hideTt);
       track.appendChild(seg);
     });
@@ -327,7 +327,7 @@ function renderCtByTopic(d){
       var seg=document.createElement('div');seg.className='sbar-seg';
       seg.style.width=pct+'%';seg.style.background=tc[ti];
       if(parseFloat(pct)>13)seg.textContent=Math.round(pct)+'%';
-      seg.addEventListener('mousemove',function(e){showTt(e,ct+' → T'+(ti+1)+'('+names[ti]+'): '+cnt+'개 ('+Math.round(pct)+'%)');});
+      seg.addEventListener('mousemove',function(e){showTt(e,ct+' → T'+(ti+1)+'('+names[ti]+'): '+cnt+' ('+Math.round(pct)+'%)');});
       seg.addEventListener('mouseleave',hideTt);
       track.appendChild(seg);
     });
@@ -344,15 +344,15 @@ function renderCtByTopic(d){
 
 
 const REP_TYPES=['NEW','EXPANDED','MODIFIED','REDUCED','REMOVED'];
-const FAIL_LABEL={table_row:'표 행',lda_filtered:'LDA 필터',not_in_jsonl:'원문 없음'};
+const FAIL_LABEL={table_row:'Table row',lda_filtered:'LDA filtered',not_in_jsonl:'Source not found'};
 let selRepType='NEW';
 function mk(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
 function fmt(x,d){return (x==null||x==='')?'-':Number(x).toFixed(d);}
 function repSide(label,text,sid,path,line){
   const box=mk('div','rep-side');box.appendChild(mk('div','rep-side-label',label));
-  if(text==null){box.appendChild(mk('div','rep-text none','대응 문장 없음'));return box;}
+  if(text==null){box.appendChild(mk('div','rep-text none','No matching sentence'));return box;}
   box.appendChild(mk('div','rep-text',text));
-  box.appendChild(mk('div','rep-loc',sid+' · '+(path||'')+' · XML '+line+'행'));
+  box.appendChild(mk('div','rep-loc',sid+' · '+(path||'')+' · XML line '+line));
   return box;
 }
 function renderReps(){
@@ -369,30 +369,30 @@ function renderReps(){
   });
   const ct=selRepType;
   const d=entry[ct];
-  if(!d){body.appendChild(mk('div','rep-empty','탐지된 내용이 없습니다.'));return;}
+  if(!d){body.appendChild(mk('div','rep-empty','No changes detected.'));return;}
   const s=d.summary;
   const fr=s.join_failures_by_reason||{};
   const fails=Object.keys(fr).map(function(k){return (FAIL_LABEL[k]||k)+' '+fr[k];}).join(', ');
-  document.getElementById('rep-sub').textContent=ct+' '+CT_LABEL[ct]+' · 변화 '+s.change_rows_of_type.toLocaleString()+'건 중 토픽 후보 '+s.candidates.toLocaleString()+'건'
-    +(s.join_failures?' (제외 '+s.join_failures+'건: '+fails+')':'')+' · 중복 제외 '+s.duplicates_excluded+' · 선택 '+s.selected;
-  if(!d.topics.length){body.appendChild(mk('div','rep-empty','탐지된 내용이 없습니다.'));return;}
+  document.getElementById('rep-sub').textContent=ct+' '+CT_LABEL[ct]+' · '+s.candidates.toLocaleString()+' topic candidates out of '+s.change_rows_of_type.toLocaleString()+' changes'
+    +(s.join_failures?' (excl. '+s.join_failures+': '+fails+')':'')+' · dedup '+s.duplicates_excluded+' · selected '+s.selected;
+  if(!d.topics.length){body.appendChild(mk('div','rep-empty','No changes detected.'));return;}
   const wrap=mk('div','rep-topics');
   d.topics.forEach(function(t){
     const box=mk('article','rep-topic');
     const head=mk('div','rep-topic-head');
     const name=mk('div','rep-topic-name');name.appendChild(mk('span','rep-topic-id','T'+t.topic_id));name.appendChild(document.createTextNode(t.label));
     head.appendChild(name);
-    head.appendChild(mk('div','rep-topic-stats','후보 '+t.candidate_count+' · 비중 '+Math.round(t.candidate_share*100)+'% · 선택 '+t.reps.length+'/'+t.quota));
+    head.appendChild(mk('div','rep-topic-stats','candidates '+t.candidate_count+' · share '+Math.round(t.candidate_share*100)+'% · selected '+t.reps.length+'/'+t.quota));
     box.appendChild(head);
     const kws=mk('div','rep-kws');t.keywords.forEach(function(w){kws.appendChild(mk('span','rep-kw',w));});box.appendChild(kws);
     t.reps.forEach(function(r){
       const pair=mk('div','rep-pair');
       const cols=mk('div','rep-cols');
-      cols.appendChild(repSide('전 · 20'+selP.slice(0,2),r.old_text,r.old_sentence_id,r.old_section_path,r.old_xml_line));
-      cols.appendChild(repSide('후 · 20'+selP.slice(3,5),r.new_text,r.new_sentence_id,r.new_section_path,r.new_xml_line));
+      cols.appendChild(repSide("Before · '"+selP.slice(0,2),r.old_text,r.old_sentence_id,r.old_section_path,r.old_xml_line));
+      cols.appendChild(repSide("After · '"+selP.slice(3,5),r.new_text,r.new_sentence_id,r.new_section_path,r.new_xml_line));
       pair.appendChild(cols);
       const meta=mk('div','rep-meta');
-      [['전체 순위','#'+r.global_selection_rank],['토픽 확률',fmt(r.topic_probability,3)],['유사도',fmt(r.similarity,3)],['CSV 행',r.source_change_row]].forEach(function(m){
+      [['Global rank','#'+r.global_selection_rank],['Topic prob.',fmt(r.topic_probability,3)],['Similarity',fmt(r.similarity,3)],['CSV row',r.source_change_row]].forEach(function(m){
         const sp=mk('span');sp.appendChild(mk('b',null,m[0]+' '));sp.appendChild(document.createTextNode(String(m[1])));meta.appendChild(sp);
       });
       pair.appendChild(meta);box.appendChild(pair);
