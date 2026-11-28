@@ -1,18 +1,18 @@
-"""같은 기업·연속 사업연도·같은 분석영역 안에서 문장 정렬 -> sentence_matches. 방법별(tfidf/embedding) 점수는 별도 행."""
+"""같은 기업·연속 사업연도·같은 분석영역 안에서 문장 정렬 -> sentence_matches."""
 from pathlib import Path
 
 import numpy as np
 import yaml
 
-from . import database, tfidf_model, embedding_model
+from . import database, tfidf_model
 
 ROOT = Path(__file__).resolve().parent.parent
-METHODS = {"tfidf": tfidf_model, "embedding": embedding_model}
+METHODS = {"tfidf": tfidf_model}
 
 
 def align_pair(con, company, y0, y1, method, cfg):
     old_all, new_all = database.sentences_of(con, company, y0), database.sentences_of(con, company, y1)
-    th, k = cfg["align"]["threshold"][method], cfg["align"]["top_k"]
+    th, k = cfg["align"]["threshold"], cfg["align"]["top_k"]
     rows = []
     for area in sorted({s["analysis_area"] for s in old_all} | {s["analysis_area"] for s in new_all}):
         old = [s for s in old_all if s["analysis_area"] == area]
@@ -38,7 +38,7 @@ def align_pair(con, company, y0, y1, method, cfg):
     return rows, [s["sentence_id"] for s in old_all + new_all]
 
 
-def run(methods=("tfidf", "embedding")):
+def run(methods=("tfidf",)):
     cfg = yaml.safe_load((ROOT / "config" / "settings.yaml").read_text(encoding="utf-8"))
     ys = cfg["mvp"]["years"]
     con = database.connect()
