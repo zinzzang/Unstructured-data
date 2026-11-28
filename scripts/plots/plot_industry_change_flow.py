@@ -18,7 +18,7 @@ from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 from matplotlib.ticker import FuncFormatter, MaxNLocator
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 INPUT_CSV = ROOT / 'data/results_v2/tfidf_masked_th0.3.csv'
 FIG_DIR = ROOT / 'figures'
 
