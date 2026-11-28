@@ -201,7 +201,8 @@ const CT_CHANGED=['NEW','EXPANDED','REMOVED','MODIFIED','REDUCED'];
 const CT_DESC={UNCERTAIN:'판정 불확실',NEW:'새로 추가',EXPANDED:'내용 증가',REMOVED:'삭제',MODIFIED:'수정',REDUCED:'내용 감소'};
 const CT_LABEL={NEW:'신규',EXPANDED:'확장',MODIFIED:'수정',REDUCED:'축소',REMOVED:'삭제',UNCERTAIN:'판정 보류'};
 
-function topicLabel(kws){
+function topicLabel(kws,ti,d){
+  if(d&&d.topic_labels&&d.topic_labels[ti])return d.topic_labels[ti];
   const c=kws.filter(cleanKw).slice(0,2);
   return c.length?c.join('/'):kws.slice(0,2).join('/');
 }
@@ -246,7 +247,7 @@ function renderInsights(d){
   const tc=topicColors();
   const ranked=d.topics.map(function(kws,ti){
     const total=CT_CHANGED.reduce(function(sum,ct){return sum+((d.sbar[ct]&&d.sbar[ct][ti])||0);},0);
-    return {ti:ti,name:topicLabel(kws),total:total};
+    return {ti:ti,name:topicLabel(kws,ti,d),total:total};
   }).sort(function(a,b){return b.total-a.total;}).slice(0,3);
   ranked.forEach(function(item){
     const row=document.createElement('div');row.className='topic-summary-row';
@@ -265,7 +266,7 @@ function renderTopicByCt(d){
     var total=0;var ctCounts={};
     CT_CHANGED.forEach(function(ct){var v=(d.sbar[ct]&&d.sbar[ct][ti])||0;ctCounts[ct]=v;total+=v;});
     if(!total)return;
-    var name=topicLabel(kws);
+    var name=topicLabel(kws,ti,d);
     var row=document.createElement('div');row.className='sbar-row';
     var lbl=document.createElement('div');lbl.className='sbar-label';lbl.textContent='T'+(ti+1)+': '+name;
     var track=document.createElement('div');track.className='sbar-track';
@@ -299,7 +300,7 @@ function renderTopicLegend(d){
   d.topics.forEach(function(kws,ti){
     var cleanKws=kws.filter(cleanKw).slice(0,5);if(!cleanKws.length)return;
     var cell=document.createElement('div');cell.className='tl-cell';
-    cell.innerHTML='<div class="tl-head"><div class="tl-dot" style="background:'+tc[ti]+'"></div><div class="tl-name">T'+(ti+1)+': '+topicLabel(kws)+'</div></div>';
+    cell.innerHTML='<div class="tl-head"><div class="tl-dot" style="background:'+tc[ti]+'"></div><div class="tl-name">T'+(ti+1)+': '+topicLabel(kws,ti,d)+'</div></div>';
     var krow=document.createElement('div');krow.className='tl-kws';
     cleanKws.forEach(function(w){var c=document.createElement('span');c.className='kw-chip';c.textContent=w;krow.appendChild(c);});
     cell.appendChild(krow);grid.appendChild(cell);
@@ -313,7 +314,7 @@ function renderCtByTopic(d){
   const card=document.getElementById('sbar-card');
   if(!d.lda_ok||!d.topics.length){card.style.display='none';return;}
   card.style.display='';
-  var names=d.topics.map(topicLabel);
+  var names=d.topics.map(function(kws,ti){return topicLabel(kws,ti,d);});
   CT_CHANGED.forEach(function(ct){
     var counts=d.sbar[ct];if(!counts)return;
     var total=counts.reduce(function(a,b){return a+b;},0);if(!total)return;
