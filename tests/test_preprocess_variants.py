@@ -1,4 +1,3 @@
-from src.preprocess_semantic import build_semantic_records
 from src.preprocess_structure import build_paragraph_records, split_sentences
 
 
@@ -27,10 +26,3 @@ def test_sentence_split_preserves_decimal_and_date():
         "2025. 3. 19. 기준입니다.",
     ]
 
-
-def test_semantic_records_add_comparison_fields_without_changing_source_text():
-    records = build_semantic_records(XML, "demo-2025")
-    assert records[0]["source_text"] == records[0]["normalized_text"]
-    assert records[0]["tokens"]
-    assert records[0]["comparison_text"]
-    assert records[0]["tokenization_method"] == "regex_no_lemmatization"

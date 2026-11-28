@@ -1,10 +1,10 @@
-"""산업별(반도체 / 바이오·제약 / 이차전지) 5가지 변화 유형 × 시기 흐름 — 소속 3개 기업 합계 (발표용 정적 그림).
+"""산업별(반도체 / 바이오·제약 / 이차전지) 5가지 변화 유형 × 시기 흐름 + 산업 수출액 (발표 Slide 10).
 
-사용: python scripts/plot_industry_change_flow.py
+사용: python scripts/plots/plot_industry_change_flow.py
 입력: data/results_v2/tfidf_masked_th0.3.csv (분류 로직·threshold 변경 없음)
       EXCLUDED_SECTIONS(표 성격 섹션)에 속한 문장 쌍은 제외
-출력: figures/fig0_{industry}.png / .svg (16:9, dpi 200), figures/industry_counts.csv
-제목(결론 문장)은 TITLES에 넣거나 plot_industry(title=...) 인자로 넘긴다. 해석 문장은 자동 생성하지 않는다.
+출력: figures/fig0_{industry}_ext.png / .svg (16:9, dpi 200), figures/industry_counts.csv
+제목(결론 문장)은 TITLES_EXT에 넣거나 plot_industry(title=...) 인자로 넘긴다. 해석 문장은 자동 생성하지 않는다.
 """
 import csv
 from collections import Counter, defaultdict
@@ -34,7 +34,6 @@ COMPANY_EN = {
 }
 # table-like sections excluded (bulk add/remove distorts flow); match against CSV old_path/new_path
 EXCLUDED_SECTIONS = ['원재료 및 생산설비', '주요계약 및 연구개발활동']
-TITLES = {'semiconductor': '', 'biopharma': '', 'battery': ''}   # 결론 문장 제목 (비우면 제목 없음)
 TITLES_EXT = {'semiconductor': '', 'biopharma': '', 'battery': ''}   # 외부 지표 겹친 그림(_ext)의 제목
 
 # 연도별 외부 지표 (오른쪽 보조축 꺾은선, figures/fig0_{industry}_ext.png). text는 점 위 표시 문자열.
@@ -85,7 +84,7 @@ def setup_style():
 
 def load_counts():
     """{industry: {period: Counter(type)}}, 제외 건수, 기업별 건수,
-    기업별 전체 유형 건수 {company: {period: Counter(7개 유형)}} (가중 그림의 분모용)"""
+    기업별 전체 유형 건수 {company: {period: Counter(7개 유형)}}"""
     company_ind = {c: k for k, (_, cs) in INDUSTRIES.items() for c in cs}
     counts = {k: defaultdict(Counter) for k in INDUSTRIES}
     by_company = defaultdict(lambda: defaultdict(Counter))
@@ -106,22 +105,6 @@ def load_counts():
             counts[ind][period][r['change_type']] += 1
             per_company[r['company']] += 1
     return counts, excluded, per_company, by_company
-
-
-def weighted_rates(key, by_company):
-    """기업 동일 가중: 기업마다 (시기·유형 건수 / 그 시기 전체 비교 문장 쌍) × 100 을 구해 산업 내 기업 평균.
-    반환 {period: {type: %}}"""
-    companies = INDUSTRIES[key][1]
-    out = {}
-    for p in PERIODS:
-        rates = defaultdict(list)
-        for c in companies:
-            tot = sum(by_company[c][p].values())
-            if tot:
-                for t in TYPES:
-                    rates[t].append(100 * by_company[c][p][t] / tot)
-        out[p] = {t: (sum(v) / len(v) if v else 0.0) for t, v in rates.items()}
-    return out
 
 
 def draw_flow(ax, s, net, label_fs=13, turn_fs=14, fmt=lambda v: f'{v}', faint=True):
@@ -203,9 +186,8 @@ def draw_external(ax, ext):
                   label=f'{ext["label"]} (right axis, {EXT_UNIT})')
 
 
-def plot_industry(key, by_period, title='', ext=None, weighted=False, overlay=None, name=None):
-    """weighted=True면 by_period는 weighted_rates()의 기업 평균 비율(%)이고, 파일명은 fig0w_ 로 저장한다.
-    overlay: ax를 받아 보조축에 그림을 그리고 (범례 핸들 목록, 각주 문자열)을 돌려주는 함수. name: 저장 파일명 지정."""
+def plot_industry(key, by_period, title='', ext=None):
+    """by_period: {period: Counter(type)} 건수. ext가 있으면 외부 지표를 보조축에 겹치고 파일명에 _ext를 붙인다."""
     label, companies = INDUSTRIES[key]
     s = {t: [by_period.get(p, {}).get(t, 0) for p in PERIODS] for t in TYPES}
     net = [sum(s[t][i] for t in POSITIVE) - sum(s[t][i] for t in NEGATIVE) for i in range(len(PERIODS))]
@@ -213,45 +195,30 @@ def plot_industry(key, by_period, title='', ext=None, weighted=False, overlay=No
 
     fig, ax = plt.subplots(figsize=FIGSIZE)
     top, legend_y = (0.77, 0.905) if title else (0.85, 0.985)
-    side = ext or overlay
+    side = bool(ext)
     fig.subplots_adjust(left=0.07, right=0.93 if side else 0.985, bottom=0.12 if side else 0.10, top=top)
-    sections = ''.join(f'「{x}」' for x in EXCLUDED_SECTIONS)
-    if weighted:
-        draw_flow(ax, s, net, fmt=lambda v: f'{v:.1f}', faint=False)
-        ax.yaxis.set_major_locator(MaxNLocator(5))
-        ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f'{abs(v):g}'))
-        ax.set_ylabel('Company-avg. rate (%)')
-        note = f'Equal-weighted avg. · % of sentence pairs per firm · table-type sections excl.'
-    else:
-        draw_flow(ax, s, net)
-        ax.set_ylabel('Count')
-        note = (f'{" · ".join(COMPANY_EN.get(c, c) for c in companies)} combined · '
-                f'{total:,} pairs (table-type sections excl.)')
+    draw_flow(ax, s, net)
+    ax.set_ylabel('Count')
+    note = (f'{" · ".join(COMPANY_EN.get(c, c) for c in companies)} combined · '
+            f'{total:,} pairs (table-type sections excl.)')
     head = ax.text(0, 1.035, label, transform=ax.transAxes, fontsize=17, fontweight='bold', va='bottom')
     head_w = head.get_window_extent(fig.canvas.get_renderer()).width * 72 / fig.dpi
     ax.annotate(note, xy=(0, 1.035), xycoords='axes fraction', xytext=(head_w + 14, 0),
                 textcoords='offset points', fontsize=12, color='#666666', va='bottom')
     handles = [Patch(color=COLORS[t], label=t) for t in TYPES]
-    handles.append(Line2D([], [], color=NET_COLOR, ls='--', lw=2, marker='o', ms=5,
-                          label='Net score (%p)' if weighted else 'Net score'))
-    if not weighted:
-        handles.append(Patch(facecolor='#777777', alpha=FAINT_ALPHA, label=f'Faint bar = ≤{FAINT_MAX} pairs total'))
+    handles.append(Line2D([], [], color=NET_COLOR, ls='--', lw=2, marker='o', ms=5, label='Net score'))
+    handles.append(Patch(facecolor='#777777', alpha=FAINT_ALPHA, label=f'Faint bar = ≤{FAINT_MAX} pairs total'))
     if ext:
         handles.insert(5, draw_external(ax, ext))
         if ext.get('foot'):
             fig.text(0.07, 0.015, ext['foot'], fontsize=11, color='#666666', va='bottom')
-    if overlay:
-        extra, foot = overlay(ax)
-        handles[5:5] = extra
-        if foot:
-            fig.text(0.07, 0.015, foot, fontsize=10.5, color='#666666', va='bottom')
     fig.legend(handles=handles, loc='upper center', ncol=len(handles), frameon=False,
                fontsize=11 if side else 12, bbox_to_anchor=(0.5, legend_y), handlelength=1.6,
                columnspacing=0.9 if side else 1.4)
     if title:
         fig.suptitle(title, x=0.03, y=0.965, ha='left', va='top', fontsize=TITLE_FS, fontweight='bold')
     FIG_DIR.mkdir(parents=True, exist_ok=True)
-    name = name or ('fig0w_' if weighted else 'fig0_') + key + ('_ext' if ext else '')
+    name = 'fig0_' + key + ('_ext' if ext else '')
     for fmt in ('png', 'svg'):
         fig.savefig(FIG_DIR / f'{name}.{fmt}', dpi=DPI)
     plt.close(fig)
@@ -260,19 +227,9 @@ def plot_industry(key, by_period, title='', ext=None, weighted=False, overlay=No
 
 def main():
     print(f'[폰트] {setup_style()}')
-    counts, excluded, per_company, by_company = load_counts()
-    rates = {key: weighted_rates(key, by_company) for key in INDUSTRIES}
-    with (FIG_DIR.mkdir(parents=True, exist_ok=True) or FIG_DIR / 'industry_rates_weighted.csv').open(
-            'w', encoding='utf-8-sig', newline='') as f:
-        w = csv.writer(f)
-        w.writerow(['industry', 'period', *(f'{t}_pct' for t in TYPES), 'forward_score_pctp'])
-        for key in INDUSTRIES:
-            for per in PERIODS:
-                d = rates[key][per]
-                w.writerow([key, per, *(round(d.get(t, 0), 2) for t in TYPES),
-                            round(sum(d.get(t, 0) for t in POSITIVE) - sum(d.get(t, 0) for t in NEGATIVE), 2)])
-    with (FIG_DIR.mkdir(parents=True, exist_ok=True) or FIG_DIR / 'industry_counts.csv').open(
-            'w', encoding='utf-8-sig', newline='') as f:
+    counts, excluded, per_company, _ = load_counts()
+    FIG_DIR.mkdir(parents=True, exist_ok=True)
+    with (FIG_DIR / 'industry_counts.csv').open('w', encoding='utf-8-sig', newline='') as f:
         w = csv.writer(f)
         w.writerow(['industry', 'period', *TYPES, 'forward_score'])
         for key in INDUSTRIES:
@@ -284,13 +241,7 @@ def main():
         total = sum(sum(c.values()) for c in counts[key].values())
         print(f'{label}: {total:,}건 (' + ' · '.join(f'{c} {per_company[c]:,}' for c in companies)
               + f') / 제외 {excluded[key]:,}건')
-        plot_industry(key, counts[key], title=TITLES.get(key) or '')
-        if key in EXTERNAL:
-            plot_industry(key, counts[key], title=TITLES_EXT.get(key) or '', ext=EXTERNAL[key])
-        # 기업 동일 가중 (비율 %) 버전
-        plot_industry(key, rates[key], title=TITLES.get(key) or '', weighted=True)
-        if key in EXTERNAL:
-            plot_industry(key, rates[key], title=TITLES_EXT.get(key) or '', ext=EXTERNAL[key], weighted=True)
+        plot_industry(key, counts[key], title=TITLES_EXT.get(key) or '', ext=EXTERNAL[key])
 
 
 if __name__ == '__main__':

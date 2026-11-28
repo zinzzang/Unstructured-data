@@ -1,35 +1,64 @@
-"""바이오·제약 기업별 그림: (위) 5가지 변화 유형 건수, (가운데) 연말 주가, (아래) 연도별 연결 영업이익.
+"""유한양행 사례 그림 (발표 Slide 12): (위) 5가지 변화 유형 건수, (가운데) 연말 주가, (아래) 연도별 연결 영업이익.
 
-사용: python scripts/plot_company_finance.py
+사용: python scripts/plots/plot_company_finance.py
 변화 유형: tfidf_masked_th0.3.csv, 표 성격 섹션 제외 (plot_industry_change_flow.load_counts 와 동일)
-주가: plot_biopharma_finance.fetch_stock (네이버 금융 수정주가, 12월 마지막 거래일 종가)
+주가: 네이버 금융 수정주가, 12월 마지막 거래일 종가. 내려받기 실패 시 figures/biopharma_stock_yearend.csv 사용
 영업이익: 연결 기준, 회사 잠정·확정 공시 보도 (OP_PROFIT, 억원)
 출력: figures/fig_company_{slug}.png/.svg (16:9, dpi 200)
 """
+import csv
+import re
+
 import matplotlib.pyplot as plt
+import requests
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 from matplotlib.ticker import FuncFormatter, MaxNLocator
 
-from plot_biopharma_finance import COMPANIES, YEARS, fetch_stock
 from plot_industry_change_flow import (COLORS, DPI, FAINT_ALPHA, FAINT_MAX, FIG_DIR, FIGSIZE, NEGATIVE, NET_COLOR,
                                        PERIODS, POSITIVE, TITLE_FS, TYPES, draw_flow, load_counts, setup_style)
 
-SLUG = {'삼성바이오로직스': 'samsung_biologics', '셀트리온': 'celltrion', '유한양행': 'yuhan'}
+YEARS = [2021, 2022, 2023, 2024, 2025]
+COMPANIES = [('유한양행', '000100', '#0f766e')]
+SLUG = {'유한양행': 'yuhan'}
 # 연결 영업이익 (억원)
 OP_PROFIT = {
-    '삼성바이오로직스': {2021: 5373, 2022: 9836, 2023: 11137, 2024: 13201, 2025: 20692},
-    '셀트리온': {2021: 7525, 2022: 6472, 2023: 6510, 2024: 4920, 2025: 11685},
     '유한양행': {2021: 486, 2022: 360, 2023: 568, 2024: 477, 2025: 1044},
 }
-OP_FLAGS = {('삼성바이오로직스', 2025): '‡'}
+OP_FLAGS = {}
 OP_NOTES = {
-    '삼성바이오로직스': '‡ 2025년: 2025.11 삼성에피스홀딩스 인적분할 후 기준일 가능성 — 앞 연도와 기준이 다를 수 있음. 2025년은 잠정 공시',
-    '셀트리온': '2023년 말 셀트리온헬스케어 합병 → 2024년부터 합병 법인 기준. 2021년은 발표 당시 수치(이후 재무표 7,442억). 2025년은 잠정 공시',
     '유한양행': '2024년은 2025.2 잠정 공시 수치(477억). 2025년 보도의 증가율(+90.2%)로 역산하면 2024년 약 549억(재작성 가능성). 2025년은 잠정 공시',
 }
-TITLES = {'삼성바이오로직스': '', '셀트리온': '', '유한양행': ''}   # 결론 문장 제목 (비우면 제목 없음)
+TITLES = {'유한양행': ''}   # 결론 문장 제목 (비우면 제목 없음)
 STOCK_COLOR = '#222222'
+STOCK_CSV = FIG_DIR / 'biopharma_stock_yearend.csv'
+
+
+def fetch_stock():
+    """{company: {year: 연말 종가}} — 네이버 금융 월봉(수정주가)의 12월 봉 종가."""
+    out = {}
+    try:
+        for name, code, _ in COMPANIES:
+            r = requests.get('https://fchart.stock.naver.com/sise.nhn', timeout=15,
+                             params=dict(symbol=code, timeframe='month', count=120, requestType=0),
+                             headers={'User-Agent': 'Mozilla/5.0'})
+            r.raise_for_status()
+            rows = re.findall(r'data="(\d{8})\|\d+\|\d+\|\d+\|(\d+)\|\d+"', r.content.decode('euc-kr'))
+            out[name] = {int(d[:4]): int(c) for d, c in rows if d[4:6] == '12' and int(d[:4]) in YEARS}
+        with STOCK_CSV.open('w', encoding='utf-8-sig', newline='') as f:
+            w = csv.writer(f)
+            w.writerow(['company', 'year', 'close_adjusted'])
+            for name, ys in out.items():
+                for y, v in sorted(ys.items()):
+                    w.writerow([name, y, v])
+        print('[주가] 네이버 금융에서 내려받음')
+    except Exception as e:   # 오프라인 등: 저장된 CSV 사용
+        print(f'[주가] 내려받기 실패({e}) → {STOCK_CSV.name} 사용')
+        out = {}
+        with STOCK_CSV.open(encoding='utf-8-sig') as f:
+            for r in csv.DictReader(f):
+                out.setdefault(r['company'], {})[int(r['year'])] = int(r['close_adjusted'])
+    return out
 
 
 def plot_company(name, color, period_counts, prices, title=''):

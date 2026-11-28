@@ -1,6 +1,6 @@
 import pytest
 from src.report_parser import extract_chapter2, ParseError
-from src.preprocess import split_sentences
+from src.preprocess_structure import split_sentences
 
 XML = """<DOCUMENT><BODY>
 <TITLE ATOC="N">목 차</TITLE>

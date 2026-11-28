@@ -1,0 +1,22 @@
+﻿figure,row,2021,2022,2023,2024,2025
+term_document_matrix (SK하이닉스),HBM (HBM),4,4,19,28,39
+term_document_matrix (SK하이닉스),AI (AI),7,11,32,72,111
+term_document_matrix (SK하이닉스),DDR5 (DDR5),7,10,20,24,38
+term_document_matrix (SK하이닉스),NAND (NAND),41,41,32,31,29
+term_document_matrix (SK하이닉스),DRAM (D램),0,8,18,18,11
+term_document_matrix (SK하이닉스),Memory (메모리),65,67,84,91,95
+term_document_matrix (SK하이닉스),Customer (고객),21,22,25,28,35
+term_document_matrix (SK하이닉스),Product (제품),105,117,133,146,167
+term_document_matrix (SK하이닉스),Server (서버),4,9,19,24,11
+term_document_matrix (SK하이닉스),Production (생산),48,50,45,39,38
+term_document_matrix (SK하이닉스),Investment (투자),29,30,25,21,23
+term_document_matrix (SK하이닉스),Sustainability (친환경),3,3,3,6,6
+char_counts,셀트리온,93741,93900,99017,69778,66707
+char_counts,한미반도체,14630,16110,16084,16523,17816
+char_counts,LG에너지솔루션,28002,33648,35432,39044,43955
+char_counts,SK이노베이션,120881,127322,139039,177922,171421
+char_counts,SK하이닉스,38437,40470,43654,43549,46219
+char_counts,삼성바이오로직스,34957,50206,55283,60972,38326
+char_counts,삼성전자,46230,42002,44007,43571,43870
+char_counts,삼성SDI,31162,31865,28392,29435,31676
+char_counts,유한양행,73693,72705,73961,85268,92965
