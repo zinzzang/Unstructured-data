@@ -29,19 +29,19 @@
   },
   "topics": [
     {
-      "topic_id": 3,
-      "label": "의약품 시장·매출 실적",
+      "topic_id": 1,
+      "label": "환경경영·공급계약",
       "keywords": [
-        "연구",
         "의약품",
         "개발",
         "영업",
         "순이익",
-        "이익",
+        "비용",
         "매출",
-        "누계",
-        "치료제",
-        "계약"
+        "이익",
+        "연구",
+        "약품",
+        "누계"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -49,7 +49,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.993277,
+          "topic_probability": 0.993043,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

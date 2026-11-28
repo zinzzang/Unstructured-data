@@ -28,19 +28,19 @@
   },
   "topics": [
     {
-      "topic_id": 2,
-      "label": "바이오시밀러 해외 허가·출시",
+      "topic_id": 5,
+      "label": "CDMO 생산·신규 사업",
       "keywords": [
-        "판매",
-        "미국",
-        "바이오시밀러",
         "허가",
+        "바이오시밀러",
+        "미국",
         "유럽",
-        "질환",
-        "국가",
         "출시",
         "승인",
-        "치료제"
+        "질환",
+        "판매",
+        "임상",
+        "한국"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -48,7 +48,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.967998,
+          "topic_probability": 0.967999,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,
