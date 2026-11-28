@@ -1,5 +1,0 @@
-선택된 토픽 수: 5 (NPMI·다양성·시드 안정성 종합 점수 최대, 시드 중 대표(medoid) 모델, 수동 지정)
-학습 문서: 변화 문장만 문단 단위로 묶고 최대 8문장씩 분할 → 194개 (회사 균형 학습 샘플 158개, 상한 90)
-회사별 문서 수: SK하이닉스 125, 삼성전자 39, 한미반도체 30
-회사 특이 단어 제거: 76개 (removed_company_specific_terms.csv)
-제외된 변화 문장: not in paragraph source 744, footnote/short/reference 39, risk/derivatives section 31, out of industry scope 251, fewer than 3 tokens 0
