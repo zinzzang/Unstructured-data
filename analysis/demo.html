@@ -344,7 +344,7 @@ function renderCtByTopic(d){
 
 const REP_TYPES=['NEW','EXPANDED','MODIFIED','REDUCED','REMOVED'];
 const FAIL_LABEL={table_row:'표 행',lda_filtered:'LDA 필터',not_in_jsonl:'원문 없음'};
-let selRepType='auto';
+let selRepType='NEW';
 function mk(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
 function fmt(x,d){return (x==null||x==='')?'-':Number(x).toFixed(d);}
 function repSide(label,text,sid,path,line){
@@ -361,19 +361,20 @@ function renderReps(){
   types.innerHTML='';body.innerHTML='';
   if(!entry){card.hidden=true;return;}
   card.hidden=false;
-  const auto=entry.auto;
-  const opts=[{v:'auto',label:'자동 · '+auto}].concat(REP_TYPES.map(function(ct){return {v:ct,label:ct+' '+entry[ct].summary.candidates};}));
+  const opts=REP_TYPES.map(function(ct){var n=entry[ct]?entry[ct].summary.candidates:0;return {v:ct,label:ct+' '+n};});
   opts.forEach(function(o){
     const b=mk('button','rep-type',o.label);b.type='button';b.setAttribute('aria-pressed',String(selRepType===o.v));
     b.addEventListener('click',function(){selRepType=o.v;renderReps();});types.appendChild(b);
   });
-  const ct=selRepType==='auto'?auto:selRepType;
-  const d=entry[ct],s=d.summary;
+  const ct=selRepType;
+  const d=entry[ct];
+  if(!d){body.appendChild(mk('div','rep-empty','탐지된 내용이 없습니다.'));return;}
+  const s=d.summary;
   const fr=s.join_failures_by_reason||{};
   const fails=Object.keys(fr).map(function(k){return (FAIL_LABEL[k]||k)+' '+fr[k];}).join(', ');
   document.getElementById('rep-sub').textContent=ct+' '+CT_LABEL[ct]+' · 변화 '+s.change_rows_of_type.toLocaleString()+'건 중 토픽 후보 '+s.candidates.toLocaleString()+'건'
     +(s.join_failures?' (제외 '+s.join_failures+'건: '+fails+')':'')+' · 중복 제외 '+s.duplicates_excluded+' · 선택 '+s.selected;
-  if(!d.topics.length){body.appendChild(mk('div','rep-empty','이 유형에는 산업 LDA 토픽이 붙은 후보가 없습니다. 산업 LDA는 문단 문장만 다루므로 표 행 변화는 대상이 아닙니다.'));return;}
+  if(!d.topics.length){body.appendChild(mk('div','rep-empty','탐지된 내용이 없습니다.'));return;}
   const wrap=mk('div','rep-topics');
   d.topics.forEach(function(t){
     const box=mk('article','rep-topic');
