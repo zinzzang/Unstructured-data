@@ -3,7 +3,7 @@
 > OpenDART 국내 기업 사업보고서를 TF-IDF로 연도별 변화 문장을 탐지하고, LDA 토픽 모델링으로 변화 주제를 분류하는 프로젝트.
 
 **→ 상세 설명: [PROJECT.md](PROJECT.md)**  
-**→ 인터랙티브 데모: [analysis/demo.html](analysis/demo.html)** (브라우저에서 바로 열기)
+**→ 인터랙티브 데모: [analysis/demo.html](analysis/demo.html)** (브라우저에서 바로 열기) 배포는 https://rbanbla.github.io/
 
 ---
 
