@@ -41,9 +41,9 @@ STOP = set('''
 적용 제공 진행 운영 수행 당기 전기 금액 해당 전년 올해 지난해 다음 전체 부분 상황 정도 시기 수준 현재 미래 측면
 내용 위한 대응 확보 추진 강화 개선 위하여 최근 중심 가운데 연도 이후 또한 당시 내외 국내 국외 각종 이번 과거 처음
 시간 당사자 우리 모든 각각 상기 아래 관계 전반 발표 대한 대하여 이후 이전 기간 시점 예정 계획 노력 다양 지속적
-시장 수요 제품 기술 산업 글로벌 세계 주요 대비 담당 출처 자료 참조 가트너 gartner idc omdia trendforce
+시장 수요 제품 기술 산업 세계 주요 대비 담당 출처 자료 참조 가트너 gartner idc omdia trendforce
 억원 백만원 천원 달러 비율 규모 실적 사항 현황 부문 사업부 사업부문 연결 종속 자회사 법인 지배
-공시 작성 기준일 서류 포함 이상 이하 가능 변화 활용 기반 바탕 보유 특성 방법 기대 사용 필요 일부 다수 해외 신규
+공시 작성 기준일 서류 포함 이상 이하 가능 변화 활용 기반 바탕 보유 특성 방법 기대 사용 필요 일부 다수 신규
 레미케이드 아바스틴 허셉틴 휴미라 엔브렐 루센티스 솔리리스 악템라 스텔라라 프롤리아 아일리아 졸레어 리툭산 키트루다
 램시마 트룩시마 허쥬마 유플라이마 베그젤마 짐펜트라 스테키마 렉라자 옴리클로 앱토즈마 에피스클리 오퓨비즈 하드리마
 '''.split())
@@ -66,7 +66,7 @@ STOP = STOP | STOP_EXTRA
 
 COMPANY_NAMES = set('''
 삼성 삼성전자 하이닉스 sk 한미 한미반도체 엘지 lg 에너지솔루션 sdi 이노베이션 셀트리온 유한 유한양행 바이오로직스
-에피스 하만 harman 갤럭시 galaxy 에스케이 이노 sk온 skon 온 엔무브 지오센트릭 에너지 lges samsung hynix celltrion
+에피스 하만 harman 갤럭시 galaxy 에스케이 이노 sk온 skon 온 엔무브 지오센트릭 에너지 lges samsung hynix celltrion 솔루션
 '''.split()) - {'에너지'}
 STOP |= COMPANY_NAMES
 UNIT_CODES = set('gb tb mb gbps tc ct dx ds co ltd inc corp mm nm um kg km kwh mwh gwh twh mw gw kw ppm usd krw eur'.split())
