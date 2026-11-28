@@ -29,19 +29,19 @@
   },
   "topics": [
     {
-      "topic_id": 4,
-      "label": "연구개발·특허·경영실적",
+      "topic_id": 6,
+      "label": "전기차 보급·설비 투자",
       "keywords": [
         "전지",
+        "소재",
         "개발",
+        "ess",
+        "반도체",
+        "it",
+        "패널",
         "연구",
-        "영업",
-        "솔루션",
-        "에너지",
-        "센터",
-        "이익",
         "배터리",
-        "매출액"
+        "요구"
       ],
       "candidate_count": 2,
       "candidate_share": 1.0,
@@ -49,7 +49,7 @@
       "quota": 2,
       "representatives": [
         {
-          "topic_probability": 0.76798,
+          "topic_probability": 0.992491,
           "topic_candidate_count": 2,
           "topic_candidate_share": 1.0,
           "topic_quota": 2,
@@ -70,7 +70,7 @@
           "lda_artifact_version": "battery-k6-3b8e15dea7df"
         },
         {
-          "topic_probability": 0.76798,
+          "topic_probability": 0.992491,
           "topic_candidate_count": 2,
           "topic_candidate_share": 1.0,
           "topic_quota": 2,

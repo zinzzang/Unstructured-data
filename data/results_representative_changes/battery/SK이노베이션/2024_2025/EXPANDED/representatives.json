@@ -29,19 +29,19 @@
   },
   "topics": [
     {
-      "topic_id": 5,
-      "label": "ESS·BaaS 신사업",
+      "topic_id": 1,
+      "label": "소형전지·전자재료",
       "keywords": [
         "배터리",
-        "ess",
-        "개발",
-        "에너지",
         "환경",
-        "생산",
-        "공급",
-        "battery",
-        "baas",
-        "차량"
+        "자동차",
+        "에너지",
+        "개발",
+        "판매",
+        "관리",
+        "시스템",
+        "글로벌",
+        "핵심"
       ],
       "candidate_count": 1,
       "candidate_share": 0.5,
@@ -49,7 +49,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.530423,
+          "topic_probability": 0.969875,
           "topic_candidate_count": 1,
           "topic_candidate_share": 0.5,
           "topic_quota": 1,
@@ -72,19 +72,19 @@
       ]
     },
     {
-      "topic_id": 6,
-      "label": "전기차 보급·설비 투자",
+      "topic_id": 3,
+      "label": "수주·공급계약·판매",
       "keywords": [
-        "투자",
+        "에너지",
+        "센터",
+        "자동차",
+        "중국",
+        "배터리",
+        "글로벌",
+        "공급",
         "생산",
-        "분리",
-        "시설",
-        "향후",
-        "경쟁",
-        "보급",
-        "충전",
-        "설치",
-        "가스"
+        "개발",
+        "환경"
       ],
       "candidate_count": 1,
       "candidate_share": 0.5,
@@ -92,7 +92,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.924238,
+          "topic_probability": 0.924231,
           "topic_candidate_count": 1,
           "topic_candidate_share": 0.5,
           "topic_quota": 1,

@@ -29,19 +29,19 @@
   },
   "topics": [
     {
-      "topic_id": 5,
-      "label": "반도체 장비·웨이퍼 조달",
+      "topic_id": 3,
+      "label": "AI·자율주행발 반도체 성장",
       "keywords": [
-        "반도체",
-        "장비",
-        "개발",
-        "검사",
-        "공급",
         "가격",
-        "생산",
-        "웨이퍼",
-        "hbm",
-        "공정"
+        "인증",
+        "nand",
+        "탄소",
+        "상승",
+        "dram",
+        "유지",
+        "경영",
+        "메모리",
+        "하락"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -49,7 +49,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.970369,
+          "topic_probability": 0.967997,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

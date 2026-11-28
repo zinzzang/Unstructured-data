@@ -29,19 +29,19 @@
   },
   "topics": [
     {
-      "topic_id": 6,
-      "label": "전기차 보급·설비 투자",
+      "topic_id": 3,
+      "label": "수주·공급계약·판매",
       "keywords": [
-        "투자",
+        "에너지",
+        "센터",
+        "자동차",
+        "중국",
+        "배터리",
+        "글로벌",
+        "공급",
         "생산",
-        "분리",
-        "시설",
-        "향후",
-        "경쟁",
-        "보급",
-        "충전",
-        "설치",
-        "가스"
+        "개발",
+        "환경"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -49,7 +49,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.924227,
+          "topic_probability": 0.924219,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

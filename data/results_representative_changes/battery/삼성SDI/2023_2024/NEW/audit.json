@@ -17,23 +17,23 @@
     },
     "paragraphs_jsonl": {
       "path": "data/processed/preprocessing_v2/battery/paragraphs.jsonl",
-      "sha256": "7541a03d076676c4aba0b04b0fbada913bde5a30b710e7fa90851054893a42f9"
+      "sha256": "7e178991605c02e82089d45d2a52210a98493d6197a37c1d0b37260d2d8bbd81"
     },
     "topic_probabilities_new": {
       "path": "data/results_industry_lda_corrected/battery/sentence_topic_probabilities.csv",
-      "sha256": "ece619678f1b12330393c9ad3faed97ae40289dca9f2e9327f6186d2d999e500"
+      "sha256": "a7538b61521a71228484a41386511c6f57ea5e9184dca03c1fe2063c13683847"
     },
     "topic_probabilities_old": {
       "path": "data/results_industry_lda_corrected/battery/sentence_topic_probabilities_old.csv",
-      "sha256": "79b38a600933ced4ad89d26b29f50982c0471a8653c202ec1672feb74fd1d843"
+      "sha256": "3d7fc393d04a9a9da2d214d22be2ed3c697008467518b591cad876c2e6f29596"
     },
     "topics": {
       "path": "data/results_industry_lda_corrected/battery/topics.txt",
-      "sha256": "1005e667d7e453b5f878a35dbebaa5c17564ffb2a0b04c3772a32fb9dc56746d"
+      "sha256": "23fb8b0c5f4e434c7382927464746bf219f783743423ad8710b1bdaa77d9ff42"
     },
     "lda_artifact": {
       "path": "data/results_industry_lda_corrected/battery/lda_artifacts.joblib",
-      "sha256": "34efb0d9c2d96532470dbbae2dc9323723af7a72bc71a6fe78bfe1fe0a752e4c"
+      "sha256": "a6befe9cd400092fc7448c7473eb0a2c3ff669584ae64af4195f6d96b1a58bba"
     },
     "topic_labels": {
       "path": "data/results_industry_lda_corrected/battery/topic_labels.json",
@@ -52,7 +52,7 @@
       "SK이노베이션"
     ],
     "n_topics": 6,
-    "model_seed": 0,
+    "model_seed": 4,
     "seeds": [
       0,
       1,
@@ -75,15 +75,15 @@
     "max_paragraph_sentences": 100,
     "balance": 3.0,
     "specific_share": 0.9,
-    "input_change_csv": "data\\results_v2\\tfidf_masked_th0.6.csv",
+    "input_change_csv": "data/results_v2/tfidf_masked_th0.6.csv",
     "input_change_csv_sha256": "3b8e15dea7dfdb813d0d68d401e5991fea5c6ec98a80daa480f673a4ef77ab5d",
-    "input_paragraphs_jsonl": "data\\processed\\preprocessing_v2\\battery\\paragraphs.jsonl",
-    "input_paragraphs_jsonl_sha256": "7541a03d076676c4aba0b04b0fbada913bde5a30b710e7fa90851054893a42f9",
+    "input_paragraphs_jsonl": "data/processed/preprocessing_v2/battery/paragraphs.jsonl",
+    "input_paragraphs_jsonl_sha256": "7e178991605c02e82089d45d2a52210a98493d6197a37c1d0b37260d2d8bbd81",
     "versions": {
-      "sklearn": "1.5.1",
+      "sklearn": "1.9.1",
       "kiwipiepy": "0.25.1",
-      "numpy": "1.26.4",
-      "joblib": "1.4.2"
+      "numpy": "2.5.4",
+      "joblib": "1.6.0"
     },
     "removed_dropped": {
       "not in paragraph source": 435,
@@ -125,11 +125,11 @@
   "topic_allocation": [
     {
       "topic_id": 1,
-      "candidates": 7,
-      "after_dedup": 7,
-      "ideal": 5.8333,
-      "quota": 6,
-      "selected": 6
+      "candidates": 0,
+      "after_dedup": 0,
+      "ideal": 0.0,
+      "quota": 0,
+      "selected": 0
     },
     {
       "topic_id": 2,
@@ -141,19 +141,19 @@
     },
     {
       "topic_id": 3,
-      "candidates": 0,
-      "after_dedup": 0,
-      "ideal": 0.0,
-      "quota": 0,
-      "selected": 0
+      "candidates": 1,
+      "after_dedup": 1,
+      "ideal": 0.8333,
+      "quota": 1,
+      "selected": 1
     },
     {
       "topic_id": 4,
-      "candidates": 5,
-      "after_dedup": 5,
-      "ideal": 4.1667,
-      "quota": 4,
-      "selected": 4
+      "candidates": 3,
+      "after_dedup": 3,
+      "ideal": 2.5,
+      "quota": 2,
+      "selected": 2
     },
     {
       "topic_id": 5,
@@ -165,11 +165,11 @@
     },
     {
       "topic_id": 6,
-      "candidates": 0,
-      "after_dedup": 0,
-      "ideal": 0.0,
-      "quota": 0,
-      "selected": 0
+      "candidates": 8,
+      "after_dedup": 8,
+      "ideal": 6.6667,
+      "quota": 7,
+      "selected": 7
     }
   ],
   "join_failures": [
@@ -397,13 +397,13 @@
     "duplicate_text": "exact=원문 공백 정규화 일치, near=숫자 마스킹 텍스트의 TF-IDF char 코사인"
   },
   "package_versions": {
-    "numpy": "1.26.4",
-    "scikit-learn": "1.5.1",
-    "joblib": "1.4.2",
+    "numpy": "2.5.4",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0",
     "kiwipiepy": "0.25.1",
     "sentence-transformers": "6.2.0",
-    "torch": "2.15.0+cu134",
-    "transformers": "5.24.1",
+    "torch": "2.15.0",
+    "transformers": "5.22.1",
     "pyyaml": "6.0.3"
   }
 }

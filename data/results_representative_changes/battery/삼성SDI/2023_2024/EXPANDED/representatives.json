@@ -28,19 +28,19 @@
   },
   "topics": [
     {
-      "topic_id": 2,
-      "label": "미·중 통상·IRA 규제",
+      "topic_id": 5,
+      "label": "ESS·BaaS 신사업",
       "keywords": [
         "중국",
-        "미국",
-        "변동",
+        "ev",
         "배터리",
-        "업체",
-        "경기",
-        "차별",
         "감축",
-        "포트폴리오",
-        "기능"
+        "에너지",
+        "미국",
+        "환경",
+        "기후",
+        "우려",
+        "탄소"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -48,7 +48,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.891303,
+          "topic_probability": 0.891301,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

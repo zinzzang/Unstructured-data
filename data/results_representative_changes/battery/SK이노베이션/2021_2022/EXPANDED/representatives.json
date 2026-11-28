@@ -29,19 +29,19 @@
   },
   "topics": [
     {
-      "topic_id": 6,
-      "label": "전기차 보급·설비 투자",
+      "topic_id": 4,
+      "label": "연구개발·특허·경영실적",
       "keywords": [
+        "배터리",
+        "영업",
         "투자",
+        "이익",
+        "판매",
+        "매출",
+        "에너지",
+        "매출액",
         "생산",
-        "분리",
-        "시설",
-        "향후",
-        "경쟁",
-        "보급",
-        "충전",
-        "설치",
-        "가스"
+        "전자"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -49,7 +49,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.760469,
+          "topic_probability": 0.750293,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

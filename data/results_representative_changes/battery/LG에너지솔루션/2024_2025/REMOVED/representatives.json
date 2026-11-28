@@ -28,19 +28,62 @@
   },
   "topics": [
     {
-      "topic_id": 3,
-      "label": "수주·공급계약·판매",
+      "topic_id": 4,
+      "label": "연구개발·특허·경영실적",
       "keywords": [
-        "자동차",
-        "계약",
-        "판매",
-        "공급",
-        "고객",
-        "매출",
-        "규제",
-        "생산",
         "배터리",
-        "정책"
+        "영업",
+        "투자",
+        "이익",
+        "판매",
+        "매출",
+        "에너지",
+        "매출액",
+        "생산",
+        "전자"
+      ],
+      "candidate_count": 1,
+      "candidate_share": 0.25,
+      "deduplicated_count": 1,
+      "quota": 1,
+      "representatives": [
+        {
+          "topic_probability": 0.861106,
+          "topic_candidate_count": 1,
+          "topic_candidate_share": 0.25,
+          "topic_quota": 1,
+          "centroid_cosine_similarity": 1.0,
+          "rank_in_topic": 1,
+          "global_selection_rank": 2,
+          "old_sentence_id": "20250312000405-P0002-S01",
+          "old_text": "당사는 연결 기준으로 2024년 연간 약 25조 6,196억원의 매출과 약 5,754억원의 영업이익을 기록하였습니다.",
+          "old_section_path": "II. 사업의 내용 > 1. 사업의 개요",
+          "old_xml_line": 2116,
+          "new_sentence_id": null,
+          "new_text": null,
+          "new_section_path": null,
+          "new_xml_line": null,
+          "analysis_area": "BUSINESS",
+          "source_change_row": 18016,
+          "embedding_model": "BAAI/bge-m3",
+          "lda_artifact_version": "battery-k6-3b8e15dea7df"
+        }
+      ]
+    },
+    {
+      "topic_id": 5,
+      "label": "ESS·BaaS 신사업",
+      "keywords": [
+        "중국",
+        "ev",
+        "배터리",
+        "감축",
+        "에너지",
+        "미국",
+        "환경",
+        "기후",
+        "우려",
+        "탄소"
       ],
       "candidate_count": 3,
       "candidate_share": 0.75,
@@ -48,7 +91,7 @@
       "quota": 3,
       "representatives": [
         {
-          "topic_probability": 0.52456,
+          "topic_probability": 0.859491,
           "topic_candidate_count": 3,
           "topic_candidate_share": 0.75,
           "topic_quota": 3,
@@ -69,7 +112,7 @@
           "lda_artifact_version": "battery-k6-3b8e15dea7df"
         },
         {
-          "topic_probability": 0.52456,
+          "topic_probability": 0.859491,
           "topic_candidate_count": 3,
           "topic_candidate_share": 0.75,
           "topic_quota": 3,
@@ -90,7 +133,7 @@
           "lda_artifact_version": "battery-k6-3b8e15dea7df"
         },
         {
-          "topic_probability": 0.52456,
+          "topic_probability": 0.859491,
           "topic_candidate_count": 3,
           "topic_candidate_share": 0.75,
           "topic_quota": 3,
@@ -107,49 +150,6 @@
           "new_xml_line": null,
           "analysis_area": "OTHER",
           "source_change_row": 18050,
-          "embedding_model": "BAAI/bge-m3",
-          "lda_artifact_version": "battery-k6-3b8e15dea7df"
-        }
-      ]
-    },
-    {
-      "topic_id": 4,
-      "label": "연구개발·특허·경영실적",
-      "keywords": [
-        "전지",
-        "개발",
-        "연구",
-        "영업",
-        "솔루션",
-        "에너지",
-        "센터",
-        "이익",
-        "배터리",
-        "매출액"
-      ],
-      "candidate_count": 1,
-      "candidate_share": 0.25,
-      "deduplicated_count": 1,
-      "quota": 1,
-      "representatives": [
-        {
-          "topic_probability": 0.861098,
-          "topic_candidate_count": 1,
-          "topic_candidate_share": 0.25,
-          "topic_quota": 1,
-          "centroid_cosine_similarity": 1.0,
-          "rank_in_topic": 1,
-          "global_selection_rank": 2,
-          "old_sentence_id": "20250312000405-P0002-S01",
-          "old_text": "당사는 연결 기준으로 2024년 연간 약 25조 6,196억원의 매출과 약 5,754억원의 영업이익을 기록하였습니다.",
-          "old_section_path": "II. 사업의 내용 > 1. 사업의 개요",
-          "old_xml_line": 2116,
-          "new_sentence_id": null,
-          "new_text": null,
-          "new_section_path": null,
-          "new_xml_line": null,
-          "analysis_area": "BUSINESS",
-          "source_change_row": 18016,
           "embedding_model": "BAAI/bge-m3",
           "lda_artifact_version": "battery-k6-3b8e15dea7df"
         }

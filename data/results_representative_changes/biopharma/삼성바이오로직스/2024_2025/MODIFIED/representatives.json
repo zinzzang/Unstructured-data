@@ -28,19 +28,19 @@
   },
   "topics": [
     {
-      "topic_id": 1,
-      "label": "환경경영·공급계약",
+      "topic_id": 2,
+      "label": "바이오시밀러 해외 허가·출시",
       "keywords": [
-        "계약",
-        "환경",
-        "공급",
-        "체결",
         "판매",
+        "임상",
+        "개발",
         "관리",
-        "특허",
-        "전략",
+        "계약",
         "의약품",
-        "상표"
+        "바이오",
+        "케미컬",
+        "공급",
+        "공정"
       ],
       "candidate_count": 1,
       "candidate_share": 0.5,
@@ -48,7 +48,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.540986,
+          "topic_probability": 0.469723,
           "topic_candidate_count": 1,
           "topic_candidate_share": 0.5,
           "topic_quota": 1,
@@ -71,19 +71,19 @@
       ]
     },
     {
-      "topic_id": 5,
-      "label": "CDMO 생산·신규 사업",
+      "topic_id": 3,
+      "label": "의약품 시장·매출 실적",
       "keywords": [
+        "개발",
         "생산",
-        "계약",
-        "공장",
         "바이오",
-        "서비스",
-        "체결",
-        "변동",
+        "계약",
+        "연구",
         "의약품",
-        "매출",
-        "cdmo"
+        "공장",
+        "체결",
+        "서비스",
+        "항체"
       ],
       "candidate_count": 1,
       "candidate_share": 0.5,
@@ -91,7 +91,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.505938,
+          "topic_probability": 0.714454,
           "topic_candidate_count": 1,
           "topic_candidate_share": 0.5,
           "topic_quota": 1,

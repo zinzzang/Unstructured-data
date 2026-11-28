@@ -28,19 +28,19 @@
   },
   "topics": [
     {
-      "topic_id": 4,
-      "label": "바이오의약품 연구개발·임상",
+      "topic_id": 3,
+      "label": "의약품 시장·매출 실적",
       "keywords": [
         "개발",
-        "의약품",
+        "생산",
         "바이오",
-        "임상",
+        "계약",
         "연구",
-        "관리",
-        "항체",
-        "공정",
-        "플랫폼",
-        "신약"
+        "의약품",
+        "공장",
+        "체결",
+        "서비스",
+        "항체"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -48,7 +48,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.532259,
+          "topic_probability": 0.562888,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

@@ -48,6 +48,26 @@ STOP = set('''
 램시마 트룩시마 허쥬마 유플라이마 베그젤마 짐펜트라 스테키마 렉라자 옴리클로 앱토즈마 에피스클리 오퓨비즈 하드리마
 '''.split())
 
+STOP_LDA = set('''
+구체 구체화 명칭 항목 내역 세목 구분 분류 성격
+반영 경과 효과 중요 중요성 고도 제고 보완
+기존 자체 별개 소정 소위 물론 실제 실질
+최초 최종 시작 종료 개시 완료 해당사항
+향후 연간 월간 상반기 하반기 분기 반기
+중장기 단기 장기 일자 날짜 일수 누적
+당기말 전기말 기말 기초 연초 연말
+잔여 증감 가액 투입액 시설가액
+기재사항 세부사항 참고사항
+조사 조사기관 기관 업체 사업자
+수취 적기 달성 극복 최소 최대
+총괄 구성 업무 경력 명예
+학사 석사 박사 팀장 본부
+솔루션 application level high
+de the and of for
+'''.split())
+
+STOP |= STOP_LDA
+
 STOP_EXTRA = set('''
 등 및 또는 등등 기타 기타사항 참고 비고 별도
 동일 상이 차이 여부 관련하여 관련된 관한
@@ -58,18 +78,46 @@ STOP_EXTRA = set('''
 목적 목표 방침 방향 관점
 상세 세부 별첨 첨부 기재 명시
 단위 합계 총계 총액
-첫째 둘째 셋째 채용 인재 인력 직원 임직원
+첫째 둘째 셋째 직원 임직원
 '''.split())
 
 STOP = STOP | STOP_EXTRA
 
 
-COMPANY_NAMES = set('''
-삼성 삼성전자 하이닉스 sk 한미 한미반도체 엘지 lg 에너지솔루션 sdi 이노베이션 셀트리온 유한 유한양행 바이오로직스
-에피스 하만 harman 갤럭시 galaxy 에스케이 이노 sk온 skon 온 엔무브 지오센트릭 에너지 lges samsung hynix celltrion 솔루션
-'''.split()) - {'에너지'}
-STOP |= COMPANY_NAMES
-UNIT_CODES = set('gb tb mb gbps tc ct dx ds co ltd inc corp mm nm um kg km kwh mwh gwh twh mw gw kw ppm usd krw eur'.split())
+COMPANY_NAMES_EXTRA = set('''
+lg에너지솔루션 엘지에너지솔루션
+sk이노베이션 에스케이이노베이션
+sk하이닉스 에스케이하이닉스
+삼성sdi 삼성에스디아이
+삼성바이오로직스 삼성바이오에피스
+삼성디스플레이 sdc
+루브리컨츠 enmove
+sk에너지 sk루브리컨츠 sk엔무브
+nextstar nextstarenergy
+삼성전자 셀트리온 유한양행 한미반도체
+'''.split())
+
+STOP |= COMPANY_NAMES_EXTRA
+UNIT_CODES = set('gb tb mb gbps co ltd inc corp mm nm um kg km kwh mwh gwh twh mw gw kw ppm usd krw eur'.split())
+
+UNIT_CODES_EXTRA = set('''
+tj gj mj kj ton tons
+g mg ml l
+hz khz mhz ghz
+bps mbps tbps
+jpy cny rmb hkd
+pct
+'''.split())
+
+LEGAL_CODES = set('''
+s.a s.l pte limited corporation
+company incorporated
+'''.split())
+
+STOP |= UNIT_CODES | UNIT_CODES_EXTRA | LEGAL_CODES
+
+# 대소문자 통일
+STOP = {word.lower().strip() for word in STOP}
 
 kiwi = Kiwi()
 tag_counts = defaultdict(Counter)   # used to restrict company-specific removal to proper nouns / Latin tokens

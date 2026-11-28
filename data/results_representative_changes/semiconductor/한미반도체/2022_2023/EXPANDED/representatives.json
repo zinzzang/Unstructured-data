@@ -28,19 +28,19 @@
   },
   "topics": [
     {
-      "topic_id": 3,
-      "label": "AI·자율주행발 반도체 성장",
+      "topic_id": 1,
+      "label": "메모리 시황·파운드리 공정",
       "keywords": [
         "반도체",
-        "투자",
-        "메모리",
-        "자동차",
-        "생산",
-        "업체",
         "장비",
-        "주행",
-        "자율",
-        "hbm"
+        "생산",
+        "hbm",
+        "투자",
+        "검사",
+        "공정",
+        "공급",
+        "적층",
+        "메모리"
       ],
       "candidate_count": 2,
       "candidate_share": 1.0,
@@ -48,7 +48,7 @@
       "quota": 2,
       "representatives": [
         {
-          "topic_probability": 0.986439,
+          "topic_probability": 0.985964,
           "topic_candidate_count": 2,
           "topic_candidate_share": 1.0,
           "topic_quota": 2,
@@ -69,7 +69,7 @@
           "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
         },
         {
-          "topic_probability": 0.985964,
+          "topic_probability": 0.985454,
           "topic_candidate_count": 2,
           "topic_candidate_share": 1.0,
           "topic_quota": 2,

@@ -29,19 +29,19 @@
   },
   "topics": [
     {
-      "topic_id": 2,
-      "label": "미·중 통상·IRA 규제",
+      "topic_id": 1,
+      "label": "소형전지·전자재료",
       "keywords": [
-        "중국",
-        "미국",
-        "변동",
         "배터리",
-        "업체",
-        "경기",
-        "차별",
-        "감축",
-        "포트폴리오",
-        "기능"
+        "환경",
+        "자동차",
+        "에너지",
+        "개발",
+        "판매",
+        "관리",
+        "시스템",
+        "글로벌",
+        "핵심"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -49,7 +49,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.963231,
+          "topic_probability": 0.956891,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

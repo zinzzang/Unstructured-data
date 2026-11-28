@@ -28,19 +28,19 @@
   },
   "topics": [
     {
-      "topic_id": 4,
-      "label": "AI 서버·HBM 메모리",
+      "topic_id": 5,
+      "label": "반도체 장비·웨이퍼 조달",
       "keywords": [
         "ai",
         "메모리",
-        "hbm",
         "성능",
+        "pc",
         "용량",
-        "공급",
-        "데이터",
-        "본더",
+        "dram",
+        "hbm",
         "서버",
-        "dram"
+        "데이터",
+        "채용"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -48,7 +48,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.547699,
+          "topic_probability": 0.885525,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

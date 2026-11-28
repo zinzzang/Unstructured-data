@@ -29,19 +29,19 @@
   },
   "topics": [
     {
-      "topic_id": 4,
-      "label": "AI 서버·HBM 메모리",
+      "topic_id": 1,
+      "label": "메모리 시황·파운드리 공정",
       "keywords": [
-        "ai",
-        "메모리",
+        "반도체",
+        "장비",
+        "생산",
         "hbm",
-        "성능",
-        "용량",
+        "투자",
+        "검사",
+        "공정",
         "공급",
-        "데이터",
-        "본더",
-        "서버",
-        "dram"
+        "적층",
+        "메모리"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -49,7 +49,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.938448,
+          "topic_probability": 0.938451,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

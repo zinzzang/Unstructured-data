@@ -29,19 +29,19 @@
   },
   "topics": [
     {
-      "topic_id": 2,
-      "label": "업황 회복·System LSI·친환경 인증",
+      "topic_id": 5,
+      "label": "반도체 장비·웨이퍼 조달",
       "keywords": [
-        "인증",
-        "soc",
-        "nand",
-        "회복",
-        "모바일",
+        "ai",
         "메모리",
-        "에너지",
-        "탄소",
-        "하반기",
-        "감축"
+        "성능",
+        "pc",
+        "용량",
+        "dram",
+        "hbm",
+        "서버",
+        "데이터",
+        "채용"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,

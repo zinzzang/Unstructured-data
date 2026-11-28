@@ -28,19 +28,19 @@
   },
   "topics": [
     {
-      "topic_id": 5,
-      "label": "CDMO 생산·신규 사업",
+      "topic_id": 3,
+      "label": "의약품 시장·매출 실적",
       "keywords": [
+        "개발",
         "생산",
-        "계약",
-        "공장",
         "바이오",
-        "서비스",
-        "체결",
-        "변동",
+        "계약",
+        "연구",
         "의약품",
-        "매출",
-        "cdmo"
+        "공장",
+        "체결",
+        "서비스",
+        "항체"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -48,7 +48,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.385268,
+          "topic_probability": 0.902898,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

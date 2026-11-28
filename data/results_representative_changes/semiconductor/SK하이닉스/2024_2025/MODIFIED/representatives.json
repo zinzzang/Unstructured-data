@@ -28,19 +28,19 @@
   },
   "topics": [
     {
-      "topic_id": 3,
-      "label": "AI·자율주행발 반도체 성장",
+      "topic_id": 5,
+      "label": "반도체 장비·웨이퍼 조달",
       "keywords": [
-        "반도체",
-        "투자",
+        "ai",
         "메모리",
-        "자동차",
-        "생산",
-        "업체",
-        "장비",
-        "주행",
-        "자율",
-        "hbm"
+        "성능",
+        "pc",
+        "용량",
+        "dram",
+        "hbm",
+        "서버",
+        "데이터",
+        "채용"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -48,7 +48,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.970363,
+          "topic_probability": 0.69273,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

@@ -28,19 +28,19 @@
   },
   "topics": [
     {
-      "topic_id": 4,
-      "label": "AI 서버·HBM 메모리",
+      "topic_id": 2,
+      "label": "업황 회복·System LSI·친환경 인증",
       "keywords": [
-        "ai",
-        "메모리",
-        "hbm",
-        "성능",
-        "용량",
         "공급",
-        "데이터",
+        "공정",
+        "성능",
+        "ai",
+        "개발",
         "본더",
-        "서버",
-        "dram"
+        "모바일",
+        "나노",
+        "반도체",
+        "고객"
       ],
       "candidate_count": 2,
       "candidate_share": 1.0,
@@ -48,7 +48,7 @@
       "quota": 2,
       "representatives": [
         {
-          "topic_probability": 0.970366,
+          "topic_probability": 0.776625,
           "topic_candidate_count": 2,
           "topic_candidate_share": 1.0,
           "topic_quota": 2,
@@ -69,7 +69,7 @@
           "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
         },
         {
-          "topic_probability": 0.970366,
+          "topic_probability": 0.776625,
           "topic_candidate_count": 2,
           "topic_candidate_share": 1.0,
           "topic_quota": 2,

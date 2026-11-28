@@ -28,19 +28,19 @@
   },
   "topics": [
     {
-      "topic_id": 3,
-      "label": "수주·공급계약·판매",
+      "topic_id": 4,
+      "label": "연구개발·특허·경영실적",
       "keywords": [
-        "자동차",
-        "계약",
-        "판매",
-        "공급",
-        "고객",
-        "매출",
-        "규제",
-        "생산",
         "배터리",
-        "정책"
+        "영업",
+        "투자",
+        "이익",
+        "판매",
+        "매출",
+        "에너지",
+        "매출액",
+        "생산",
+        "전자"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -48,7 +48,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.587498,
+          "topic_probability": 0.81149,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

@@ -17,23 +17,23 @@
     },
     "paragraphs_jsonl": {
       "path": "data/processed/preprocessing_v2/biopharma/paragraphs.jsonl",
-      "sha256": "9e3fbf2daf03196c74bc00e97cbde8cbab72210bb1e38cff5eb4d24707fe61c8"
+      "sha256": "dc60fa4777830229bc1f0dc3e53be5b99cbbf47b28bb703a2c577e89cdeecb38"
     },
     "topic_probabilities_new": {
       "path": "data/results_industry_lda_corrected/biopharma/sentence_topic_probabilities.csv",
-      "sha256": "6b289e938e26ac2c3eb6f97ec7b6c2498dc632a9922d8e00355dcac1c4d86a92"
+      "sha256": "03f1901349161fe4607f63edb3e343a7dd63f9ae6bb3ca28f2d9c309a80e4350"
     },
     "topic_probabilities_old": {
       "path": "data/results_industry_lda_corrected/biopharma/sentence_topic_probabilities_old.csv",
-      "sha256": "06a395e2289eb8d2aeee67e0f84c62a6a89983bce98f9f50e9cadff8b92ad11f"
+      "sha256": "64322d7758ffb97faad6e578aa366d352f5ec52cf2d86eacab183b77d3d5a613"
     },
     "topics": {
       "path": "data/results_industry_lda_corrected/biopharma/topics.txt",
-      "sha256": "bcc4a051a86c798d106b2867d82cc0e64329cfc554e76206de0ffc7bfb4a05ac"
+      "sha256": "dd740fcc8c35e92e499000cf8015809727d3106b264b58004954975a09ad7c31"
     },
     "lda_artifact": {
       "path": "data/results_industry_lda_corrected/biopharma/lda_artifacts.joblib",
-      "sha256": "c3ca297d94ace6f628c091b7784ddb3bef54bf0723c0dc810154e5a7aace3904"
+      "sha256": "71c69191df4dfcfb96e680b695afb1f0496712125701b34fc703d889c0c97e1a"
     },
     "topic_labels": {
       "path": "data/results_industry_lda_corrected/biopharma/topic_labels.json",
@@ -52,7 +52,7 @@
       "유한양행"
     ],
     "n_topics": 5,
-    "model_seed": 0,
+    "model_seed": 3,
     "seeds": [
       0,
       1,
@@ -75,15 +75,15 @@
     "max_paragraph_sentences": 100,
     "balance": 3.0,
     "specific_share": 0.9,
-    "input_change_csv": "data\\results_v2\\tfidf_masked_th0.6.csv",
+    "input_change_csv": "data/results_v2/tfidf_masked_th0.6.csv",
     "input_change_csv_sha256": "3b8e15dea7dfdb813d0d68d401e5991fea5c6ec98a80daa480f673a4ef77ab5d",
-    "input_paragraphs_jsonl": "data\\processed\\preprocessing_v2\\biopharma\\paragraphs.jsonl",
-    "input_paragraphs_jsonl_sha256": "9e3fbf2daf03196c74bc00e97cbde8cbab72210bb1e38cff5eb4d24707fe61c8",
+    "input_paragraphs_jsonl": "data/processed/preprocessing_v2/biopharma/paragraphs.jsonl",
+    "input_paragraphs_jsonl_sha256": "dc60fa4777830229bc1f0dc3e53be5b99cbbf47b28bb703a2c577e89cdeecb38",
     "versions": {
-      "sklearn": "1.5.1",
+      "sklearn": "1.9.1",
       "kiwipiepy": "0.25.1",
-      "numpy": "1.26.4",
-      "joblib": "1.4.2"
+      "numpy": "2.5.4",
+      "joblib": "1.6.0"
     },
     "removed_dropped": {
       "footnote/short/reference": 85,
@@ -148,19 +148,19 @@
     },
     {
       "topic_id": 4,
-      "candidates": 0,
-      "after_dedup": 0,
-      "ideal": 0.0,
-      "quota": 0,
-      "selected": 0
-    },
-    {
-      "topic_id": 5,
       "candidates": 1,
       "after_dedup": 1,
       "ideal": 1.0,
       "quota": 1,
       "selected": 1
+    },
+    {
+      "topic_id": 5,
+      "candidates": 0,
+      "after_dedup": 0,
+      "ideal": 0.0,
+      "quota": 0,
+      "selected": 0
     }
   ],
   "join_failures": [
@@ -454,13 +454,13 @@
     "duplicate_text": "exact=원문 공백 정규화 일치, near=숫자 마스킹 텍스트의 TF-IDF char 코사인"
   },
   "package_versions": {
-    "numpy": "1.26.4",
-    "scikit-learn": "1.5.1",
-    "joblib": "1.4.2",
+    "numpy": "2.5.4",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0",
     "kiwipiepy": "0.25.1",
     "sentence-transformers": "6.2.0",
-    "torch": "2.15.0+cu134",
-    "transformers": "5.24.1",
+    "torch": "2.15.0",
+    "transformers": "5.22.1",
     "pyyaml": "6.0.3"
   }
 }

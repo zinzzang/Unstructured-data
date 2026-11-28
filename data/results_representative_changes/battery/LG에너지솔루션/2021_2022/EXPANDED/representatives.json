@@ -28,19 +28,19 @@
   },
   "topics": [
     {
-      "topic_id": 3,
-      "label": "수주·공급계약·판매",
+      "topic_id": 5,
+      "label": "ESS·BaaS 신사업",
       "keywords": [
-        "자동차",
-        "계약",
-        "판매",
-        "공급",
-        "고객",
-        "매출",
-        "규제",
-        "생산",
+        "중국",
+        "ev",
         "배터리",
-        "정책"
+        "감축",
+        "에너지",
+        "미국",
+        "환경",
+        "기후",
+        "우려",
+        "탄소"
       ],
       "candidate_count": 1,
       "candidate_share": 1.0,
@@ -48,7 +48,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.561265,
+          "topic_probability": 0.691841,
           "topic_candidate_count": 1,
           "topic_candidate_share": 1.0,
           "topic_quota": 1,

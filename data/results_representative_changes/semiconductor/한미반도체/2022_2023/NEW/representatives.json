@@ -26,19 +26,19 @@
   },
   "topics": [
     {
-      "topic_id": 1,
-      "label": "메모리 시황·파운드리 공정",
+      "topic_id": 2,
+      "label": "업황 회복·System LSI·친환경 인증",
       "keywords": [
-        "pc",
-        "메모리",
-        "ai",
-        "고객",
-        "모바일",
-        "재고",
+        "공급",
         "공정",
         "성능",
-        "응용",
-        "고객사"
+        "ai",
+        "개발",
+        "본더",
+        "모바일",
+        "나노",
+        "반도체",
+        "고객"
       ],
       "candidate_count": 1,
       "candidate_share": 0.5,
@@ -46,7 +46,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.885701,
+          "topic_probability": 0.614457,
           "topic_candidate_count": 1,
           "topic_candidate_share": 0.5,
           "topic_quota": 1,
@@ -57,31 +57,31 @@
           "old_text": null,
           "old_section_path": null,
           "old_xml_line": null,
-          "new_sentence_id": "20240314001257-P0037-S03",
-          "new_text": "/ HANMI Vietnam Co.,Ltd.)와 해외 현지 Agent를 통해 수시로 실시하고 고객과의 긴밀한 관계 유지 b.",
-          "new_section_path": "II. 사업의 내용 > 4. 매출 및 수주상황 > 2) 판매경로와 방법 등 (1) 판매경로",
-          "new_xml_line": 2545,
-          "analysis_area": "SALES",
-          "source_change_row": 11747,
+          "new_sentence_id": "20240314001257-P0009-S01",
+          "new_text": "- 반도체장비의 경우 주문에 기반하여 제작되는 품목으로 단일화된 모델과 가격으로 공급되지 않으며 주문시 원재료의 매입비용, 고객이 요구하는 사양 및 성능요건, Conversion Kit 등의 요구수량 등을 고려하여 공급가를 산출하고 결정하므로 일률적 가격변동 추이 산출이 어려워 기재를 생략합니다.",
+          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 2) 주요 원재료 등의 가격변동추이",
+          "new_xml_line": 2135,
+          "analysis_area": "PRODUCTION",
+          "source_change_row": 11683,
           "embedding_model": "BAAI/bge-m3",
           "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
         }
       ]
     },
     {
-      "topic_id": 4,
-      "label": "AI 서버·HBM 메모리",
+      "topic_id": 3,
+      "label": "AI·자율주행발 반도체 성장",
       "keywords": [
-        "ai",
+        "가격",
+        "인증",
+        "nand",
+        "탄소",
+        "상승",
+        "dram",
+        "유지",
+        "경영",
         "메모리",
-        "hbm",
-        "성능",
-        "용량",
-        "공급",
-        "데이터",
-        "본더",
-        "서버",
-        "dram"
+        "하락"
       ],
       "candidate_count": 1,
       "candidate_share": 0.5,
@@ -89,7 +89,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.599125,
+          "topic_probability": 0.643458,
           "topic_candidate_count": 1,
           "topic_candidate_share": 0.5,
           "topic_quota": 1,
@@ -100,12 +100,12 @@
           "old_text": null,
           "old_section_path": null,
           "old_xml_line": null,
-          "new_sentence_id": "20240314001257-P0009-S01",
-          "new_text": "- 반도체장비의 경우 주문에 기반하여 제작되는 품목으로 단일화된 모델과 가격으로 공급되지 않으며 주문시 원재료의 매입비용, 고객이 요구하는 사양 및 성능요건, Conversion Kit 등의 요구수량 등을 고려하여 공급가를 산출하고 결정하므로 일률적 가격변동 추이 산출이 어려워 기재를 생략합니다.",
-          "new_section_path": "II. 사업의 내용 > 3. 원재료 및 생산설비 > 2) 주요 원재료 등의 가격변동추이",
-          "new_xml_line": 2135,
-          "analysis_area": "PRODUCTION",
-          "source_change_row": 11683,
+          "new_sentence_id": "20240314001257-P0037-S03",
+          "new_text": "/ HANMI Vietnam Co.,Ltd.)와 해외 현지 Agent를 통해 수시로 실시하고 고객과의 긴밀한 관계 유지 b.",
+          "new_section_path": "II. 사업의 내용 > 4. 매출 및 수주상황 > 2) 판매경로와 방법 등 (1) 판매경로",
+          "new_xml_line": 2545,
+          "analysis_area": "SALES",
+          "source_change_row": 11747,
           "embedding_model": "BAAI/bge-m3",
           "lda_artifact_version": "semiconductor-k5-3b8e15dea7df"
         }

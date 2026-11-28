@@ -29,19 +29,19 @@
   },
   "topics": [
     {
-      "topic_id": 3,
-      "label": "수주·공급계약·판매",
+      "topic_id": 4,
+      "label": "연구개발·특허·경영실적",
       "keywords": [
-        "자동차",
-        "계약",
-        "판매",
-        "공급",
-        "고객",
-        "매출",
-        "규제",
-        "생산",
         "배터리",
-        "정책"
+        "영업",
+        "투자",
+        "이익",
+        "판매",
+        "매출",
+        "에너지",
+        "매출액",
+        "생산",
+        "전자"
       ],
       "candidate_count": 2,
       "candidate_share": 0.666667,
@@ -49,7 +49,7 @@
       "quota": 2,
       "representatives": [
         {
-          "topic_probability": 0.559631,
+          "topic_probability": 0.378249,
           "topic_candidate_count": 2,
           "topic_candidate_share": 0.666667,
           "topic_quota": 2,
@@ -70,7 +70,7 @@
           "lda_artifact_version": "battery-k6-3b8e15dea7df"
         },
         {
-          "topic_probability": 0.559631,
+          "topic_probability": 0.378249,
           "topic_candidate_count": 2,
           "topic_candidate_share": 0.666667,
           "topic_quota": 2,
@@ -93,19 +93,19 @@
       ]
     },
     {
-      "topic_id": 4,
-      "label": "연구개발·특허·경영실적",
+      "topic_id": 6,
+      "label": "전기차 보급·설비 투자",
       "keywords": [
         "전지",
+        "소재",
         "개발",
+        "ess",
+        "반도체",
+        "it",
+        "패널",
         "연구",
-        "영업",
-        "솔루션",
-        "에너지",
-        "센터",
-        "이익",
         "배터리",
-        "매출액"
+        "요구"
       ],
       "candidate_count": 1,
       "candidate_share": 0.333333,
@@ -113,7 +113,7 @@
       "quota": 1,
       "representatives": [
         {
-          "topic_probability": 0.615678,
+          "topic_probability": 0.910701,
           "topic_candidate_count": 1,
           "topic_candidate_share": 0.333333,
           "topic_quota": 1,
