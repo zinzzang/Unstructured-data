@@ -16,22 +16,28 @@ import numpy as np
 from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.patches import Patch, Rectangle
 
-from plot_industry_change_flow import (COLORS, DPI, FIG_DIR, FIGSIZE, INDUSTRIES, INPUT_CSV, PERIODS, TYPES,
-                                       setup_style)
+from plot_industry_change_flow import (COLORS, COMPANY_EN, DPI, FIG_DIR, FIGSIZE, INDUSTRIES, INPUT_CSV, PERIODS,
+                                       TYPES, setup_style)
 
 INDUSTRY_ORDER = ['semiconductor', 'battery', 'biopharma']
 HIGHLIGHT = {('셀트리온', '23→24'), ('SK이노베이션', '23→24')}
-CASES = [('SK하이닉스', '22→23', 'AI·HBM 수요'), ('SK이노베이션', '23→24', 'SK E&S 합병'),
-         ('셀트리온', '23→24', '셀트리온헬스케어 합병')]
+CASES = [('SK하이닉스', '22→23', 'AI/HBM demand'), ('SK이노베이션', '23→24', 'SK E&S merger'),
+         ('셀트리온', '23→24', 'Celltrion Healthcare merger')]
 SECTIONS = ['1. 사업의 개요', '2. 주요 제품 및 서비스', '3. 원재료 및 생산설비', '4. 매출 및 수주상황',
             '5. 위험관리 및 파생거래', '6. 주요계약 및 연구개발활동', '7. 기타 참고사항']
-TABLE_SECTIONS = {'3. 원재료 및 생산설비', '6. 주요계약 및 연구개발활동'}   # 표 성격 섹션 (강조)
+TABLE_SECTIONS = {'3. 원재료 및 생산설비', '6. 주요계약 및 연구개발활동'}
 SECTION_COLORS = {'1. 사업의 개요': '#cfe0d6', '2. 주요 제품 및 서비스': '#9cc5b0',
                   '3. 원재료 및 생산설비': '#c2410c', '4. 매출 및 수주상황': '#6a9fb5',
                   '5. 위험관리 및 파생거래': '#b9b6ac', '6. 주요계약 및 연구개발활동': '#7c3aed',
                   '7. 기타 참고사항': '#dcd9d0'}
+SECTION_EN = {
+    '1. 사업의 개요': '1. Business Overview', '2. 주요 제품 및 서비스': '2. Products & Services',
+    '3. 원재료 및 생산설비': '3. Raw Materials & Production', '4. 매출 및 수주상황': '4. Sales & Orders',
+    '5. 위험관리 및 파생거래': '5. Risk Management', '6. 주요계약 및 연구개발활동': '6. Major Contracts & R&D',
+    '7. 기타 참고사항': '7. Other References',
+}
 N_ROWS = sum(1 for _ in csv.DictReader(INPUT_CSV.open(encoding='utf-8-sig')))
-NOTE = f'tfidf_masked_th0.3.csv 전체 {N_ROWS:,}행 · 변화율 = 5개 변화 유형(NEW·EXPANDED·MODIFIED·REDUCED·REMOVED) ÷ 전체 비교 문장 쌍'
+NOTE = f'tfidf_masked_th0.3.csv · {N_ROWS:,} rows · Change rate = 5 types (NEW·EXPANDED·MODIFIED·REDUCED·REMOVED) ÷ total sentence pairs'
 
 
 def load():
@@ -86,9 +92,9 @@ def fig_heatmap(total, types):
                 ax.add_patch(Rectangle((j - 0.48, i - 0.46), 0.96, 0.92, fill=False, ec='#111111', lw=3))
     ax.set_xticks(range(len(PERIODS)), PERIODS, fontsize=14)
     ax.xaxis.tick_top()
-    ax.set_yticks(range(len(cs)), cs, fontsize=13)
+    ax.set_yticks(range(len(cs)), [COMPANY_EN.get(c, c) for c in cs], fontsize=13)
     ax.tick_params(length=0, pad=8)
-    # 산업 구분선과 라벨
+    # industry separator lines and labels
     row = 0
     for k in INDUSTRY_ORDER:
         n = len(INDUSTRIES[k][1])
@@ -98,9 +104,9 @@ def fig_heatmap(total, types):
                 va='center', fontsize=14, fontweight='bold', rotation=90, color='#333333')
         row += n
     cb = fig.colorbar(im, ax=ax, fraction=0.03, pad=0.02)
-    cb.set_label('변화율 (%)', fontsize=12)
+    cb.set_label('Change Rate (%)', fontsize=12)
     cb.outline.set_visible(False)
-    fig.text(0.02, 0.025, NOTE + ' · 칸 아래 = 변화 문장 쌍 / 전체 · 굵은 테두리 = 합병 연도', fontsize=10,
+    fig.text(0.02, 0.025, NOTE + ' · cell bottom = changed / total · bold border = merger year', fontsize=10,
              color='#666666')
     save(fig, 'fig_change_rate_heatmap')
     return m
@@ -122,8 +128,8 @@ def fig_sections(sections):
                     ax.text(left + share / 2, i, f'{share:.0f}%', ha='center', va='center', fontsize=9,
                             color='white' if s in TABLE_SECTIONS else '#333333')
             left += share
-        ax.text(101, i, f'{tot:,}건', va='center', fontsize=9.5, color='#555555')
-    ax.set_yticks(range(len(rows)), [f'{c}  {p}' for c, p in rows], fontsize=10)
+        ax.text(101, i, f'{tot:,}', va='center', fontsize=9.5, color='#555555')
+    ax.set_yticks(range(len(rows)), [f'{COMPANY_EN.get(c, c)}  {p}' for c, p in rows], fontsize=10)
     for lab, key in zip(ax.get_yticklabels(), rows):
         if key in HIGHLIGHT:
             lab.set_fontweight('bold')
@@ -143,13 +149,14 @@ def fig_sections(sections):
     for key in HIGHLIGHT:
         i = rows.index(key)
         ax.add_patch(Rectangle((0, i - 0.45), 100, 0.9, fill=False, ec='#111111', lw=2, clip_on=False))
-    ax.set_xlabel('변화 문장 쌍의 섹션 구성 (%)', fontsize=12)
-    handles = [Patch(color=SECTION_COLORS[s], label=s + (' (표 성격)' if s in TABLE_SECTIONS else ''))
+    ax.set_xlabel('Section composition of changed sentence pairs (%)', fontsize=12)
+    handles = [Patch(color=SECTION_COLORS[s], label=SECTION_EN.get(s, s) + (' (table-type)' if s in TABLE_SECTIONS else ''))
                for s in SECTIONS]
     fig.legend(handles=handles, loc='upper center', ncol=4, frameon=False, fontsize=11,
                bbox_to_anchor=(0.54, 0.995), handlelength=1.3, columnspacing=1.2)
-    fig.text(0.02, 0.012, 'tfidf_masked_th0.3.csv 전체 · 변화 문장 쌍(5개 유형)만 · 섹션 = 「II. 사업의 내용」 하위 항목 · '
-             '오른쪽 = 변화 문장 쌍 수 · 굵은 테두리 = 합병 연도', fontsize=10, color='#666666')
+    fig.text(0.02, 0.012, 'tfidf_masked_th0.3.csv · changed pairs (5 types) only · '
+             'section = sub-item of "II. Business Content" · right = changed pair count · bold border = merger year',
+             fontsize=10, color='#666666')
     save(fig, 'fig_change_by_section')
 
 
@@ -168,17 +175,17 @@ def fig_cases(total, types):
                         color='white' if t in ('NEW', 'REMOVED') else '#222222')
             bottom += v
         ax.text(i, bottom + 2, f'{bottom:.0f}%', ha='center', va='bottom', fontsize=17, fontweight='bold')
-    ax.set_xticks(range(len(CASES)), [f'{c}\n{p}' for c, p, _ in CASES], fontsize=13)
+    ax.set_xticks(range(len(CASES)), [f'{COMPANY_EN.get(c, c)}\n{p}' for c, p, _ in CASES], fontsize=13)
     for i, (_, _, why) in enumerate(CASES):
         ax.text(i, -0.19, why, transform=ax.get_xaxis_transform(), ha='center', va='top', fontsize=11,
                 color='#666666')
     ax.tick_params(axis='x', length=0)
     ax.set_ylim(0, 100)
-    ax.set_ylabel('전체 비교 문장 쌍 대비 (%)', fontsize=12)
+    ax.set_ylabel('% of total sentence pairs', fontsize=12)
     ax.set_xlim(-0.6, len(CASES) - 0.4)
     fig.legend(handles=[Patch(color=COLORS[t], label=t) for t in order], loc='upper center', ncol=5,
                frameon=False, fontsize=11, bbox_to_anchor=(0.53, 0.985))
-    fig.text(0.02, 0.015, '변화율 = 5개 변화 유형 ÷ 전체 비교 문장 쌍 · 기업·연도쌍 막대 아래 = PROJECT.md의 원인 설명(근거 문장 확인 필요)',
+    fig.text(0.02, 0.015, 'Change rate = 5 types ÷ total sentence pairs · label below bar = context (verify against source sentences)',
              fontsize=9, color='#666666')
     save(fig, 'fig_case_change_rates')
 

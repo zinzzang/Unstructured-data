@@ -23,33 +23,38 @@ INPUT_CSV = ROOT / 'data/results_v2/tfidf_masked_th0.3.csv'
 FIG_DIR = ROOT / 'figures'
 
 INDUSTRIES = {
-    'semiconductor': ('반도체', ['삼성전자', 'SK하이닉스', '한미반도체']),
-    'biopharma': ('바이오·제약', ['삼성바이오로직스', '셀트리온', '유한양행']),
-    'battery': ('이차전지', ['LG에너지솔루션', '삼성SDI', 'SK이노베이션']),
+    'semiconductor': ('Semiconductor', ['삼성전자', 'SK하이닉스', '한미반도체']),
+    'biopharma': ('Biopharma', ['삼성바이오로직스', '셀트리온', '유한양행']),
+    'battery': ('Battery', ['LG에너지솔루션', '삼성SDI', 'SK이노베이션']),
 }
-# 표 성격이 강해 한 해에 통째로 추가/삭제되며 흐름을 왜곡하는 섹션 (old/new 경로 중 하나라도 해당하면 제외)
+COMPANY_EN = {
+    '삼성전자': 'Samsung Electronics', 'SK하이닉스': 'SK hynix', '한미반도체': 'Hanmi Semi.',
+    '삼성바이오로직스': 'Samsung Bio.', '셀트리온': 'Celltrion', '유한양행': 'Yuhan',
+    'LG에너지솔루션': 'LG Energy Sol.', '삼성SDI': 'Samsung SDI', 'SK이노베이션': 'SK Innovation',
+}
+# table-like sections excluded (bulk add/remove distorts flow); match against CSV old_path/new_path
 EXCLUDED_SECTIONS = ['원재료 및 생산설비', '주요계약 및 연구개발활동']
 TITLES = {'semiconductor': '', 'biopharma': '', 'battery': ''}   # 결론 문장 제목 (비우면 제목 없음)
 TITLES_EXT = {'semiconductor': '', 'biopharma': '', 'battery': ''}   # 외부 지표 겹친 그림(_ext)의 제목
 
 # 연도별 외부 지표 (오른쪽 보조축 꺾은선, figures/fig0_{industry}_ext.png). text는 점 위 표시 문자열.
-EXT_UNIT = '억 달러'
+EXT_UNIT = 'USD 100M'
 EXTERNAL = {
     'semiconductor': dict(
-        label='반도체 수출액',
+        label='Semiconductor Exports',
         values={2021: 1280, 2022: 1292, 2023: 986.3, 2024: 1419.2, 2025: 1734.1},
         text={2021: '1,280', 2022: '1,292', 2023: '986.3', 2024: '1,419.2', 2025: '1,734.1'},
-        foot='출처: 2023~2025년 국가지표체계'),
+        foot='Source: Korea National Indicators (2023–2025)'),
     'battery': dict(
-        label='이차전지 수출액',
+        label='Battery Exports',
         values={2021: 86.72, 2022: 99.81, 2023: 98.26, 2024: 82.02, 2025: 79.39},
         text={2021: '86.72', 2022: '99.81', 2023: '98.26', 2024: '82.02', 2025: '79.39*'},
-        foot='* 2025년은 산업연구원 전망치(확정 실적 아님) · 출처: 2021~2023년 한국무역협회, 2024~2025년 산업연구원'),
+        foot='* 2025 est. (KIET forecast, not final) · Source: KITA (2021–2023), KIET (2024–2025)'),
     'biopharma': dict(
-        label='의약품 수출액',
+        label='Pharma Exports',
         values={2021: 70.4, 2022: 80.8, 2023: 75.6, 2024: 92.7, 2025: 104.1},
         text={2021: '70.4', 2022: '80.8', 2023: '75.6', 2024: '92.7', 2025: '104.1'},
-        foot='출처: 보건복지부 발표 자료'),
+        foot='Source: Ministry of Health and Welfare'),
 }
 EXT_COLOR = '#222222'
 
@@ -152,7 +157,7 @@ def draw_flow(ax, s, net, label_fs=13, turn_fs=14, fmt=lambda v: f'{v}', faint=T
     for i in range(len(PERIODS) - 1):
         if net[i] > 0 and net[i + 1] < 0:           # 순방향 점수가 양수 → 음수로 바뀐 구간
             xm = i + net[i] / (net[i] - net[i + 1])
-            ax.annotate('전환', xy=(xm, 0), xytext=(16, -30), textcoords='offset points', fontsize=turn_fs,
+            ax.annotate('Reversal', xy=(xm, 0), xytext=(16, -30), textcoords='offset points', fontsize=turn_fs,
                         color='#444444', fontweight='bold', ha='left', va='center',
                         bbox=dict(boxstyle='round,pad=0.15', fc='white', ec='none', alpha=0.9),
                         arrowprops=dict(arrowstyle='->', color='#444444', lw=1.3, shrinkA=2, shrinkB=2), zorder=6)
@@ -195,7 +200,7 @@ def draw_external(ax, ext):
     tw.tick_params(axis='y', colors=EXT_COLOR)
     ax.set_xlim(-0.8, len(PERIODS) - 0.2)
     return Line2D([], [], color=EXT_COLOR, lw=2.6, marker='o', ms=8, mfc='white', mec=EXT_COLOR, mew=2.2,
-                  label=f'{ext["label"]} (오른쪽 축, {EXT_UNIT})')
+                  label=f'{ext["label"]} (right axis, {EXT_UNIT})')
 
 
 def plot_industry(key, by_period, title='', ext=None, weighted=False, overlay=None, name=None):
@@ -215,21 +220,22 @@ def plot_industry(key, by_period, title='', ext=None, weighted=False, overlay=No
         draw_flow(ax, s, net, fmt=lambda v: f'{v:.1f}', faint=False)
         ax.yaxis.set_major_locator(MaxNLocator(5))
         ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f'{abs(v):g}'))
-        ax.set_ylabel('기업 평균 비율 (%)')
-        note = f'{" · ".join(companies)} 동일 가중 평균 · 기업별 비교 문장 쌍 대비 % · 표 성격 섹션 제외'
+        ax.set_ylabel('Company-avg. rate (%)')
+        note = f'Equal-weighted avg. · % of sentence pairs per firm · table-type sections excl.'
     else:
         draw_flow(ax, s, net)
-        ax.set_ylabel('건수')
-        note = f'{" · ".join(companies)} 합계 · 문장 쌍 {total:,}건 (표 성격 섹션 {sections} 제외)'
+        ax.set_ylabel('Count')
+        note = (f'{" · ".join(COMPANY_EN.get(c, c) for c in companies)} combined · '
+                f'{total:,} pairs (table-type sections excl.)')
     head = ax.text(0, 1.035, label, transform=ax.transAxes, fontsize=17, fontweight='bold', va='bottom')
     head_w = head.get_window_extent(fig.canvas.get_renderer()).width * 72 / fig.dpi
     ax.annotate(note, xy=(0, 1.035), xycoords='axes fraction', xytext=(head_w + 14, 0),
                 textcoords='offset points', fontsize=12, color='#666666', va='bottom')
     handles = [Patch(color=COLORS[t], label=t) for t in TYPES]
     handles.append(Line2D([], [], color=NET_COLOR, ls='--', lw=2, marker='o', ms=5,
-                          label='순방향 점수 (%p)' if weighted else '순방향 점수'))
+                          label='Net score (%p)' if weighted else 'Net score'))
     if not weighted:
-        handles.append(Patch(facecolor='#777777', alpha=FAINT_ALPHA, label=f'연한 막대 = 합계 {FAINT_MAX}건 이하'))
+        handles.append(Patch(facecolor='#777777', alpha=FAINT_ALPHA, label=f'Faint bar = ≤{FAINT_MAX} pairs total'))
     if ext:
         handles.insert(5, draw_external(ax, ext))
         if ext.get('foot'):

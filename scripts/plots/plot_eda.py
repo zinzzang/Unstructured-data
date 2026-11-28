@@ -13,17 +13,18 @@ from collections import Counter
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 
-from plot_industry_change_flow import COLORS, DPI, FIG_DIR, INDUSTRIES, INPUT_CSV, setup_style
+from plot_industry_change_flow import COLORS, COMPANY_EN, DPI, FIG_DIR, INDUSTRIES, INPUT_CSV, setup_style
 
 FIGSIZE = (8, 5)          # 슬라이드 절반 영역용
-INDUSTRY_COLORS = {'semiconductor': '#2a78d6', 'battery': '#3a9a5b', 'biopharma': '#e08a2c'}
-INDUSTRY_ORDER = ['semiconductor', 'battery', 'biopharma']          # 발표 문서 표 순서
+INDUSTRY_COLORS = {'semiconductor': '#2a78d6', 'battery': '#3a9a5b', 'biopharma': '#c47a1e'}
+INDUSTRY_ORDER = ['semiconductor', 'battery', 'biopharma']
 TYPE_ORDER = ['UNCHANGED', 'NEW', 'EXPANDED', 'REDUCED', 'MODIFIED', 'REMOVED', 'UNCERTAIN']
 TYPE_COLORS = dict(COLORS, UNCHANGED='#D9D7CF', UNCERTAIN='#6f6e69')
-AREA_KO = {'BUSINESS': '사업 개요', 'PRODUCTION': '생산·설비 현황', 'SALES': '영업 현황', 'PRODUCT': '제품 현황',
-           'RND_CONTRACT': 'R&D·계약 현황', 'OTHER': '기타 사업 내용', 'RISK': '위험관리·파생거래'}
-EXCLUDED_AREAS = {'RISK'}  # LDA에서 제외된 섹션
-NOTE = 'tfidf_masked_th0.3.csv 전체 {n:,}행 (행 = 인접 연도 문장 쌍)'
+AREA_EN = {'BUSINESS': 'Business Overview', 'PRODUCTION': 'Production & Facilities',
+           'SALES': 'Sales Status', 'PRODUCT': 'Products',
+           'RND_CONTRACT': 'R&D & Contracts', 'OTHER': 'Other Business', 'RISK': 'Risk Management'}
+EXCLUDED_AREAS = {'RISK'}
+NOTE = 'tfidf_masked_th0.3.csv · {n:,} rows (1 row = 1 adjacent-year sentence pair)'
 
 
 def load():
@@ -57,9 +58,9 @@ def fig_company(company, n):
     for i, (k, c) in enumerate(items):
         ax.barh(i, company[c], 0.68, color=INDUSTRY_COLORS[k], lw=0)
         ax.text(company[c] + vmax * 0.01, i, f'{company[c]:,}', va='center', fontsize=11, color='#222222')
-    ax.set_yticks(range(len(items)), [c for _, c in items])
+    ax.set_yticks(range(len(items)), [COMPANY_EN.get(c, c) for _, c in items])
     ax.set_xlim(0, vmax * 1.12)
-    ax.set_xlabel('문장 쌍 수', fontsize=12)
+    ax.set_xlabel('Sentence pairs', fontsize=12)
     style_hbar(ax)
     fig.legend(handles=[Patch(color=INDUSTRY_COLORS[k], label=INDUSTRIES[k][0]) for k in INDUSTRY_ORDER],
                loc='upper center', ncol=3, frameon=False, fontsize=12, bbox_to_anchor=(0.55, 0.985))
@@ -76,17 +77,17 @@ def fig_section(area, n):
         ex = a in EXCLUDED_AREAS
         ax.barh(i, area[a], 0.68, color='white' if ex else '#5f8fc9', edgecolor='#999999' if ex else 'none',
                 hatch='///' if ex else None, lw=1 if ex else 0)
-        ax.text(area[a] + vmax * 0.01, i, f'{area[a]:,}  ({area[a] / n:.1%})' + ('  LDA 제외' if ex else ''),
+        ax.text(area[a] + vmax * 0.01, i, f'{area[a]:,}  ({area[a] / n:.1%})' + ('  Excl. from LDA' if ex else ''),
                 va='center', fontsize=11, color='#888888' if ex else '#222222')
-    ax.set_yticks(range(len(items)), [f'{AREA_KO.get(a, a)}  {a}' for a in items])
+    ax.set_yticks(range(len(items)), [f'{AREA_EN.get(a, a)}  ({a})' for a in items])
     for lab, a in zip(ax.get_yticklabels(), items):
         if a in EXCLUDED_AREAS:
             lab.set_color('#888888')
     ax.set_xlim(0, vmax * 1.32)
-    ax.set_xlabel('문장 쌍 수', fontsize=12)
+    ax.set_xlabel('Sentence pairs', fontsize=12)
     style_hbar(ax)
-    fig.legend(handles=[Patch(color='#5f8fc9', label='LDA 분석 포함'),
-                        Patch(facecolor='white', edgecolor='#999999', hatch='///', label='LDA 제외 (재무 표 위주)')],
+    fig.legend(handles=[Patch(color='#5f8fc9', label='Included in LDA'),
+                        Patch(facecolor='white', edgecolor='#999999', hatch='///', label='Excl. from LDA (table-heavy)')],
                loc='upper center', ncol=2, frameon=False, fontsize=12, bbox_to_anchor=(0.6, 0.985))
     fig.text(0.02, 0.015, NOTE.format(n=n), fontsize=9.5, color='#666666')
     save(fig, 'eda_section_rows')
@@ -102,7 +103,7 @@ def fig_types(types, n):
                 color='#222222')
     ax.set_yticks(range(len(TYPE_ORDER)), TYPE_ORDER)
     ax.set_xlim(0, vmax * 1.3)
-    ax.set_xlabel('문장 쌍 수', fontsize=12)
+    ax.set_xlabel('Sentence pairs', fontsize=12)
     style_hbar(ax)
     fig.text(0.02, 0.015, NOTE.format(n=n), fontsize=9.5, color='#666666')
     save(fig, 'eda_change_types')

@@ -15,8 +15,8 @@ from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 from matplotlib.ticker import FuncFormatter, MaxNLocator
 
-from plot_industry_change_flow import (DPI, FIG_DIR, FIGSIZE, PERIODS, TITLE_FS, load_counts, plot_industry,
-                                       setup_style, weighted_rates)
+from plot_industry_change_flow import (COMPANY_EN, DPI, FIG_DIR, FIGSIZE, PERIODS, TITLE_FS, load_counts,
+                                       plot_industry, setup_style, weighted_rates)
 
 YEARS = [2021, 2022, 2023, 2024, 2025]
 COMPANIES = [('삼성바이오로직스', '207940', '#1f2937'), ('셀트리온', '068270', '#7c3aed'), ('유한양행', '000100', '#0f766e')]
@@ -28,9 +28,9 @@ REVENUE = {
 }
 # 기준이 다를 수 있어 그림에 표시할 칸
 REVENUE_FLAGS = {('삼성바이오로직스', 2025): '‡'}
-REVENUE_NOTE = ('‡ 삼성바이오로직스 2025년: 보도 수치 4조5,570억(전년 대비 +30.3%)은 2024년 공시치(4조5,473억)와 증가율이 맞지 않음. '
-                '2025.11 삼성에피스홀딩스 인적분할로 바이오에피스를 뺀 기준일 가능성 — 확인 필요')
-REVENUE_SOURCES = '출처: 회사 공시 보도(이데일리·이투데이·더팩트·메디파나·히트뉴스 등), FnGuide'
+REVENUE_NOTE = ('‡ Samsung Bio. 2025: reported KRW 4.557T (+30.3% YoY) does not match 2024 filing (KRW 4.547T). '
+                'Possibly excl. Samsung Epis following Nov 2025 spin-off — requires verification.')
+REVENUE_SOURCES = 'Source: press releases / filings (Edaily, Etnews, The Fact, Medipana, Hitnews, etc.), FnGuide'
 TITLE_REV = ''
 TITLE_STOCK = ''
 STOCK_CSV = FIG_DIR / 'biopharma_stock_yearend.csv'
@@ -86,12 +86,12 @@ def fig_revenue():
                     color='#222222', rotation=0)
     ax.set_xticks(range(len(YEARS)), [str(y) for y in YEARS])
     ax.tick_params(axis='x', length=0)
-    ax.set_ylabel('연결 매출액 (조 원)')
+    ax.set_ylabel('Consolidated Revenue (KRW trillion)')
     ax.set_ylim(0, max(max(v.values()) for v in REVENUE.values()) / 10000 * 1.15)
     ax.yaxis.set_major_locator(MaxNLocator(6))
-    ax.text(0, 1.035, '바이오·제약 3개 기업 매출액', transform=ax.transAxes, fontsize=17, fontweight='bold',
+    ax.text(0, 1.035, 'Revenue: 3 Biopharma Firms', transform=ax.transAxes, fontsize=17, fontweight='bold',
             va='bottom')
-    fig.legend(handles=[Patch(color=c, label=n) for n, _, c in COMPANIES], loc='upper center', ncol=3,
+    fig.legend(handles=[Patch(color=c, label=COMPANY_EN.get(n, n)) for n, _, c in COMPANIES], loc='upper center', ncol=3,
                frameon=False, fontsize=13, bbox_to_anchor=(0.5, top + 0.12))
     fig.text(0.03, 0.045, REVENUE_NOTE, fontsize=9.5, color='#666666')
     fig.text(0.03, 0.015, REVENUE_SOURCES, fontsize=9.5, color='#666666')
@@ -121,20 +121,21 @@ def stock_overlay(prices):
                         fontsize=11, fontweight='bold', color=color, va='center',
                         bbox=dict(boxstyle='round,pad=0.1', fc='white', ec='none', alpha=0.85))
             handles.append(Line2D([], [], color=color, lw=2.4, marker='o', ms=6, mfc='white', mec=color, mew=2,
-                                  label=f'{n} 주가'))
+                                  label=f'{COMPANY_EN.get(n, n)} stock'))
         tw.axhline(100, color='#999999', lw=0.8, ls=':', zorder=0)
         for x, y in zip(xs, YEARS):
-            tw.annotate(f'{y}말', (x, top), xytext=(0, -4), textcoords='offset points', ha='center', va='top',
-                        fontsize=10, color='#888888')
-        tw.set_ylabel('연말 주가 지수 (2021년 말 = 100)')
+            tw.annotate(f"Dec '{y % 100:02d}", (x, top), xytext=(0, -4), textcoords='offset points',
+                        ha='center', va='top', fontsize=10, color='#888888')
+        tw.set_ylabel('Year-end stock index (Dec 2021 = 100)')
         tw.yaxis.set_major_locator(MaxNLocator(5))
         tw.set_yticks([t for t in tw.get_yticks() if bottom <= t <= top])
         tw.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f'{v:.0f}'))
         ax.set_xlim(-0.8, len(PERIODS) - 0.2)
-        closes = ' · '.join(f'{n} ' + '→'.join(f'{prices[n][y] / 10000:,.1f}' for y in YEARS)
+        closes = ' · '.join(f'{COMPANY_EN.get(n, n)} ' + '→'.join(f'{prices[n][y] / 10000:,.1f}' for y in YEARS)
                             for n, _, _ in COMPANIES)
-        foot = (f'주가: 네이버 금융 수정주가(분할·증자 반영), 각 연도 12월 마지막 거래일 종가. 오른쪽 축은 2021년 말 = 100 지수, 막대 축과 0선 무관\n'
-                f'연말 종가(만 원, 2021→2025)  {closes}')
+        foot = (f'Stock: Naver Finance (adjusted for splits/rights), year-end closing price (last trading day of Dec.).'
+                f' Right axis = Dec 2021 index = 100, independent of bar axis zero.\n'
+                f'Year-end close (KRW 10K, 2021→2025)  {closes}')
         return handles, foot
     return draw
 

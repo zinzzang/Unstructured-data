@@ -16,9 +16,9 @@ INPUT_CSV = ROOT / 'data/results_v2/tfidf_masked_th0.3.csv'
 FIG_DIR = ROOT / 'figures'
 
 INDUSTRIES = {
-    'semiconductor': ('반도체', ['삼성전자', 'SK하이닉스', '한미반도체']),
-    'biopharma':    ('바이오·제약', ['삼성바이오로직스', '셀트리온', '유한양행']),
-    'battery':      ('이차전지', ['LG에너지솔루션', '삼성SDI', 'SK이노베이션']),
+    'semiconductor': ('Semiconductor', ['삼성전자', 'SK하이닉스', '한미반도체']),
+    'biopharma':    ('Biopharma', ['삼성바이오로직스', '셀트리온', '유한양행']),
+    'battery':      ('Battery', ['LG에너지솔루션', '삼성SDI', 'SK이노베이션']),
 }
 IND_ORDER = ['semiconductor', 'biopharma', 'battery']
 IND_COLORS = {'semiconductor': '#2a78d6', 'biopharma': '#c47a1e', 'battery': '#3a9a5b'}
@@ -101,23 +101,22 @@ def plot(grp):
     # x축 눈금: period 그룹 중심
     ax.set_xticks(group_x)
     ax.set_xticklabels(PERIODS, fontsize=12)
-    ax.set_ylabel('글자수 (만 자)', fontsize=12)
-    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f'{v:.0f}만'))
+    ax.set_ylabel('Characters (×10,000)', fontsize=12)
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f'{v:.0f}'))
     ax.tick_params(axis='both', length=0, labelsize=11)
 
-    # 범례: 색 = industry, 명암 = 이전/이후
+    # legend: color = industry, shade = prior/following year
     from matplotlib.patches import Patch
     handles = [Patch(fc=IND_COLORS[k], label=INDUSTRIES[k][0]) for k in IND_ORDER]
-    # 이전/이후 설명용 패치
-    before = Patch(fc='#999999', alpha=0.4, label='이전 연도')
-    after  = Patch(fc='#999999', alpha=1.0, label='다음 연도')
+    before = Patch(fc='#999999', alpha=0.4, label='Prior year')
+    after  = Patch(fc='#999999', alpha=1.0, label='Following year')
     ax.legend(handles=handles + [before, after],
               ncol=5, loc='upper left', frameon=False,
               fontsize=10, columnspacing=0.8, handlelength=1.2)
 
-    ax.set_title('TF-IDF 매칭 전후 글자수 변화\n', fontsize=14, fontweight='bold',
+    ax.set_title('Character Count Change Before/After TF-IDF Matching\n', fontsize=14, fontweight='bold',
                  loc='left', pad=4)
-    ax.annotate('연한 막대 = 이전 연도  │  진한 막대 = 다음 연도',
+    ax.annotate('Light bar = prior year  │  Dark bar = following year',
                 xy=(0, 1.03), xycoords='axes fraction', fontsize=9, color='#666666')
 
     FIG_DIR.mkdir(parents=True, exist_ok=True)
