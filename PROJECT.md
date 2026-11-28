@@ -24,7 +24,7 @@
 | 출처 | 금융감독원 DART 전자공시시스템 |
 | 기업 | 9개사 (반도체·배터리·바이오파마 3개 산업) |
 | 기간 | 2021 → 2022 → 2023 → 2024 → 2025 (인접 연도 쌍 4개) |
-| 분석 단위 | **문장 수준** (전처리 후 약 35,000개 문장 쌍) |
+| 분석 단위 | **문장 수준** (최종 22,706개 문장 쌍, 그중 변화 7,262쌍) |
 
 **대상 기업:**
 
@@ -43,27 +43,28 @@ DART API
   │
   ▼
 [1] 데이터 수집          scripts/collect_dart_reports.py
-      └─ 원본 사업보고서 HTML → data/raw/zip/
+      └─ 사업보고서 원문 XML → data/annual_reports.db (reports.raw_xml), ZIP → data/raw/zip/
   │
   ▼
-[2] 전처리               src/preprocess.py, src/report_parser.py
-      └─ 문단/문장 추출 + 품질 필터링
+[2] 전처리               src/preprocess_structure.py, src/report_parser.py
+      └─ II장 추출 → 문단/문장 분리 + 품질 필터링, 7개 분석 영역 매핑 (config/section_mapping.yaml)
       └─ 출력: data/processed/preprocessing_v2/{산업}/paragraphs.jsonl
   │
   ▼
-[3] 문장 정렬            src/align.py
-      └─ 인접 연도(old–new) 문장쌍 생성
-      └─ TF-IDF 코사인 유사도로 유사 문장 매칭 (threshold=0.3)
+[3] 문장 매칭            run_v1.py + src/tfidf_model.py
+      └─ 인접 연도(old–new), 같은 분석 영역 안에서 문장 비교
+      └─ 숫자 마스킹 → 문자 2–5gram TF-IDF 코사인 유사도 (threshold=0.3)
   │
   ▼
-[4] 변화 분류            src/change_classifier.py
+[4] 변화 분류            run_v1.py + src/change_classifier.py
       └─ 규칙 기반 분류 → 7개 유형
-      └─ 출력: data/results_v2/tfidf_masked_th0.3.csv  (35,720행)
+      └─ 출력: data/results_v2/tfidf_masked_th0.3.csv  (22,706행)
   │
   ▼
 [5] LDA 토픽 분석        scripts/run_lda_analysis.py
-      └─ 변화 문장만 추출 → KiwiPy 형태소 분석 → LDA (5 토픽)
+      └─ 변화 문장만 추출 → KiwiPy 형태소 분석 → 기업·연도쌍별 LDA (토픽 2~4개)
       └─ 출력: analysis/lda_results.json
+      └─ 대표 변화 문장쌍: scripts/extract_representative_changes.py → data/results_representative_changes/
   │
   ▼
 [6] 시각화 데모          analysis/demo.html
@@ -367,42 +368,42 @@ def make_labels(topics):
 Unstructured-data/
 ├── PROJECT.md                        ← 이 문서
 ├── README.md                         ← 기본 개요
+├── UDA_final_presentation.pdf        ← 최종 발표자료
 ├── requirements.txt                  ← 의존성
-├── run_v1.py                         ← TF-IDF 분석 실행 스크립트
+├── run_v1.py                         ← ★ TF-IDF 매칭 + 변화 분류 실행 스크립트
 │
 ├── config/
-│   ├── settings.yaml                 ← 분석 파라미터 (임계값, 기업 목록 등)
-│   └── section_mapping.yaml          ← 섹션 분류 매핑
+│   ├── settings.yaml                 ← 수집 연도, 매칭 임계값, TF-IDF 설정
+│   └── section_mapping.yaml          ← 소제목 → 분석 영역 매핑
 │
 ├── src/                              ← 핵심 분석 모듈
+│   ├── report_parser.py              ← 사업보고서 XML에서 II장 추출
+│   ├── preprocess_structure.py       ← 문단·문장 레코드 생성 (JSONL)
 │   ├── tfidf_model.py                ← TF-IDF 유사도 + 숫자 마스킹
 │   ├── change_classifier.py          ← 규칙 기반 변화 유형 분류
-│   ├── change_detector.py            ← 변화 감지 오케스트레이터
-│   ├── align.py                      ← 문장 정렬
-│   ├── preprocess.py                 ← 전처리
-│   ├── report_parser.py              ← 사업보고서 HTML 파서
-│   ├── section_classifier.py         ← 섹션 분류
-│   ├── embedding_model.py            ← 임베딩 모델 (대안 방법)
-│   └── database.py                   ← SQLite DB 헬퍼
+│   └── database.py                   ← SQLite DB 헬퍼 (수집용)
 │
 ├── scripts/
 │   ├── collect_dart_reports.py       ← DART API에서 사업보고서 수집
-│   ├── industry_lda_corrected.py     ← 산업별 LDA (정교화 버전, 팀원 작성)
-│   └── run_lda_analysis.py           ← ★ LDA 분석 실행 스크립트
+│   ├── run_lda_analysis.py           ← ★ LDA 분석 실행 스크립트
+│   ├── extract_representative_changes.py ← 토픽별 대표 변화 문장쌍 → demo.html
+│   └── plots/                        ← 발표자료 그림 생성 (README 표 참고)
 │
 ├── analysis/
 │   ├── demo.html                     ← ★ 인터랙티브 데모 (브라우저에서 바로 열기)
 │   └── lda_results.json              ← ★ LDA 분석 결과 (demo.html에 임베딩됨)
 │
 ├── data/
-│   ├── processed/preprocessing_v2/   ← 전처리된 문장 데이터
+│   ├── raw/                          ← corp_code.json, 원본 ZIP
+│   ├── processed/preprocessing_v2/   ← 전처리된 문단·문장 데이터
 │   │   ├── battery/
 │   │   ├── biopharma/
 │   │   └── semiconductor/
-│   └── results_v2/
-│       ├── tfidf_masked_th0.3.csv    ← ★ TF-IDF 변화 분류 결과 (35,720행)
-│       └── tfidf_masked_th0.6.csv    ← 임계값 0.6 버전
+│   ├── results_v2/
+│   │   └── tfidf_masked_th0.3.csv    ← ★ TF-IDF 변화 분류 결과 (22,706행)
+│   └── results_representative_changes/ ← 대표 변화 문장쌍
 │
+├── figures/                          ← 발표자료 그림 (png/svg) + 집계 csv
 └── tests/                            ← 단위 테스트
 ```
 
@@ -436,7 +437,8 @@ start analysis/demo.html         # Windows
 
 ### TF-IDF 분석 재실행
 ```bash
-python run_v1.py tfidf --output-dir data/results_v2
+python run_v1.py
+# 같은 연도쌍이 이미 CSV에 있으면 건너뛴다. 처음부터 다시 만들려면 기존 CSV를 지우거나 --output-dir 지정
 ```
 
 ### LDA 분석 재실행
@@ -448,19 +450,20 @@ python scripts/run_lda_analysis.py --input data/results_v2/tfidf_masked_th0.3.cs
 
 ### 의존성 설치
 ```bash
-pip install -r requirements.txt
-pip install kiwipiepy      # 한국어 형태소 분석기 (별도 설치)
+pip install -r requirements.txt   # kiwipiepy(한국어 형태소 분석기) 포함
 ```
 
 ---
 
 ## 8. 주요 결과 요약
 
+변화율 = 5개 변화 유형 쌍 ÷ 해당 기업·연도쌍 전체 문장 쌍 (`figures/fig_change_rate_heatmap.png`)
+
 | 기업 | 연도 | 변화율 | 주요 특이사항 |
 |------|------|--------|--------------|
-| SK이노베이션 | 23→24 | **84%** | SK E&S 합병으로 대규모 신규 문장 추가 |
-| 셀트리온 | 23→24 | **86%** | 셀트리온헬스케어 흡수합병으로 대규모 삭제 |
-| SK하이닉스 | 22→23 | 42% | AI·HBM 관련 토픽 급부상 |
+| 셀트리온 | 23→24 | **42%** | 셀트리온헬스케어 흡수합병 |
+| SK하이닉스 | 22→23 | **42%** | AI·HBM 관련 토픽 급부상 |
+| SK이노베이션 | 23→24 | 34% | SK E&S 합병으로 신규 문장 추가 |
 | 삼성바이오로직스 | 21→22 | 38% | CDO 사업 확장으로 신규 문장 많음 |
 | LG에너지솔루션 | 21→22 | 32% | EV 배터리 시장 관련 내용 확장 |
 
@@ -471,13 +474,12 @@ pip install kiwipiepy      # 한국어 형태소 분석기 (별도 설치)
 ### 현재 한계
 
 1. **변화 유형 `UNCERTAIN` 비율이 높음**  
-   규칙 기반 분류기가 애매한 케이스(표현 변경, 문장 재구성)를 모두 UNCERTAIN으로 분류.  
+   전체 22,706쌍 중 5,654쌍(25%)이 UNCERTAIN. 규칙 기반 분류기가 애매한 케이스(표현 변경, 문장 재구성)를 모두 UNCERTAIN으로 분류.  
    → LLM 분류기 도입 시 개선 가능 (`change_classifier.py`의 `classify()` 함수를 교체하면 됨)
 
 2. **TF-IDF의 한계: 의미적 유사도 미반영**  
-   "매출 성장"과 "수익 개선"은 의미상 유사하지만 TF-IDF에선 다른 문장으로 처리됨.  
-   `src/embedding_model.py`에 BGE-M3 임베딩 기반 대안이 구현되어 있으나,  
-   속도·비용 문제로 본 분석은 TF-IDF를 사용함.
+   "매출 성장"과 "수익 개선"은 의미상 유사하지만 TF-IDF에선 다른 문장으로 처리되어,  
+   UNCHANGED여야 할 쌍이 NEW/REMOVED로 분류될 수 있음.
 
 3. **LDA 토픽 자동 명명 불가**  
    LDA는 토픽을 "상위 키워드 목록"으로만 출력함.  
@@ -485,7 +487,7 @@ pip install kiwipiepy      # 한국어 형태소 분석기 (별도 설치)
 
 ### ⚠️ 추후 필수 과제: LDA 토픽 수동 정제
 
-**현재 상태**: 36개 기업·연도 쌍 × 5개 토픽 = **최대 180개 토픽**이 자동 생성됨.
+**현재 상태**: 36개 기업·연도 쌍 × 2~4개 토픽 = **최대 144개 토픽**이 자동 생성됨.
 
 **문제**: 아래와 같은 노이즈 토픽이 섞여 있어 의미 해석이 어려움.
 - 금융 표 아티팩트: `col`, `USD`, `JPY`, `EUR` 등이 토픽을 지배
@@ -515,7 +517,7 @@ analysis/lda_results.json 파일에서
 
 ## 10. 참고 사항
 
-- **데이터 크기**: `data/raw/zip/` (약 90개 원본 zip 파일, 각 10–50MB)는 `.gitignore`로 제외됨. 재수집 필요 시 `scripts/collect_dart_reports.py` 실행.
-- **SQLite DB**: `data/annual_reports.db`는 중간 저장용으로 `.gitignore`에서 제외됨. `run_v1.py` 실행 시 자동 생성.
+- **원본 ZIP**: `data/raw/zip/`에 수집한 사업보고서 ZIP이 들어 있음. 재수집 필요 시 `scripts/collect_dart_reports.py` 실행.
+- **SQLite DB**: `data/annual_reports.db`(원문 XML 저장)는 용량 문제로 `.gitignore`에서 제외됨. `scripts/collect_dart_reports.py` 실행 시 생성.
 - **환경**: `.env`에 DART API 키 필요 (`DART_API_KEY=...`). `.gitignore`로 제외됨.
 - **Python 버전**: 3.11 이상 권장.

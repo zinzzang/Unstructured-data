@@ -3,5 +3,6 @@ lxml
 pytest
 numpy
 scikit-learn
-sentence-transformers
 kiwipiepy
+matplotlib
+requests
